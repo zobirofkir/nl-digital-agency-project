@@ -15,7 +15,7 @@ const SearchFormComponent = () => {
         className={`
           peer
           w-28 md:w-40
-          focus:w-48 md:focus:w-64
+          focus:w-36 md:focus:w-52
           transition-all duration-300
           px-4 py-2
           bg-transparent
