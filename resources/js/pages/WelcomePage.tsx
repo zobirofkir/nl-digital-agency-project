@@ -1,9 +1,14 @@
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
-const welcome = () => {
+const WelcomePage = () => {
   return (
-    <div>welcome</div>
+    <AppLayout>
+      <div>
+        Welcome Page
+      </div>
+    </AppLayout>
   )
 }
 
-export default welcome
+export default WelcomePage
