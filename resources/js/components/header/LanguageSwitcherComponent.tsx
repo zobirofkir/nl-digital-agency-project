@@ -14,7 +14,7 @@ const LanguageSwitcherComponent = ({
   setLang: (lang: 'fr' | 'en') => void
   isMobile?: boolean
 }) => (
-  <div className={`ml-6 flex items-center relative${isMobile ? ' mt-6 w-full' : ''}`}>
+  <div className={`lg:ml-6 flex items-center relative${isMobile ? ' mt-6 w-full' : ''}`}>
     <div className={`flex ${isMobile ? 'w-full' : ''} bg-white border border-gray-400 rounded-full overflow-hidden shadow-sm relative`}>
       {LANGUAGES.map((l) => (
         <button
