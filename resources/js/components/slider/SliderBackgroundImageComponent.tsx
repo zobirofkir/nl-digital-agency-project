@@ -1,7 +1,7 @@
 import React from 'react'
 import SliderBackground from '@/assets/slider/slider-background.png'
 
-const SliderBackgroundImage: React.FC = () => (
+const SliderBackgroundImageComponent: React.FC = () => (
   <div
     className="absolute inset-0 w-full h-full z-0"
     style={{
@@ -15,4 +15,4 @@ const SliderBackgroundImage: React.FC = () => (
   />
 )
 
-export default SliderBackgroundImage
+export default SliderBackgroundImageComponent

@@ -24,7 +24,7 @@ const sizeClass = {
   medium: 'w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain'
 }
 
-const AnimatedCircle: React.FC<AnimatedCircleProps> = ({ position, className, size = 'large' }) => (
+const AnimatedCircleComponent: React.FC<AnimatedCircleProps> = ({ position, className, size = 'large' }) => (
   <motion.div
     className={className}
     initial={{ x: 0, y: 0 }}
@@ -45,4 +45,4 @@ const AnimatedCircle: React.FC<AnimatedCircleProps> = ({ position, className, si
   </motion.div>
 )
 
-export default AnimatedCircle
+export default AnimatedCircleComponent
