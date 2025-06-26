@@ -38,9 +38,20 @@ const SliderComponent = () => {
       {/* Left Center Circle */}
       <motion.div
         className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-10"
-        initial={{ y: 0 }}
-        animate={{ y: [0, -30, 0] }}
-        transition={bounceTransition}
+        initial={{ x: 0, y: 0 }}
+        animate={{
+          x: [
+            0,  30,  60,  30,   0, -30, -60, -30, 0
+          ],
+          y: [
+            0, -30,  0, 30, 60, 30,  0, -30, 0
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear"
+        }}
         style={{ pointerEvents: 'none' }}
       >
         <img
@@ -53,9 +64,20 @@ const SliderComponent = () => {
       {/* Top Right Circle */}
       <motion.div
         className="absolute right-0 top-0 z-10"
-        initial={{ y: 0 }}
-        animate={{ y: [0, 30, 0] }}
-        transition={bounceTransition}
+        initial={{ x: 0, y: 0 }}
+        animate={{
+          x: [
+            0,  30,  60,  30,   0, -30, -60, -30, 0
+          ],
+          y: [
+            0, 30,  0, -30, -60, -30,   0,  30, 0
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear"
+        }}
         style={{ pointerEvents: 'none' }}
       >
         <img
