@@ -1,3 +1,11 @@
+/**
+ * AnimatedCircleComponent
+ * Renders an animated decorative circle using framer-motion.
+ * Props:
+ * - position: 'left-center' | 'top-right' (determines animation and placement)
+ * - className: optional additional CSS classes
+ * - size: 'large' | 'medium' (default: 'large')
+ */
 import React from 'react'
 import { motion } from 'framer-motion'
 import CirclePng from '@/assets/icons/circle-icon.png'
@@ -15,7 +23,6 @@ const animationVariants = {
       y: [0, -30, 0, 30, 60, 30, 0, -30, 0]
     },
     mobile: {
-      // Subtle, small movement for mobile
       x: [0, 6, 12, 6, 0, -6, -12, -6, 0],
       y: [0, -8, 0, 8, 12, 8, 0, -8, 0]
     }
@@ -26,7 +33,6 @@ const animationVariants = {
       y: [0, 30, 0, -30, -60, -30, 0, 30, 0]
     },
     mobile: {
-      // Subtle, small movement for mobile
       x: [0, 8, 16, 8, 0, -8, -16, -8, 0],
       y: [0, 8, 0, -8, -16, -8, 0, 8, 0]
     }
@@ -36,7 +42,6 @@ const animationVariants = {
 const sizeClass = {
   large: 'w-32 h-32 md:w-52 md:h-52 lg:w-64 lg:h-64 object-contain',
   medium: 'w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain',
-  // Smaller for mobile for both circles
   mobileLarge: 'w-30 h-30 object-contain',
   mobileMedium: 'w-20 h-20 object-contain'
 }
