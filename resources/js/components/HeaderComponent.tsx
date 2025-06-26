@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Logo from '@/assets/logo/logo.png'
-import NavLinksComponent from './NavLinksComponent'
-import LanguageSwitcherComponent from './LanguageSwitcherComponent'
+import NavLinksComponent from './header/NavLinksComponent'
+import LanguageSwitcherComponent from './header/LanguageSwitcherComponent'
 import useLanguage from '@/hooks/useLanguage'
-import MobileSidebarComponent from './MobileSidebarComponent'
+import MobileSidebarComponent from './header/MobileSidebarComponent'
 
 const HeaderComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)

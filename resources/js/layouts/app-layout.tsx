@@ -1,5 +1,5 @@
 import FooterComponent from '@/components/FooterComponent';
-import HeaderComponent from '@/components/header/HeaderComponent';
+import HeaderComponent from '@/components/HeaderComponent';
 import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 
