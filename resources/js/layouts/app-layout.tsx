@@ -9,9 +9,14 @@ interface AppLayoutProps {
 }
 
 export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
-    <section {...props}>
+    <section
+        {...props}
+        className={`flex flex-col min-h-screen ${props?.className || ''}`}
+    >
         <HeaderComponent />
-        {children}
+        <main className="flex-1">
+            {children}
+        </main>
         <FooterComponent />
     </section>
 );

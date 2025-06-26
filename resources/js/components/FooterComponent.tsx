@@ -2,7 +2,9 @@ import React from 'react'
 
 const FooterComponent = () => {
   return (
-    <div>FooterComponent</div>
+    <footer className="w-full py-4 text-center mt-auto">
+      FooterComponent
+    </footer>
   )
 }
 
