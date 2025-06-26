@@ -15,7 +15,7 @@ const NavLinksComponent = ({ onClickLink }: { onClickLink: () => void }) => (
       <a
         key={link.name}
         href={link.href}
-        className="flex items-center text-black font-medium hover:text-gray-700 transition-colors duration-200 group"
+        className="flex items-center text-black font-md hover:text-gray-700 transition-colors duration-200 group"
         onClick={onClickLink}
       >
         {link.name}
