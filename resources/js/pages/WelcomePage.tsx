@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
 import React from 'react'
 import HeaderComponent from '@/components/HeaderComponent'
+import AboutComponent from '@/components/about/AboutComponent'
 
 const WelcomePage = () => {
   return (
@@ -11,6 +12,7 @@ const WelcomePage = () => {
       <section>
           <SliderComponent />        
       </section>
+      <AboutComponent />
     </AppLayout>
   )
 }
