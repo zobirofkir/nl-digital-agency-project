@@ -1,7 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-const SliderContentComponent: React.FC = () => (
+const SliderContentComponent: React.FC = () => {
+  const [displayedText, setDisplayedText] = useState('')
+  const [displayedQuote, setDisplayedQuote] = useState('')
+  const fullText = 'Stratégies digitales sur mesure pour amplifier votre marque et maximiser vos résultats.'
+  const fullQuote = 'Excellence digitale, résultats mesurables.'
+
+  useEffect(() => {
+    const startTyping = () => {
+      setDisplayedText('')
+      setDisplayedQuote('')
+      
+      let textIndex = 0
+      const textTimer = setInterval(() => {
+        if (textIndex < fullText.length) {
+          setDisplayedText(fullText.slice(0, textIndex + 1))
+          textIndex++
+        } else {
+          clearInterval(textTimer)
+        }
+      }, 50)
+
+      const quoteTimer = setTimeout(() => {
+        let quoteIndex = 0
+        const quoteInterval = setInterval(() => {
+          if (quoteIndex < fullQuote.length) {
+            setDisplayedQuote(fullQuote.slice(0, quoteIndex + 1))
+            quoteIndex++
+          } else {
+            clearInterval(quoteInterval)
+          }
+        }, 60)
+      }, 2500)
+    }
+
+    startTyping()
+    const loopTimer = setInterval(startTyping, 8000)
+
+    return () => {
+      clearInterval(loopTimer)
+    }
+  }, [])
+
+  return (
   <div className="absolute inset-0 z-20 flex items-center md:mt-0 mt-10">
     <div className="w-full lg:w-1/2 px-8 lg:px-20">
       <motion.div
@@ -56,9 +98,8 @@ const SliderContentComponent: React.FC = () => (
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.7 }}
         >
-          <span className="text-red-600 font-semibold">Stratégies digitales</span> sur mesure pour{' '}
-          <span className="text-red-600 font-semibold">amplifier votre marque</span> et{' '}
-          <span className="text-red-600 font-semibold">maximiser vos résultats</span>.
+          {displayedText}
+          <span className="animate-pulse">|</span>
         </motion.p>
         
         <motion.div
@@ -67,10 +108,12 @@ const SliderContentComponent: React.FC = () => (
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.9 }}
         >
-          "Excellence digitale, résultats mesurables."
-          <div className="mt-4 text-red-600 font-semibold not-italic">
-            - Naoual Lebbar, CEO
-          </div>
+          "{displayedQuote}"
+          {displayedQuote.length === fullQuote.length && (
+            <div className="mt-4 text-red-600 font-semibold not-italic">
+              - Naoual Lebbar, CEO
+            </div>
+          )}
         </motion.div>
         
         <motion.div
@@ -103,6 +146,7 @@ const SliderContentComponent: React.FC = () => (
       </motion.div>
     </div>
   </div>
-)
+  )
+}
 
 export default SliderContentComponent
