@@ -5,9 +5,9 @@ import AboutBackgroundImage from '@/assets/abouts/about-image-background.png'
 const AboutComponent = () => {
   return (
     <motion.div 
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat -mt-[13%] z-30"
+      className="relative min-h-screen lg:bg-transparent bg-black lg:bg-cover lg:bg-center lg:bg-no-repeat lg:-mt-[13%] -mt-0 z-30"
       style={{ 
-        backgroundImage: `url(${AboutBackgroundImage})`
+        backgroundImage: window.innerWidth >= 1024 ? `url(${AboutBackgroundImage})` : 'none'
       }}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
