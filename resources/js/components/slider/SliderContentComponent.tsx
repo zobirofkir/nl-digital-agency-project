@@ -233,13 +233,13 @@ const SliderContentComponent: React.FC = () => {
         </motion.div>
         
         <motion.div
-          className="flex flex-col sm:flex-row gap-6"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 1.1 }}
         >
           <motion.button 
-            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-red-500/25 transition-all duration-500 overflow-hidden"
+            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-lg shadow-2xl hover:shadow-red-500/25 transition-all duration-500 overflow-hidden"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}
@@ -249,7 +249,7 @@ const SliderContentComponent: React.FC = () => {
           </motion.button>
           
           <motion.button 
-            className="group border-2 border-gray-800 text-gray-800 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-800 hover:text-white transition-all duration-500 relative overflow-hidden"
+            className="group border-2 border-gray-800 text-gray-800 px-6 py-3 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-lg hover:bg-gray-800 hover:text-white transition-all duration-500 relative overflow-hidden"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}

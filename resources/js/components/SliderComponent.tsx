@@ -24,8 +24,10 @@ const SliderComponent = () => {
       
       {/* Mobile Layout: Content above logo */}
       <div className="lg:hidden">
-        <SliderContentComponent />
-        <div className="absolute top-1/2 -translate-y-1/2 right-0 w-full h-1/2">
+        <div className="pb-40">
+          <SliderContentComponent />
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-40 mb-12">
           <AnimatedSliderLogoComponent />
         </div>
       </div>
