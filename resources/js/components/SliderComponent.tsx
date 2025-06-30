@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import AnimatedCircleComponent from './slider/AnimatedCircleComponent'
 import SliderBackgroundImageComponent from './slider/SliderBackgroundImageComponent'
 import SliderContentComponent from './slider/SliderContentComponent'
-import SliderLogo from '@/assets/slider/slider-logo.png' // Add this import
+import AnimatedSliderLogoComponent from './slider/AnimatedSliderLogoComponent' // Added import
 
 const SliderComponent = () => {
   return (
@@ -24,14 +24,7 @@ const SliderComponent = () => {
       {/* Slider content */}
       <SliderContentComponent />
       {/* Animated slider logo on the right, centered and big */}
-      <motion.img
-        src={SliderLogo}
-        alt="Slider Logo"
-        className="absolute right-8 top-1/2 -translate-y-1/2 w-full h-full object-contain z-30"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-      />
+      <AnimatedSliderLogoComponent /> {/* Replaced inline code with component */}
     </div>
   )
 }
