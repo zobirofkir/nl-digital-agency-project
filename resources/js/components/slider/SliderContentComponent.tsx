@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const SliderContentComponent: React.FC = () => {
   const [displayedText, setDisplayedText] = useState('')
   const [displayedQuote, setDisplayedQuote] = useState('')
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [currentQuoteWordIndex, setCurrentQuoteWordIndex] = useState(0)
   const fullText = 'Stratégies digitales sur mesure pour amplifier votre marque et maximiser vos résultats.'
   const fullQuote = 'Excellence digitale, résultats mesurables.'
+  const words = fullText.split(' ')
+  const quoteWords = fullQuote.split(' ')
 
   useEffect(() => {
     const startTyping = () => {
       setDisplayedText('')
       setDisplayedQuote('')
+      setCurrentWordIndex(0)
+      setCurrentQuoteWordIndex(0)
       
       let textIndex = 0
+      let wordIndex = 0
       const textTimer = setInterval(() => {
         if (textIndex < fullText.length) {
           setDisplayedText(fullText.slice(0, textIndex + 1))
+          const currentText = fullText.slice(0, textIndex + 1)
+          const currentWords = currentText.split(' ')
+          if (currentWords.length > wordIndex) {
+            setCurrentWordIndex(currentWords.length - 1)
+            wordIndex = currentWords.length
+          }
           textIndex++
         } else {
           clearInterval(textTimer)
@@ -24,9 +37,16 @@ const SliderContentComponent: React.FC = () => {
 
       const quoteTimer = setTimeout(() => {
         let quoteIndex = 0
+        let quoteWordIdx = 0
         const quoteInterval = setInterval(() => {
           if (quoteIndex < fullQuote.length) {
             setDisplayedQuote(fullQuote.slice(0, quoteIndex + 1))
+            const currentQuoteText = fullQuote.slice(0, quoteIndex + 1)
+            const currentQuoteWords = currentQuoteText.split(' ')
+            if (currentQuoteWords.length > quoteWordIdx) {
+              setCurrentQuoteWordIndex(currentQuoteWords.length - 1)
+              quoteWordIdx = currentQuoteWords.length
+            }
             quoteIndex++
           } else {
             clearInterval(quoteInterval)
@@ -92,27 +112,123 @@ const SliderContentComponent: React.FC = () => {
           </motion.span>
         </motion.h1>
         
-        <motion.p
-          className="text-xl lg:text-2xl mb-10 leading-relaxed text-black font-light max-w-2xl"
+        <motion.div
+          className="text-xl lg:text-2xl mb-10 leading-relaxed max-w-2xl relative"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.7 }}
         >
-          {displayedText}
-          <span className="animate-pulse">|</span>
-        </motion.p>
+          <div className="flex flex-wrap gap-x-2 gap-y-1">
+            {words.map((word, index) => {
+              const isVisible = displayedText.includes(word) && index <= currentWordIndex
+              const isCurrentWord = index === currentWordIndex && displayedText.length > 0
+              
+              return (
+                <span key={index} className="relative inline-block">
+                  <motion.span
+                    className={`font-bold text-black ${
+                      isVisible ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{
+                      textShadow: '2px 2px 4px rgba(239, 68, 68, 0.5), 0 0 8px rgba(239, 68, 68, 0.3)'
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: isVisible ? 1 : 0,
+                      scale: isVisible ? 1 : 0.8
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {word}
+                  </motion.span>
+                  
+                  <AnimatePresence>
+                    {isCurrentWord && (
+                      <motion.div
+                        className="absolute -inset-1 pointer-events-none"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="absolute inset-0 bg-red-500/20 rounded blur-sm animate-pulse" />
+                        <div className="absolute -top-1 -left-1 w-2 h-2 bg-red-500 rounded-full animate-ping" />
+                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-ping" style={{ animationDelay: '0.1s' }} />
+                        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-red-500 rounded-full animate-ping" style={{ animationDelay: '0.2s' }} />
+                        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-ping" style={{ animationDelay: '0.3s' }} />
+                        <div className="absolute inset-0 border-2 border-red-500 rounded animate-pulse" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </span>
+              )
+            })}
+          </div>
+          <span className="animate-pulse text-black font-bold ml-1">|</span>
+        </motion.div>
         
         <motion.div
-          className="mb-8 text-lg text-black italic max-w-2xl"
+          className="mb-8 text-lg max-w-2xl relative"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.9 }}
         >
-          "{displayedQuote}"
+          <div className="flex flex-wrap gap-x-2 gap-y-1 italic">
+            <span className="font-bold text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
+            {quoteWords.map((word, index) => {
+              const isVisible = displayedQuote.includes(word) && index <= currentQuoteWordIndex
+              const isCurrentWord = index === currentQuoteWordIndex && displayedQuote.length > 0
+              
+              return (
+                <span key={index} className="relative inline-block">
+                  <motion.span
+                    className={`font-bold text-black italic ${
+                      isVisible ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{
+                      textShadow: '1px 1px 3px rgba(239, 68, 68, 0.4), 0 0 6px rgba(239, 68, 68, 0.2)'
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: isVisible ? 1 : 0,
+                      scale: isVisible ? 1 : 0.8
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {word}
+                  </motion.span>
+                  
+                  <AnimatePresence>
+                    {isCurrentWord && (
+                      <motion.div
+                        className="absolute -inset-1 pointer-events-none"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="absolute inset-0 bg-red-400/15 rounded blur-sm animate-pulse" />
+                        <div className="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-red-400 rounded-full animate-ping" />
+                        <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-400 rounded-full animate-ping" style={{ animationDelay: '0.1s' }} />
+                        <div className="absolute inset-0 border border-red-400 rounded animate-pulse" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </span>
+              )
+            })}
+            <span className="font-bold text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
+          </div>
           {displayedQuote.length === fullQuote.length && (
-            <div className="mt-4 text-red-600 font-semibold not-italic">
+            <motion.div 
+              className="mt-4 text-red-600 font-bold not-italic"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}
+            >
               - Naoual Lebbar, CEO
-            </div>
+            </motion.div>
           )}
         </motion.div>
         
