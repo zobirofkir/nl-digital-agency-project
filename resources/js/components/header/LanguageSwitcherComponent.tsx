@@ -32,7 +32,7 @@ const LanguageSwitcherComponent = ({
       ))}
       {/* Animated background */}
       <span
-        className="absolute top-0 left-0 h-full w-1/2 bg-gray-700 rounded-full transition-transform duration-300"
+        className="absolute top-0 left-0 h-full w-1/2 bg-black rounded-full transition-transform duration-300"
         style={{
           transform: lang === 'fr' ? 'translateX(0%)' : 'translateX(100%)',
           zIndex: 1,
