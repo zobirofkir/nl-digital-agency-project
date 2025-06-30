@@ -21,10 +21,20 @@ const SliderComponent = () => {
       />
       {/* Background slider image */}
       <SliderBackgroundImageComponent />
-      {/* Slider content */}
-      <SliderContentComponent />
-      {/* Animated slider logo on the right, centered and big */}
-      <AnimatedSliderLogoComponent /> {/* Replaced inline code with component */}
+      
+      {/* Mobile Layout: Content above logo */}
+      <div className="lg:hidden">
+        <SliderContentComponent />
+        <div className="absolute bottom-0 right-0 w-full h-1/2">
+          <AnimatedSliderLogoComponent />
+        </div>
+      </div>
+      
+      {/* Desktop Layout: Content left, logo right */}
+      <div className="hidden lg:block">
+        <SliderContentComponent />
+        <AnimatedSliderLogoComponent />
+      </div>
     </div>
   )
 }
