@@ -40,6 +40,7 @@ const AnimatedSliderLogoComponent = () => (
       src={SliderMobilePersonne}
       alt="Slider Personne"
       className="lg:hidden absolute top-1/2 -translate-y-1/2 w-full h-full object-contain z-40 drop-shadow-2xl"
+      style={{ filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 40px rgba(239, 68, 68, 0.4))' }}
       initial={{ x: 120, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ x: { type: 'spring', stiffness: 70, damping: 18, delay: 0.15 }, opacity: { duration: 0.7, delay: 0.15 } }}
@@ -60,6 +61,7 @@ const AnimatedSliderLogoComponent = () => (
       src={SliderMobileLogo}
       alt="Slider Logo"
       className="lg:hidden w-[50%] h-[50%] object-contain z-30"
+      style={{ filter: 'drop-shadow(0 0 20px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 40px rgba(239, 68, 68, 0.4))' }}
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 80, damping: 20 }}
