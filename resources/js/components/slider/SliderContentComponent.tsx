@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const SliderContentComponent: React.FC = () => (
-  <div className="absolute inset-0 z-20 flex items-center">
+  <div className="absolute inset-0 z-20 flex items-center md:mt-0 mt-10">
     <div className="w-full lg:w-1/2 px-8 lg:px-20">
       <motion.div
         className="max-w-3xl"
@@ -32,21 +32,21 @@ const SliderContentComponent: React.FC = () => (
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            Transformons
+            Idées
           </motion.span>
           <motion.span 
             className="block bg-gradient-to-r from-red-600 via-red-700 to-red-800 bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            Vos Idées
+            Digitales
           </motion.span>
           <motion.span 
             className="block text-black"
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            en Succès
+            Réussies
           </motion.span>
         </motion.h1>
         
@@ -56,12 +56,9 @@ const SliderContentComponent: React.FC = () => (
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.7 }}
         >
-          Chez{' '}
-          <span className="text-red-600 font-semibold">NL Marketing Digital</span>, nous croyons que chaque marque a une{' '}
-          <span className="text-red-600 font-semibold">histoire unique à raconter</span>.
-          Notre mission est de l'amplifier à travers des{' '}
-          <span className="text-red-600 font-semibold">stratégies innovantes</span>{' '}
-          et des solutions sur mesure.
+          <span className="text-red-600 font-semibold">Stratégies digitales</span> sur mesure pour{' '}
+          <span className="text-red-600 font-semibold">amplifier votre marque</span> et{' '}
+          <span className="text-red-600 font-semibold">maximiser vos résultats</span>.
         </motion.p>
         
         <motion.div
@@ -70,9 +67,9 @@ const SliderContentComponent: React.FC = () => (
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.9 }}
         >
-          "Que vous soyez au Maroc ou à l'étranger, notre équipe dévouée travaille sans relâche pour vous offrir des résultats exceptionnels."
+          "Excellence digitale, résultats mesurables."
           <div className="mt-4 text-red-600 font-semibold not-italic">
-            - Naoual Lebbar, CEO NL Marketing Digital
+            - Naoual Lebbar, CEO
           </div>
         </motion.div>
         
@@ -88,7 +85,7 @@ const SliderContentComponent: React.FC = () => (
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">Commencer Maintenant</span>
+            <span className="relative z-10">Démarrer</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
           
@@ -98,7 +95,7 @@ const SliderContentComponent: React.FC = () => (
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">Notre Histoire</span>
+            <span className="relative z-10">En Savoir Plus</span>
             <div className="absolute inset-0 bg-gray-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
           </motion.button>
         </motion.div>
