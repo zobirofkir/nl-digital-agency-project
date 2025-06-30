@@ -64,7 +64,7 @@ const SliderContentComponent: React.FC = () => {
   }, [])
 
   return (
-  <div className="absolute inset-0 z-20 flex items-center lg:items-center items-start pt-16 lg:pt-0">
+  <div className="absolute inset-0 z-20 flex items-center lg:items-center items-start md:mt-0 mt-10 pt-16 lg:pt-0">
     <div className="w-full lg:w-1/2 px-8 lg:px-20">
       <motion.div
         className="max-w-3xl"
