@@ -1,13 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import SliderLogo from '@/assets/slider/slider-logo.png'
-import SliderPersonne from '@/assets/slider/slider-personne-image.png'
+import SliderDesktopLogo from '@/assets/slider/slider-desktop-logo.png'
+import SliderDesktopPersonne from '@/assets/slider/slider-desktop-personne-image.png'
 
 const AnimatedSliderLogoComponent = () => (
   <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-end z-30">
     {/* Personne Image - Large, Overlay, Pro Style, Robotic Auto-Movement */}
     <motion.img
-      src={SliderPersonne}
+      src={SliderDesktopPersonne}
       alt="Slider Personne"
       className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-full object-contain z-40 drop-shadow-2xl"
       initial={{ x: 120, opacity: 0, rotate: 0, scale: 1 }}
@@ -35,7 +35,7 @@ const AnimatedSliderLogoComponent = () => (
     />
     {/* Logo - Normal Size, Underneath */}
     <motion.img
-      src={SliderLogo}
+      src={SliderDesktopLogo}
       alt="Slider Logo"
       className="relative right-8 w-full h-full object-contain z-30"
       initial={{ x: 100, opacity: 0 }}
