@@ -54,11 +54,12 @@ const AnimatedSliderLogoComponent = () => (
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 80, damping: 20 }}
     />
+
     {/* Mobile Logo */}
     <motion.img
       src={SliderMobileLogo}
       alt="Slider Logo"
-      className="lg:hidden w-48 h-32 object-contain z-30"
+      className="lg:hidden w-[50%] h-[50%] object-contain z-30"
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 80, damping: 20 }}
