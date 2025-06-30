@@ -126,7 +126,7 @@ const SliderContentComponent: React.FC = () => {
               return (
                 <span key={index} className="relative inline-block">
                   <motion.span
-                    className={`font-bold text-black ${
+                    className={`font-thin text-black ${
                       isVisible ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{
@@ -164,7 +164,7 @@ const SliderContentComponent: React.FC = () => {
               )
             })}
           </div>
-          <span className="animate-pulse text-black font-bold ml-1">|</span>
+          <span className="animate-pulse text-black font-thin ml-1">|</span>
         </motion.div>
         
         <motion.div
@@ -174,7 +174,7 @@ const SliderContentComponent: React.FC = () => {
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.9 }}
         >
           <div className="flex flex-wrap gap-x-2 gap-y-1 italic">
-            <span className="font-bold text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
+            <span className="font-thin text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
             {quoteWords.map((word, index) => {
               const isVisible = displayedQuote.includes(word) && index <= currentQuoteWordIndex
               const isCurrentWord = index === currentQuoteWordIndex && displayedQuote.length > 0
@@ -182,7 +182,7 @@ const SliderContentComponent: React.FC = () => {
               return (
                 <span key={index} className="relative inline-block">
                   <motion.span
-                    className={`font-bold text-black italic ${
+                    className={`font-thin text-black italic ${
                       isVisible ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{
@@ -217,11 +217,11 @@ const SliderContentComponent: React.FC = () => {
                 </span>
               )
             })}
-            <span className="font-bold text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
+            <span className="font-thin text-black" style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}>"</span>
           </div>
           {displayedQuote.length === fullQuote.length && (
             <motion.div 
-              className="mt-4 text-red-600 font-bold not-italic"
+              className="mt-4 text-red-600 font-thin not-italic"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
