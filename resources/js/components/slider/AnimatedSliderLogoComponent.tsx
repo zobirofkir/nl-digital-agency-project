@@ -4,7 +4,7 @@ import SliderDesktopLogo from '@/assets/slider/slider-desktop-logo.png'
 import SliderDesktopPersonne from '@/assets/slider/slider-desktop-personne-image.png'
 
 const AnimatedSliderLogoComponent = () => (
-  <div className="flex items-center justify-center lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:justify-end z-30 px-4">
+  <div className="flex items-center justify-center lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:justify-end z-30 px-4 lg:px-8">
     {/* Personne Image - Large, Overlay, Pro Style, Robotic Auto-Movement */}
     <motion.img
       src={SliderDesktopPersonne}
