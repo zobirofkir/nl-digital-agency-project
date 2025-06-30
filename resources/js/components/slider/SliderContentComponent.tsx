@@ -49,27 +49,6 @@ const SliderContentComponent: React.FC = () => (
           </button>
         </motion.div>
         
-        <motion.div
-          className="mt-12 flex items-center gap-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-        >
-          <div className="text-center">
-            <div className="text-2xl font-bold text-red-600">500+</div>
-            <div className="text-sm text-black">Projects Delivered</div>
-          </div>
-          <div className="w-px h-12 bg-black opacity-30"></div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-red-600">98%</div>
-            <div className="text-sm text-black">Client Satisfaction</div>
-          </div>
-          <div className="w-px h-12 bg-black opacity-30"></div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-red-600">24/7</div>
-            <div className="text-sm text-black">Support Available</div>
-          </div>
-        </motion.div>
       </motion.div>
     </div>
   </div>
