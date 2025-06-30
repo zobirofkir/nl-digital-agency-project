@@ -14,6 +14,15 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
+      {/* Brands Row at Top */}
+      <div className="absolute top-25 px-4 left-0 z-10 pt-8">
+        <div className="flex justify-center items-center gap-8 text-white font-semibold text-lg">
+          {['NIKE', 'APPLE', 'GOOGLE', 'AMAZON', 'MICROSOFT', 'TESLA'].map((brand, i) => (
+            <span key={i} className="whitespace-nowrap">{brand}</span>
+          ))}
+        </div>
+      </div>
+
     </motion.div>
   )
 }
