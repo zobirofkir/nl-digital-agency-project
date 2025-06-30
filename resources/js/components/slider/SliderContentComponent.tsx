@@ -51,7 +51,7 @@ const SliderContentComponent: React.FC = () => (
         </motion.h1>
         
         <motion.p
-          className="text-xl lg:text-2xl mb-10 leading-relaxed text-gray-700 font-light max-w-2xl"
+          className="text-xl lg:text-2xl mb-10 leading-relaxed text-black font-light max-w-2xl"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.7 }}
@@ -62,7 +62,7 @@ const SliderContentComponent: React.FC = () => (
         </motion.p>
         
         <motion.div
-          className="mb-8 text-lg text-gray-600 italic max-w-2xl"
+          className="mb-8 text-lg text-black italic max-w-2xl"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.9 }}

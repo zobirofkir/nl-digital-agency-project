@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import AnimatedCircleComponent from './slider/AnimatedCircleComponent'
 import SliderBackgroundImageComponent from './slider/SliderBackgroundImageComponent'
 import SliderContentComponent from './slider/SliderContentComponent'
-import AnimatedSliderLogoComponent from './slider/AnimatedSliderLogoComponent' // Added import
+import AnimatedSliderLogoComponent from './slider/AnimatedSliderLogoComponent' 
 
 const SliderComponent = () => {
   return (
@@ -25,7 +25,7 @@ const SliderComponent = () => {
       {/* Mobile Layout: Content above logo */}
       <div className="lg:hidden">
         <SliderContentComponent />
-        <div className="absolute bottom-0 right-0 w-full h-1/2">
+        <div className="absolute top-1/2 -translate-y-1/2 right-0 w-full h-1/2">
           <AnimatedSliderLogoComponent />
         </div>
       </div>
