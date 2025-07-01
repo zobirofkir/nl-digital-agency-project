@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/react'
 import AboutComponent from '@/components/about/AboutComponent'
 import ServiceComponent from '@/components/services/ServiceComponent'
 import ProjectComponent from '@/components/projects/ProjectComponent'
+import ContactComponent from '@/components/contacts/ContactComponent'
 
 const WelcomePage = () => {
   return (
@@ -25,6 +26,10 @@ const WelcomePage = () => {
 
         <div>
           <ProjectComponent />
+        </div>
+
+        <div>
+          <ContactComponent />
         </div>
       </section>
     </AppLayout>
