@@ -20,7 +20,7 @@ const AboutComponent = () => {
       <motion.img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-19 z-40"
+        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-25 z-40"
         initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
         whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
         animate={{
@@ -50,14 +50,13 @@ const AboutComponent = () => {
         transition={{ duration: 1, delay: 0.3 }}
       >
         <div 
-          className="relative w-full h-full bg-cover bg-center"
+          className="relative w-full lg:h-[110%] h-full bg-cover bg-center overflow-hidden"
           style={{ backgroundImage: `url(${AboutPersonneImageBackground})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           <motion.img 
             src={AboutPersonneImage} 
             alt="About Person" 
-            className="absolute inset-0 w-full h-full object-contain"
+            className="absolute inset-0 w-[85%] h-[92%] object-cover flex justify-center items-center mx-auto my-auto"
             style={{
               maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)',
               WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)'
