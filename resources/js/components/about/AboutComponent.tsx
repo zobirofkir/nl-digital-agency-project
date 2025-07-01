@@ -16,18 +16,41 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-1/2 sm:h-2/3 md:h-3/4 flex items-center justify-center">
+      <motion.div 
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-1/2 sm:h-2/3 md:h-3/4 flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+      >
         <div 
           className="relative w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${AboutPersonneImageBackground})` }}
         >
-          <img 
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <motion.img 
             src={AboutPersonneImage} 
             alt="About Person" 
             className="absolute inset-0 w-full h-full object-contain"
+            style={{
+              maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)',
+              WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)'
+            }}
+            animate={{ 
+              y: [0, -10, 0],
+              filter: [
+                'brightness(1) contrast(1)',
+                'brightness(1.1) contrast(1.1)',
+                'brightness(1) contrast(1)'
+              ]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity, 
+              ease: 'easeInOut' 
+            }}
           />
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

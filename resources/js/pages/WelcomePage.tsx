@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/react'
 import React from 'react'
 import HeaderComponent from '@/components/HeaderComponent'
 import AboutComponent from '@/components/about/AboutComponent'
+import FlushImage from '@/assets/abouts/about-flush.png'
 
 const WelcomePage = () => {
   return (
@@ -12,7 +13,12 @@ const WelcomePage = () => {
       <section>
           <SliderComponent />        
       </section>
-      <AboutComponent />
+      <section>
+
+      </section>
+      <section>
+        <AboutComponent />
+      </section>
     </AppLayout>
   )
 }
