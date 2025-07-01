@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
 import AboutComponent from '@/components/about/AboutComponent'
 import ServiceComponent from '@/components/services/ServiceComponent'
+import ProjectComponent from '@/components/projects/ProjectComponent'
 
 const WelcomePage = () => {
   return (
@@ -22,6 +23,9 @@ const WelcomePage = () => {
           <ServiceComponent />
         </div>
 
+        <div>
+          <ProjectComponent />
+        </div>
       </section>
     </AppLayout>
   )
