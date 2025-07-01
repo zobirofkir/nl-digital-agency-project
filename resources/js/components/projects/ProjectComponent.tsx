@@ -154,58 +154,116 @@ const ProjectComponent = () => {
         </motion.div>
 
         {/* Cards Grid */}
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {projects.map((project, index) => {
-            const isFlipped = flippedCards.includes(index)
-            return (
-              <motion.div
-                key={index}
-                className="relative h-64 cursor-pointer perspective-1000"
-                onClick={() => toggleFlip(index)}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
+        <div className="max-w-7xl mx-auto">
+          {/* First Row - 3 Cards */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {projects.slice(0, 3).map((project, index) => {
+              const isFlipped = flippedCards.includes(index)
+              return (
                 <motion.div
-                  className="relative w-full h-full preserve-3d"
-                  animate={{ rotateY: isFlipped ? 180 : 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  key={index}
+                  className="relative h-64 cursor-pointer perspective-1000"
+                  onClick={() => toggleFlip(index)}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  {/* Front Face */}
-                  <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      style={{
-                        filter: 'drop-shadow(0 12px 20px rgba(139, 0, 0, 0.7)) drop-shadow(0 4px 8px rgba(220, 38, 38, 0.5))'
-                      }}
-                      whileHover={{
-                        scale: 1.05,
-                        filter: 'drop-shadow(0 16px 32px rgba(139, 0, 0, 0.8)) drop-shadow(0 8px 16px rgba(220, 38, 38, 0.7)) brightness(1.1)'
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
-                  
-                  {/* Back Face */}
-                  <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
-                    <h3 className="text-white text-xl font-bold text-center leading-tight">
-                      {project.title}
-                    </h3>
-                  </div>
+                  <motion.div
+                    className="relative w-full h-full preserve-3d"
+                    animate={{ rotateY: isFlipped ? 180 : 0 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    {/* Front Face */}
+                    <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden">
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        style={{
+                          filter: 'drop-shadow(0 12px 20px rgba(139, 0, 0, 0.7)) drop-shadow(0 4px 8px rgba(220, 38, 38, 0.5))'
+                        }}
+                        whileHover={{
+                          scale: 1.05,
+                          filter: 'drop-shadow(0 16px 32px rgba(139, 0, 0, 0.8)) drop-shadow(0 8px 16px rgba(220, 38, 38, 0.7)) brightness(1.1)'
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </div>
+                    
+                    {/* Back Face */}
+                    <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
+                      <h3 className="text-white text-xl font-bold text-center leading-tight">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+              )
+            })}
+          </motion.div>
+
+          {/* Second Row - 2 Cards */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            {projects.slice(3, 5).map((project, index) => {
+              const actualIndex = index + 3
+              const isFlipped = flippedCards.includes(actualIndex)
+              return (
+                <motion.div
+                  key={actualIndex}
+                  className="relative h-64 cursor-pointer perspective-1000"
+                  onClick={() => toggleFlip(actualIndex)}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: actualIndex * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className="relative w-full h-full preserve-3d"
+                    animate={{ rotateY: isFlipped ? 180 : 0 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    {/* Front Face */}
+                    <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden">
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        style={{
+                          filter: 'drop-shadow(0 12px 20px rgba(139, 0, 0, 0.7)) drop-shadow(0 4px 8px rgba(220, 38, 38, 0.5))'
+                        }}
+                        whileHover={{
+                          scale: 1.05,
+                          filter: 'drop-shadow(0 16px 32px rgba(139, 0, 0, 0.8)) drop-shadow(0 8px 16px rgba(220, 38, 38, 0.7)) brightness(1.1)'
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </div>
+                    
+                    {/* Back Face */}
+                    <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
+                      <h3 className="text-white text-xl font-bold text-center leading-tight">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
       </div>
     </section>
     </>
