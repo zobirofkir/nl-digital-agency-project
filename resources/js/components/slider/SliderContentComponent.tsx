@@ -233,7 +233,7 @@ const SliderContentComponent: React.FC = () => {
         </motion.div>
         
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-5"
+          className="lg:flex hidden flex-col sm:flex-row gap-4 sm:gap-6 mb-5"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 1.1 }}

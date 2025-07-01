@@ -6,7 +6,7 @@ import SliderMobileLogo from '@/assets/slider/slider-mobile-logo.png'
 import SliderMobilePersonne from '@/assets/slider/slider-mobile-personne.png'
 
 const AnimatedSliderLogoComponent = () => (
-  <div className="flex items-center justify-center lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:justify-end z-30 px-0 lg:px-8">
+  <div className="flex items-center justify-end lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-30 px-0 lg:px-8">
     {/* Desktop Personne Image */}
     <motion.img
       src={SliderDesktopPersonne}
@@ -36,7 +36,7 @@ const AnimatedSliderLogoComponent = () => (
     />
 
     {/* Mobile Personne Image */}
-    <div className="lg:hidden absolute top-1/2 -translate-y-1/2 w-full h-full z-40">
+    <div className="lg:hidden absolute -right-25 top-1/2 -translate-y-1/2 w-full h-full z-40">
       <motion.div
         className="absolute inset-0 pointer-events-none"
         animate={{ rotate: 360 }}
@@ -69,7 +69,7 @@ const AnimatedSliderLogoComponent = () => (
     />
 
     {/* Mobile Logo */}
-    <div className="lg:hidden w-[50%] h-[50%] relative z-30">
+    <div className="lg:hidden w-[60%] h-[60%] relative -right-2 z-30">
       <motion.div
         className="absolute inset-0 pointer-events-none"
         animate={{ rotate: -360 }}
