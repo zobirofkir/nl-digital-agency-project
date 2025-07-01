@@ -81,14 +81,6 @@ const ServiceComponent = () => {
           >
             Nos <span className="text-red-200">Services</span>
           </motion.h2>
-          <motion.p 
-            className="text-xl md:text-2xl text-red-100 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Des solutions digitales complètes pour propulser votre entreprise vers le succès
-          </motion.p>
         </motion.div>
 
         {/* Service Cards Grid */}
