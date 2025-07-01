@@ -135,13 +135,18 @@ const ServiceComponent = () => {
                   <p className="text-sm md:text-base text-black text-center mb-4 md:mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  <div className="space-y-2 md:space-y-3">
+                  <div className="space-y-2 md:space-y-3 mb-6">
                     {service.features.map((feature, i) => (
                       <div key={i} className="flex items-center justify-center text-sm md:text-base text-black">
                         <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                         {feature}
                       </div>
                     ))}
+                  </div>
+                  <div className="text-center">
+                    <button className="bg-transparent border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                      En savoir plus
+                    </button>
                   </div>
                 </div>
               </motion.div>
