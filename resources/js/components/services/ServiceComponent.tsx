@@ -110,9 +110,49 @@ const ServiceComponent = () => {
                 transition={{ duration: 0.6 }}
               >
                 {/* Front - Logo Only */}
-                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
+                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 flex items-center justify-center overflow-hidden" style={{ backfaceVisibility: 'hidden' }}>
+                  {/* Laser Animations */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
+                      <motion.div
+                        key={`laser-${i}`}
+                        className={`absolute w-0.5 h-6 ${i % 2 === 0 ? 'bg-white/80' : 'bg-red-500/80'} rounded-full`}
+                        style={{
+                          left: '50%',
+                          top: '50%',
+                          transformOrigin: 'center'
+                        }}
+                        animate={{
+                          x: [
+                            Math.cos((i * 60) * Math.PI / 180) * 60,
+                            Math.cos((i * 60 + 90) * Math.PI / 180) * 80,
+                            Math.cos((i * 60 + 180) * Math.PI / 180) * 60,
+                            Math.cos((i * 60 + 270) * Math.PI / 180) * 80,
+                            Math.cos((i * 60) * Math.PI / 180) * 60
+                          ],
+                          y: [
+                            Math.sin((i * 60) * Math.PI / 180) * 60,
+                            Math.sin((i * 60 + 90) * Math.PI / 180) * 80,
+                            Math.sin((i * 60 + 180) * Math.PI / 180) * 60,
+                            Math.sin((i * 60 + 270) * Math.PI / 180) * 80,
+                            Math.sin((i * 60) * Math.PI / 180) * 60
+                          ],
+                          rotate: [0, 90, 180, 270, 360],
+                          opacity: [0.6, 1, 0.4, 1, 0.6],
+                          scale: [0.8, 1.2, 0.6, 1.4, 0.8]
+                        }}
+                        transition={{
+                          duration: 4 + i * 0.3,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: index * 0.2 + i * 0.1
+                        }}
+                      />
+                    ))}
+                  </div>
+                  
                   <motion.div 
-                    className="text-8xl text-red-500"
+                    className="text-8xl text-red-500 relative z-10"
                     animate={{ 
                       rotate: [0, 10, -10, 0],
                       scale: [1, 1.1, 1]
