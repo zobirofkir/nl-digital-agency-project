@@ -47,7 +47,7 @@ const AboutComponent = () => {
       <motion.img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-40"
+        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-0"
         initial={{ opacity: 0, scale: 0.8, y: 50, rotateZ: -10 }}
         whileInView={{ opacity: 1, scale: 1, y: 0, rotateZ: 0 }}
         animate={{
