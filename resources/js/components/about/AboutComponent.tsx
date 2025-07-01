@@ -17,10 +17,31 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
-      <img 
+      <motion.img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-10 z-40"
+        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-19 z-40"
+        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+        animate={{
+          y: [0, -8, 0],
+          x: [0, 2, -2, 0],
+          rotate: [0, 1, -1, 0],
+          scale: [1, 1.02, 1]
+        }}
+        transition={{
+          y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+          x: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+          rotate: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+          scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
+          opacity: { duration: 0.6, delay: 0.2 }
+        }}
+        whileHover={{
+          scale: 1.1,
+          rotate: 5,
+          transition: { duration: 0.3 }
+        }}
+        viewport={{ once: true }}
       />
       <motion.div 
         className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/3 h-1/2 sm:h-2/3 md:h-3/4 lg:ml-10 flex items-center justify-center"
