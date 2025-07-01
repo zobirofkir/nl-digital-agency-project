@@ -23,30 +23,12 @@ const ServiceComponent = () => {
       title: 'Marketing Digital',
       description: 'Stratégies digitales pour booster votre présence en ligne',
       features: ['SEO/SEA', 'Social Media', 'Analytics']
-    },
-    {
-      icon: '⚡',
-      title: 'E-commerce',
-      description: 'Solutions complètes pour votre boutique en ligne',
-      features: ['Shopify', 'WooCommerce', 'Paiement sécurisé']
-    },
-    {
-      icon: '🎨',
-      title: 'Design UI/UX',
-      description: 'Interfaces utilisateur modernes et expériences optimisées',
-      features: ['Figma', 'Adobe XD', 'Prototypage']
-    },
-    {
-      icon: '☁️',
-      title: 'Cloud & DevOps',
-      description: 'Infrastructure cloud et déploiement automatisé',
-      features: ['AWS', 'Docker', 'CI/CD']
     }
   ]
 
   return (
     <motion.section 
-      className="relative min-h-screen bg-red-600 text-white px-4 overflow-hidden"
+      className="relative bg-red-600 text-white px-4 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
