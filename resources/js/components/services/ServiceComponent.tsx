@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const ServiceComponent = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [flippedCards, setFlippedCards] = useState<number[]>([])
 
   const services = [
@@ -29,6 +28,18 @@ const ServiceComponent = () => {
       title: 'E-commerce',
       description: 'Solutions complètes pour votre boutique en ligne',
       features: ['Shopify', 'WooCommerce', 'Paiement sécurisé']
+    },
+    {
+      icon: '🎨',
+      title: 'Design UI/UX',
+      description: 'Interfaces utilisateur modernes et expériences optimisées',
+      features: ['Figma', 'Adobe XD', 'Prototypage']
+    },
+    {
+      icon: '☁️',
+      title: 'Cloud & DevOps',
+      description: 'Infrastructure cloud et déploiement automatisé',
+      features: ['AWS', 'Docker', 'CI/CD']
     }
   ]
 
@@ -97,87 +108,70 @@ const ServiceComponent = () => {
           </motion.p>
         </motion.div>
 
-        {/* Navigation */}
-        <div className="flex justify-center items-center mb-8 gap-4">
-          <motion.button
-            onClick={() => setCurrentIndex(prev => prev > 0 ? prev - 1 : services.length - 1)}
-            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            ←
-          </motion.button>
-          <span className="text-white/60">{currentIndex + 1} / {services.length}</span>
-          <motion.button
-            onClick={() => setCurrentIndex(prev => prev < services.length - 1 ? prev + 1 : 0)}
-            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            →
-          </motion.button>
-        </div>
-
-        {/* Service Card */}
-        <div className="flex justify-center">
-          <motion.div
-            key={currentIndex}
-            className="relative w-80 h-96 cursor-pointer"
-            style={{ perspective: '1000px' }}
-            onClick={() => {
-              setFlippedCards(prev => 
-                prev.includes(currentIndex) 
-                  ? prev.filter(i => i !== currentIndex)
-                  : [...prev, currentIndex]
-              )
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+        {/* Service Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {services.map((service, index) => (
             <motion.div
-              className="relative w-full h-full"
-              style={{ transformStyle: 'preserve-3d' }}
-              animate={{ rotateY: flippedCards.includes(currentIndex) ? 180 : 0 }}
-              transition={{ duration: 0.6 }}
+              key={index}
+              className="relative w-full h-96 cursor-pointer"
+              style={{ perspective: '1000px' }}
+              onClick={() => {
+                setFlippedCards(prev => 
+                  prev.includes(index) 
+                    ? prev.filter(i => i !== index)
+                    : [...prev, index]
+                )
+              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              {/* Front - Logo Only */}
-              <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
-                <motion.div 
-                  className="text-8xl"
-                  animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: 'easeInOut'
-                  }}
-                >
-                  {services[currentIndex].icon}
-                </motion.div>
-              </div>
-
-              {/* Back - Full Info */}
-              <div className="absolute inset-0 bg-red-500 backdrop-blur-sm rounded-2xl border border-white/20 p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                <h3 className="text-2xl font-bold mb-4 text-center text-red-200">
-                  {services[currentIndex].title}
-                </h3>
-                <p className="text-red-100 text-center mb-6 leading-relaxed">
-                  {services[currentIndex].description}
-                </p>
-                <div className="space-y-3">
-                  {services[currentIndex].features.map((feature, i) => (
-                    <div key={i} className="flex items-center justify-center text-red-200">
-                      <span className="w-2 h-2 bg-red-300 rounded-full mr-3"></span>
-                      {feature}
-                    </div>
-                  ))}
+              <motion.div
+                className="relative w-full h-full"
+                style={{ transformStyle: 'preserve-3d' }}
+                animate={{ rotateY: flippedCards.includes(index) ? 180 : 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                {/* Front - Logo Only */}
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
+                  <motion.div 
+                    className="text-8xl"
+                    animate={{ 
+                      rotate: [0, 10, -10, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: 'easeInOut',
+                      delay: index * 0.5
+                    }}
+                  >
+                    {service.icon}
+                  </motion.div>
                 </div>
-              </div>
+
+                {/* Back - Full Info */}
+                <div className="absolute inset-0 bg-red-500 backdrop-blur-sm rounded-2xl border border-white/20 p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                  <h3 className="text-2xl font-bold mb-4 text-center text-red-200">
+                    {service.title}
+                  </h3>
+                  <p className="text-red-100 text-center mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <div className="space-y-3">
+                    {service.features.map((feature, i) => (
+                      <div key={i} className="flex items-center justify-center text-red-200">
+                        <span className="w-2 h-2 bg-red-300 rounded-full mr-3"></span>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          ))}
         </div>
 
         {/* Call to Action */}
