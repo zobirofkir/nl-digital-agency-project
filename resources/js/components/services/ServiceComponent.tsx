@@ -46,7 +46,7 @@ const ServiceComponent = () => {
 
   return (
     <motion.section 
-      className="relative min-h-screen bg-gradient-to-br from-red-600 via-red-500 to-red-700 text-white py-20 px-4 overflow-hidden"
+      className="relative min-h-screen bg-red-600 text-white px-4 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -77,7 +77,7 @@ const ServiceComponent = () => {
         ))}
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 mt-4">
         {/* Header */}
         <motion.div 
           className="text-center mb-16"
@@ -135,7 +135,7 @@ const ServiceComponent = () => {
                 transition={{ duration: 0.6 }}
               >
                 {/* Front - Logo Only */}
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
+                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
                   <motion.div 
                     className="text-8xl"
                     animate={{ 
@@ -154,17 +154,17 @@ const ServiceComponent = () => {
                 </div>
 
                 {/* Back - Full Info */}
-                <div className="absolute inset-0 bg-red-500 backdrop-blur-sm rounded-2xl border border-white/20 p-4 md:p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-center text-red-200">
+                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 p-4 md:p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-center text-black">
                     {service.title}
                   </h3>
-                  <p className="text-sm md:text-base text-red-100 text-center mb-4 md:mb-6 leading-relaxed">
+                  <p className="text-sm md:text-base text-black text-center mb-4 md:mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   <div className="space-y-2 md:space-y-3">
                     {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center justify-center text-sm md:text-base text-red-200">
-                        <span className="w-2 h-2 bg-red-300 rounded-full mr-3"></span>
+                      <div key={i} className="flex items-center justify-center text-sm md:text-base text-black">
+                        <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                         {feature}
                       </div>
                     ))}
@@ -174,32 +174,6 @@ const ServiceComponent = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <motion.button
-            className="bg-white text-red-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-red-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 20px 40px rgba(255,255,255,0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
-            animate={{
-              y: [0, -5, 0],
-            }}
-            transition={{
-              y: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-            }}
-          >
-            Démarrer Votre Projet
-          </motion.button>
-        </motion.div>
       </div>
     </motion.section>
   )
