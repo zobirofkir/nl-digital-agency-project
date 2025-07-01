@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 
 const ServiceComponent = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
+  const [activeProcess, setActiveProcess] = useState(0)
 
   const services = [
     {
@@ -41,6 +42,12 @@ const ServiceComponent = () => {
       description: 'Infrastructure cloud et déploiement automatisé',
       features: ['AWS', 'Docker', 'CI/CD']
     }
+  ]
+
+  const pricingPlans = [
+    { name: 'Starter', price: '999 MAD', features: ['Site vitrine', 'Design responsive', 'SEO de base'], popular: false },
+    { name: 'Business', price: '2499 MAD', features: ['E-commerce complet', 'CMS personnalisé', 'Support 24/7'], popular: true },
+    { name: 'Enterprise', price: 'Sur devis', features: ['Solution sur mesure', 'Intégrations avancées', 'Support dédié'], popular: false }
   ]
 
   return (
@@ -109,11 +116,11 @@ const ServiceComponent = () => {
         </motion.div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-20">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="relative w-full h-96 cursor-pointer"
+              className="relative w-full h-80 md:h-96 cursor-pointer"
               style={{ perspective: '1000px' }}
               onClick={() => {
                 setFlippedCards(prev => 
@@ -153,16 +160,16 @@ const ServiceComponent = () => {
                 </div>
 
                 {/* Back - Full Info */}
-                <div className="absolute inset-0 bg-red-500 backdrop-blur-sm rounded-2xl border border-white/20 p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                  <h3 className="text-2xl font-bold mb-4 text-center text-red-200">
+                <div className="absolute inset-0 bg-red-500 backdrop-blur-sm rounded-2xl border border-white/20 p-4 md:p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-center text-red-200">
                     {service.title}
                   </h3>
-                  <p className="text-red-100 text-center mb-6 leading-relaxed">
+                  <p className="text-sm md:text-base text-red-100 text-center mb-4 md:mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  <div className="space-y-3">
+                  <div className="space-y-2 md:space-y-3">
                     {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center justify-center text-red-200">
+                      <div key={i} className="flex items-center justify-center text-sm md:text-base text-red-200">
                         <span className="w-2 h-2 bg-red-300 rounded-full mr-3"></span>
                         {feature}
                       </div>
@@ -174,16 +181,68 @@ const ServiceComponent = () => {
           ))}
         </div>
 
+        {/* Pricing Section */}
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-3xl md:text-4xl font-bold text-center mb-12 text-red-100">Nos Tarifs</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <motion.div
+                key={index}
+                className={`p-6 rounded-xl border text-center relative ${
+                  plan.popular 
+                    ? 'bg-white text-red-600 border-white scale-105' 
+                    : 'bg-white/10 backdrop-blur-sm border-white/20 text-white'
+                }`}
+                whileHover={{ scale: plan.popular ? 1.08 : 1.05 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                    Populaire
+                  </div>
+                )}
+                <h4 className="text-2xl font-bold mb-4">{plan.name}</h4>
+                <div className="text-3xl font-bold mb-6">{plan.price}</div>
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center justify-center">
+                      <span className={`w-2 h-2 rounded-full mr-3 ${
+                        plan.popular ? 'bg-red-600' : 'bg-red-300'
+                      }`}></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className={`w-full py-3 rounded-full font-bold transition-all ${
+                  plan.popular 
+                    ? 'bg-red-600 text-white hover:bg-red-700' 
+                    : 'bg-white/20 text-white hover:bg-white/30'
+                }`}>
+                  Choisir ce plan
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Call to Action */}
         <motion.div 
-          className="text-center mt-16"
+          className="text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
           <motion.button
-            className="bg-white text-red-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-red-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="bg-white text-red-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-red-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             whileHover={{ 
               scale: 1.05,
               boxShadow: '0 20px 40px rgba(255,255,255,0.3)'
