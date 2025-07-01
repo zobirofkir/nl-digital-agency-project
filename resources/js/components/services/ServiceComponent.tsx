@@ -181,6 +181,35 @@ const ServiceComponent = () => {
               >
                 {/* Front - Logo Only */}
                 <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 flex items-center justify-center overflow-hidden" style={{ backfaceVisibility: 'hidden' }}>
+                  {/* Robotic ServicePersonneImage */}
+                  <motion.img 
+                    src={ServicePersonneImage} 
+                    alt="Service Person" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-10"
+                    animate={{
+                      y: [0, -15, -8, -20, 0],
+                      x: [0, 8, -5, 12, 0],
+                      rotateZ: [0, 2, -1, 3, 0],
+                      rotateY: [0, 8, -5, 12, 0],
+                      scale: [1, 1.02, 0.98, 1.03, 1],
+                      filter: [
+                        'brightness(1) contrast(1) saturate(1) hue-rotate(0deg)',
+                        'brightness(1.05) contrast(1.08) saturate(1.1) hue-rotate(10deg)',
+                        'brightness(0.98) contrast(1.02) saturate(0.95) hue-rotate(-5deg)',
+                        'brightness(1.08) contrast(1.12) saturate(1.15) hue-rotate(15deg)',
+                        'brightness(1) contrast(1) saturate(1) hue-rotate(0deg)'
+                      ]
+                    }}
+                    transition={{
+                      y: { duration: 5.5 + index * 0.3, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+                      x: { duration: 7 + index * 0.2, repeat: Infinity, ease: 'easeInOut' },
+                      rotateZ: { duration: 6.5 + index * 0.4, repeat: Infinity, ease: [0.25, 0.46, 0.45, 0.94] },
+                      rotateY: { duration: 8 + index * 0.3, repeat: Infinity, ease: 'easeInOut' },
+                      scale: { duration: 4.5 + index * 0.2, repeat: Infinity, ease: 'easeInOut' },
+                      filter: { duration: 3.5 + index * 0.3, repeat: Infinity, ease: 'easeInOut' }
+                    }}
+                  />
+                  
                   {/* Laser Animations */}
                   <div className="absolute inset-0 pointer-events-none">
                     {[...Array(6)].map((_, i) => (
