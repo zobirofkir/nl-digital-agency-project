@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import Logo from '@/assets/logo/logo.png'
+import Logo from '@/assets/slider/slider-mobile-logo.png'
 
 const FooterComponent = () => {
   const containerVariants = {
@@ -29,6 +29,10 @@ const FooterComponent = () => {
       variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Logo at top level */}
+        <motion.div className="flex justify-center mb-12" variants={itemVariants}>
+          <img src={Logo} alt="NL Digital Agency" className="w-32 h-auto" />
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Contact Info */}
           <motion.div variants={itemVariants}>
@@ -113,7 +117,7 @@ const FooterComponent = () => {
 
         {/* Bottom Section */}
         <motion.div 
-          className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          className="border-t border-gray-800 mt-12 pt-8 flex justify-center"
           variants={itemVariants}
         >
           <p className="text-gray-400 text-sm text-center">
