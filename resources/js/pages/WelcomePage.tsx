@@ -2,6 +2,7 @@ import SliderComponent from '@/components/SliderComponent'
 import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
 import AboutComponent from '@/components/about/AboutComponent'
+import ServiceComponent from '@/components/services/ServiceComponent'
 
 const WelcomePage = () => {
   return (
@@ -11,6 +12,10 @@ const WelcomePage = () => {
 
         <div>
             <SliderComponent />        
+        </div>
+
+        <div>
+          <ServiceComponent />
         </div>
 
         <div>
