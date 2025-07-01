@@ -95,23 +95,25 @@ const AboutComponent = () => {
           <motion.img 
             src={AboutPersonneImage} 
             alt="About Person" 
-            className="absolute inset-0 w-[85%] h-[92%] object-cover flex justify-center items-center mx-auto my-auto"
+            className="absolute inset-0 w-full h-[88%] object-cover flex justify-center items-center mx-auto my-auto overflow-hidden"
             style={{
               maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)',
               WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)'
             }}
             animate={{ 
-              y: [0, -10, 0],
+              x: [0, 8, -5, 12, 0],
               filter: [
-                'brightness(1) contrast(1)',
-                'brightness(1.1) contrast(1.1)',
-                'brightness(1) contrast(1)'
+                'brightness(1) contrast(1) saturate(1)',
+                'brightness(1.05) contrast(1.08) saturate(1.1)',
+                'brightness(0.98) contrast(1.02) saturate(0.95)',
+                'brightness(1.08) contrast(1.12) saturate(1.15)',
+                'brightness(1) contrast(1) saturate(1)'
               ]
             }}
             transition={{ 
-              duration: 3, 
-              repeat: Infinity, 
-              ease: 'easeInOut' 
+              x: { duration: 6, repeat: Infinity, ease: [0.25, 0.46, 0.45, 0.94] },
+              scale: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
+              filter: { duration: 3.8, repeat: Infinity, ease: 'easeInOut' }
             }}
           />
         </div>
