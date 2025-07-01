@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight, FaPaintBrush, FaShoppingCart, FaCloud, FaCog, FaCamera } from 'react-icons/fa'
+import ServicePersonneImage from '@/assets/services/service-personne-image.png';
 
 const ServiceComponent = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
