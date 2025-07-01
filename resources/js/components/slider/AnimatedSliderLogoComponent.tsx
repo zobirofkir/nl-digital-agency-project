@@ -53,8 +53,28 @@ const AnimatedSliderLogoComponent = () => (
         alt="Slider Personne"
         className="w-full h-full object-contain drop-shadow-2xl"
         initial={{ x: 120, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ x: { type: 'spring', stiffness: 70, damping: 18, delay: 0.15 }, opacity: { duration: 0.7, delay: 0.15 } }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          rotate: [0, 1, -1, 2, -2, 0],
+          scale: [1, 1.02, 0.98, 1.01, 0.99, 1],
+          y: [0, -3, 2, -1, 3, 0],
+          filter: [
+            'brightness(1) contrast(1) saturate(1)',
+            'brightness(1.1) contrast(1.05) saturate(1.1)',
+            'brightness(0.95) contrast(0.98) saturate(0.95)',
+            'brightness(1.05) contrast(1.02) saturate(1.05)',
+            'brightness(1) contrast(1) saturate(1)'
+          ]
+        }}
+        transition={{
+          x: { type: 'spring', stiffness: 70, damping: 18, delay: 0.15 },
+          opacity: { duration: 0.7, delay: 0.15 },
+          rotate: { repeat: Infinity, duration: 6, ease: 'easeInOut' },
+          scale: { repeat: Infinity, duration: 5, ease: 'easeInOut' },
+          y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
+          filter: { repeat: Infinity, duration: 7, ease: 'easeInOut' }
+        }}
       />
     </div>  
 
