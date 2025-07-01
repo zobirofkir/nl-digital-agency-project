@@ -43,34 +43,42 @@ const AboutComponent = () => {
         ))}
       </motion.div>
 
-      {/* Enhanced Flush Animation */}
+      {/* Robotic Flush Animation */}
       <motion.img 
         src={FlushImage} 
         alt="Flush" 
         className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-40"
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.8, y: 50, rotateZ: -10 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0, rotateZ: 0 }}
         animate={{
-          y: [0, -12, 0],
-          rotateY: [0, 5, -5, 0],
+          y: [0, -15, -8, -20, 0],
+          x: [0, 3, -2, 4, 0],
+          rotateZ: [0, 2, -1, 3, 0],
+          rotateY: [0, 8, -5, 12, 0],
+          scale: [1, 1.02, 0.98, 1.03, 1],
           filter: [
-            'drop-shadow(0 0 0px rgba(239, 68, 68, 0))',
-            'drop-shadow(0 0 20px rgba(239, 68, 68, 0.3))',
-            'drop-shadow(0 0 0px rgba(239, 68, 68, 0))'
+            'drop-shadow(0 0 10px rgba(239, 68, 68, 0.2)) brightness(1)',
+            'drop-shadow(0 0 25px rgba(239, 68, 68, 0.4)) brightness(1.1)',
+            'drop-shadow(0 0 15px rgba(239, 68, 68, 0.3)) brightness(1.05)',
+            'drop-shadow(0 0 30px rgba(239, 68, 68, 0.5)) brightness(1.15)',
+            'drop-shadow(0 0 10px rgba(239, 68, 68, 0.2)) brightness(1)'
           ]
         }}
         transition={{
-          y: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
-          rotateY: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
-          filter: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-          opacity: { duration: 0.8, ease: 'easeOut' },
-          scale: { duration: 0.8, ease: 'easeOut' },
+          y: { duration: 5.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+          x: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
+          rotateZ: { duration: 6.5, repeat: Infinity, ease: [0.25, 0.46, 0.45, 0.94] },
+          rotateY: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
+          scale: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
+          filter: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
+          opacity: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] },
         }}
         whileHover={{
-          scale: 1.05,
-          rotateY: 10,
-          filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.5))',
-          transition: { duration: 0.3 }
+          scale: 1.08,
+          rotateY: 15,
+          rotateZ: 5,
+          filter: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) brightness(1.2)',
+          transition: { duration: 0.4, ease: 'easeOut' }
         }}
         viewport={{ once: true }}
       />
@@ -117,7 +125,7 @@ const AboutComponent = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <div className="text-center lg:text-left max-w-lg bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none p-4 lg:p-0">
+        <div className="text-center lg:text-left max-w-lg  bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none p-4 lg:p-0">
           <motion.h2 
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -148,13 +156,40 @@ const AboutComponent = () => {
           </motion.p>
           
           <motion.p 
-            className="text-white/80 text-xs sm:text-sm italic"
+            className="text-white/80 text-xs sm:text-sm italic mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
           >
             "Ensemble, construisons un avenir numérique prospère."
           </motion.p>
+          
+          {/* Action Buttons */}
+          <motion.div 
+            className="lg:flex hidden flex-col sm:flex-row gap-3 sm:gap-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <motion.button
+              className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-red-500/25 border border-red-500/20"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = '#contact'}
+            >
+              Nous Contacter
+            </motion.button>
+            
+            <motion.button
+              className="bg-transparent hover:bg-red-500/10 text-red-400 hover:text-red-300 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 border border-red-400/40 hover:border-red-400/60 backdrop-blur-sm"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = '#services'}
+            >
+              Nos Services
+            </motion.button>
+
+          </motion.div>
         </div>
       </motion.div>
 
