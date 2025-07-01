@@ -6,6 +6,15 @@ import AboutPersonneImage from '@/assets/abouts/about-personne.png'
 import FlushImage from '@/assets/abouts/about-flush.png'
 
 const AboutComponent = () => {
+  const cards = [
+    { title: "Stratégie Digitale", desc: "Solutions sur mesure" },
+    { title: "Design Créatif", desc: "Expériences uniques" },
+    { title: "Développement", desc: "Technologies modernes" },
+    { title: "Marketing Digital", desc: "Croissance durable" },
+    { title: "SEO & Analytics", desc: "Performance optimisée" },
+    { title: "Branding", desc: "Identité forte" }
+  ]
+
   return (
     <motion.div 
       className="relative min-h-screen bg-cover bg-center sm:bg-top md:bg-center bg-no-repeat -mt-[56%] sm:-mt-[45%] md:-mt-[30%] lg:-mt-[13%] z-30"
@@ -125,6 +134,46 @@ const AboutComponent = () => {
             "Ensemble, construisons un avenir numérique prospère."
           </motion.p>
         </div>
+      </motion.div>
+
+      {/* Auto-scrolling Cards */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 h-24 overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+      >
+        <motion.div 
+          className="flex gap-6 h-full items-center"
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+        >
+          {[...cards, ...cards].map((card, i) => (
+            <motion.div
+              key={i}
+              className="flex-shrink-0 bg-gradient-to-r from-red-500/20 to-red-600/30 backdrop-blur-sm border border-red-400/30 rounded-lg p-4 min-w-[200px]"
+              animate={{
+                y: [0, -15, 0],
+                rotateY: [0, 5, -5, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{
+                duration: 3 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut"
+              }}
+              whileHover={{ scale: 1.1, y: -10 }}
+            >
+              <h3 className="text-white font-semibold text-sm mb-1">{card.title}</h3>
+              <p className="text-red-300 text-xs">{card.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
     </motion.div>
   )
