@@ -127,7 +127,7 @@ const AboutComponent = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <div className="text-center lg:text-left max-w-lg  bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none p-4 lg:p-0">
+        <div className="text-center lg:text-left max-w-lg  bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none lg:mt-50 p-4 lg:p-0">
           <motion.h2 
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -167,7 +167,7 @@ const AboutComponent = () => {
           </motion.p>
           
           {/* Desktop-only sections */}
-          <div className="hidden lg:block space-y-6">
+          <div className="hidden lg:block space-y-6 mb-4">
             {/* Services Preview */}
             <motion.div
               className="bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-red-400/20"
@@ -214,7 +214,7 @@ const AboutComponent = () => {
           
           {/* Action Buttons */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            className="lg:flex hidden flex-col sm:flex-row gap-3 sm:gap-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
