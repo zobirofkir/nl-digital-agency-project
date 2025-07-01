@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const ServiceComponent = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [flippedCards, setFlippedCards] = useState<number[]>([])
+
   const services = [
     {
       icon: '🚀',
@@ -94,105 +97,85 @@ const ServiceComponent = () => {
           </motion.p>
         </motion.div>
 
+        {/* Navigation */}
+        <div className="flex justify-center items-center mb-8 gap-4">
+          <motion.button
+            onClick={() => setCurrentIndex(prev => prev > 0 ? prev - 3 : Math.max(0, services.length - 3))}
+            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors text-xl"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            ⬅️
+          </motion.button>
+          <span className="text-white/60">Services {currentIndex + 1}-{Math.min(currentIndex + 3, services.length)}</span>
+          <motion.button
+            onClick={() => setCurrentIndex(prev => prev + 3 < services.length ? prev + 3 : 0)}
+            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors text-xl"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            ➡️
+          </motion.button>
+        </div>
+
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="relative group"
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
-                type: 'spring',
-                stiffness: 100
-              }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                z: 50
-              }}
-            >
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:shadow-white/20"
-                animate={{
-                  boxShadow: [
-                    '0 10px 30px rgba(255,255,255,0.1)',
-                    '0 15px 40px rgba(255,255,255,0.2)',
-                    '0 10px 30px rgba(255,255,255,0.1)'
-                  ]
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {services.slice(currentIndex, currentIndex + 3).map((service, index) => {
+            const actualIndex = currentIndex + index
+            return (
+              <motion.div
+                key={actualIndex}
+                className="relative w-full h-96 cursor-pointer"
+                style={{ perspective: '1000px' }}
+                onClick={() => {
+                  setFlippedCards(prev => 
+                    prev.includes(actualIndex) 
+                      ? prev.filter(i => i !== actualIndex)
+                      : [...prev, actualIndex]
+                  )
                 }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.5 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {/* Icon */}
-                <motion.div 
-                  className="text-6xl mb-4 text-center"
-                  animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: 'easeInOut',
-                    delay: index * 0.3
-                  }}
+                <motion.div
+                  className="relative w-full h-full"
+                  style={{ transformStyle: 'preserve-3d' }}
+                  animate={{ rotateY: flippedCards.includes(actualIndex) ? 180 : 0 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  {service.icon}
+                  {/* Front - Logo Only */}
+                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
+                    <div className="bg-gradient-to-r from-red-400/20 to-red-600/20 rounded-t-2xl p-4 border-b border-white/10">
+                      <div className="text-6xl text-center">{service.icon}</div>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center">
+                      <h3 className="text-xl font-bold text-center text-red-200">{service.title}</h3>
+                    </div>
+                  </div>
+
+                  {/* Back - Full Info */}
+                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                    <div className="bg-gradient-to-r from-red-400/30 to-red-600/30 rounded-lg p-3 mb-4">
+                      <div className="text-4xl text-center mb-2">{service.icon}</div>
+                      <h3 className="text-lg font-bold text-center text-red-200">{service.title}</h3>
+                    </div>
+                    <p className="text-red-100 text-center mb-4 text-sm leading-relaxed">
+                      {service.description}
+                    </p>
+                    <div className="space-y-2">
+                      {service.features.map((feature, i) => (
+                        <div key={i} className="flex items-center justify-center text-red-200 text-sm">
+                          <span className="w-1.5 h-1.5 bg-red-300 rounded-full mr-2"></span>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
-
-                {/* Title */}
-                <motion.h3 
-                  className="text-xl font-bold mb-3 text-center group-hover:text-red-200 transition-colors duration-300"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                >
-                  {service.title}
-                </motion.h3>
-
-                {/* Description */}
-                <motion.p 
-                  className="text-red-100 text-sm mb-4 text-center leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                >
-                  {service.description}
-                </motion.p>
-
-                {/* Features */}
-                <motion.div 
-                  className="space-y-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                >
-                  {service.features.map((feature, i) => (
-                    <motion.div 
-                      key={i}
-                      className="flex items-center justify-center text-xs text-red-200"
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                    >
-                      <span className="w-1 h-1 bg-red-300 rounded-full mr-2"></span>
-                      {feature}
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                {/* Hover Effect Overlay */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-t from-red-400/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
               </motion.div>
-            </motion.div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Call to Action */}
