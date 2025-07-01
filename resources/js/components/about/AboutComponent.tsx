@@ -168,29 +168,40 @@ const AboutComponent = () => {
           
           {/* Action Buttons */}
           <motion.div 
-            className="lg:flex hidden flex-col sm:flex-row gap-3 sm:gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
             <motion.button
-              className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-red-500/25 border border-red-500/20"
+              className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-xl hover:shadow-red-500/30 border border-red-400/20 overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = '#contact'}
+              onClick={() => window.location.href = '#about'}
             >
-              Nous Contacter
+              <span className="relative z-10 flex items-center gap-2">
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                Découvrir Plus
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </motion.button>
             
             <motion.button
-              className="bg-transparent hover:bg-red-500/10 text-red-400 hover:text-red-300 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 border border-red-400/40 hover:border-red-400/60 backdrop-blur-sm"
+              className="group relative bg-black/40 hover:bg-black/60 text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 border border-red-400/40 hover:border-red-400/60 backdrop-blur-md overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = '#services'}
+              onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
             >
-              Nos Services
+              <span className="relative z-10 flex items-center gap-2">
+                <svg className="w-4 h-4 text-red-400 group-hover:text-red-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Watch a Video
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
-
           </motion.div>
         </div>
       </motion.div>
