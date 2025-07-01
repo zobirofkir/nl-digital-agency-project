@@ -47,7 +47,7 @@ const AboutComponent = () => {
       <motion.img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-25 z-40"
+        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-40"
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         animate={{
@@ -165,7 +165,7 @@ const AboutComponent = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="bg-black/30 backdrop-blur-md rounded-xl p-6 border border-red-400/20">
+        <div className="bg-black/30 backdrop-blur-md rounded-xl p-6 border border-red-400/20 lg:mt-50">
           {[
             { number: "150+", label: "Projets" },
             { number: "98%", label: "Satisfaction" },
@@ -194,7 +194,10 @@ const AboutComponent = () => {
 
 
       {/* Achievement Badges */}
-      <motion.div 
+      {
+        /**
+         *
+        <motion.div 
         className="absolute top-1/4 left-8 hidden lg:block"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -225,6 +228,8 @@ const AboutComponent = () => {
           </motion.div>
         ))}
       </motion.div>
+      */
+      }
     </motion.div>
   )
 }
