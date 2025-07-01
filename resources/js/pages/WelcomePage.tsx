@@ -15,11 +15,11 @@ const WelcomePage = () => {
         </div>
 
         <div>
-          <ServiceComponent />
+          <AboutComponent />
         </div>
 
         <div>
-          <AboutComponent />
+          <ServiceComponent />
         </div>
 
       </section>
