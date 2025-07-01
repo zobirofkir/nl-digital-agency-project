@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { FaRocket, FaMobile, FaBullseye } from 'react-icons/fa'
 
 const ServiceComponent = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
@@ -7,19 +8,19 @@ const ServiceComponent = () => {
 
   const services = [
     {
-      icon: '🚀',
+      icon: FaRocket,
       title: 'Développement Web',
       description: 'Sites web modernes et performants avec les dernières technologies',
       features: ['React/Next.js', 'Laravel/PHP', 'Responsive Design']
     },
     {
-      icon: '📱',
+      icon: FaMobile,
       title: 'Applications Mobile',
       description: 'Applications natives et cross-platform pour iOS et Android',
       features: ['React Native', 'Flutter', 'UI/UX Design']
     },
     {
-      icon: '🎯',
+      icon: FaBullseye,
       title: 'Marketing Digital',
       description: 'Stratégies digitales pour booster votre présence en ligne',
       features: ['SEO/SEA', 'Social Media', 'Analytics']
@@ -111,7 +112,7 @@ const ServiceComponent = () => {
                 {/* Front - Logo Only */}
                 <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 flex items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
                   <motion.div 
-                    className="text-8xl"
+                    className="text-8xl text-red-500"
                     animate={{ 
                       rotate: [0, 10, -10, 0],
                       scale: [1, 1.1, 1]
@@ -123,7 +124,7 @@ const ServiceComponent = () => {
                       delay: index * 0.5
                     }}
                   >
-                    {service.icon}
+                    <service.icon />
                   </motion.div>
                 </div>
 

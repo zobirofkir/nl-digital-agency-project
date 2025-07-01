@@ -43,6 +43,34 @@ const AboutComponent = () => {
         ))}
       </motion.div>
 
+      {/* Laser Icons */}
+      <motion.div className="absolute inset-0 pointer-events-none z-20">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`laser-${i}`}
+            className={`absolute w-1 h-8 ${i % 2 === 0 ? 'bg-white/60' : 'bg-red-500/70'} rounded-full`}
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${15 + (i % 4) * 20}%`,
+              transformOrigin: 'center'
+            }}
+            animate={{
+              x: [0, 50, -30, 40, 0],
+              y: [0, -25, 15, -35, 0],
+              rotate: [0, 45, -30, 60, 0],
+              opacity: [0.4, 1, 0.6, 1, 0.4],
+              scale: [0.8, 1.2, 0.9, 1.3, 0.8]
+            }}
+            transition={{
+              duration: 6 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3
+            }}
+          />
+        ))}
+      </motion.div>
+
       {/* Robotic Flush Animation */}
       <motion.img 
         src={FlushImage} 
