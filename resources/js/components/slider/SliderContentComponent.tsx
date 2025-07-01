@@ -258,9 +258,38 @@ const SliderContentComponent: React.FC = () => {
             <div className="absolute inset-0 bg-gray-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
           </motion.button>
         </motion.div>
+        
+        <motion.div
+          className="lg:hidden flex flex-col gap-3 -mt-5 w-2/5"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 1.3 }}
+        >
+          <motion.button 
+            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-lg font-bold text-xs shadow-xl hover:shadow-red-500/25 transition-all duration-500 overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+          >
+            <span className="relative z-10">Démarrer</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </motion.button>
+          
+          <motion.button 
+            className="group border border-gray-800 text-gray-800 px-3 py-2 rounded-lg font-bold text-xs hover:bg-gray-800 hover:text-white transition-all duration-500 relative overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+          >
+            <span className="relative z-10">En Savoir Plus</span>
+            <div className="absolute inset-0 bg-gray-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+          </motion.button>
+        </motion.div>
               
       </motion.div>
     </div>
+    
+
   </div>
   )
 }

@@ -5,7 +5,7 @@ import AboutBackgroundImage from '@/assets/abouts/about-image-background.png'
 const AboutComponent = () => {
   return (
     <motion.div 
-      className="relative min-h-screen bg-cover bg-center sm:bg-top md:bg-center bg-no-repeat lg:-mt-[13%] -mt-[56%] z-30"
+      className="relative min-h-screen bg-cover bg-center sm:bg-top md:bg-center bg-no-repeat -mt-[56%] sm:-mt-[45%] md:-mt-[30%] lg:-mt-[13%] z-30"
       style={{ 
         backgroundImage: `url(${AboutBackgroundImage})`
       }}
