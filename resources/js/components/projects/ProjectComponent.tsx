@@ -28,6 +28,80 @@ const ProjectComponent = () => {
 
   return (
     <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
+      {/* Animated Red Bubbles */}
+      <motion.div className="absolute inset-0 pointer-events-none z-5">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-br from-red-500/40 to-red-600/20 backdrop-blur-sm"
+            style={{
+              width: `${8 + (i % 4) * 6}px`,
+              height: `${8 + (i % 4) * 6}px`,
+              left: `${5 + (i * 8) % 90}%`,
+              top: `${10 + (i % 5) * 18}%`,
+              filter: 'drop-shadow(0 0 8px rgba(239, 68, 68, 0.3))'
+            }}
+            animate={{
+              y: [-30, 40, -20, 30, -30],
+              x: [-15, 25, -10, 20, -15],
+              scale: [0.8, 1.3, 0.9, 1.2, 0.8],
+              opacity: [0.3, 0.8, 0.5, 0.9, 0.3],
+              rotate: [0, 180, 90, 270, 0]
+            }}
+            transition={{
+              duration: 8 + (i % 3) * 2,
+              repeat: Infinity,
+              ease: [0.25, 0.46, 0.45, 0.94],
+              delay: i * 0.4
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Floating Bubble Clusters */}
+      <motion.div className="absolute inset-0 pointer-events-none z-5">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`cluster-${i}`}
+            className="absolute"
+            style={{
+              left: `${15 + (i * 12) % 70}%`,
+              top: `${20 + (i % 3) * 25}%`
+            }}
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              rotate: { duration: 20 + i * 2, repeat: Infinity, ease: 'linear' },
+              scale: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }
+            }}
+          >
+            {[...Array(3)].map((_, j) => (
+              <motion.div
+                key={j}
+                className="absolute w-3 h-3 bg-red-500/30 rounded-full"
+                style={{
+                  left: `${j * 15}px`,
+                  top: `${j * 8}px`,
+                  filter: 'blur(0.5px) drop-shadow(0 0 4px rgba(239, 68, 68, 0.4))'
+                }}
+                animate={{
+                  scale: [0.6, 1.4, 0.8, 1.2, 0.6],
+                  opacity: [0.4, 1, 0.6, 0.9, 0.4]
+                }}
+                transition={{
+                  duration: 3 + j,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: j * 0.3
+                }}
+              />
+            ))}
+          </motion.div>
+        ))}
+      </motion.div>
+
       {/* Animated Circles */}
       <AnimatedCircleComponent 
         position="left-center" 
