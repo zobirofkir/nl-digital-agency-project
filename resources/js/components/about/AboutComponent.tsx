@@ -77,6 +77,55 @@ const AboutComponent = () => {
           />
         </div>
       </motion.div>
+      
+      {/* Text content - Mobile: below image, Desktop: right side */}
+      <motion.div 
+        className="absolute bottom-8 left-0 right-0 lg:left-1/2 lg:right-8 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:w-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 flex items-center justify-center lg:justify-start"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <div className="text-center lg:text-left max-w-lg bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none p-4 lg:p-0">
+          <motion.h2 
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            <span className="text-red-500">Naoual Lebbar</span>
+          </motion.h2>
+          
+          <motion.p 
+            className="text-red-400 text-xs sm:text-sm lg:text-base mb-3 font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            Fondatrice & CEO, NL Marketing Digital
+          </motion.p>
+          
+          <motion.p 
+            className="text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            Nous transformons vos idées en <span className="text-red-400 font-semibold">succès digitaux</span> grâce à des stratégies innovantes. 
+            Notre équipe passionnée vous accompagne dans votre <span className="text-red-400">transformation digitale</span> 
+            pour atteindre vos objectifs.
+          </motion.p>
+          
+          <motion.p 
+            className="text-white/80 text-xs sm:text-sm italic"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            "Ensemble, construisons un avenir numérique prospère."
+          </motion.p>
+        </div>
+      </motion.div>
     </motion.div>
   )
 }
