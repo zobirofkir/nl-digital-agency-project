@@ -83,7 +83,7 @@ const ServiceComponent = () => {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container mx-auto relative z-10">
         {/* Header */}
         <motion.div 
           className="text-center mb-16"
@@ -116,7 +116,7 @@ const ServiceComponent = () => {
         </motion.div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mx-auto mb-20">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -190,7 +190,7 @@ const ServiceComponent = () => {
           viewport={{ once: true }}
         >
           <h3 className="text-3xl md:text-4xl font-bold text-center mb-12 text-red-100">Nos Tarifs</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={index}
