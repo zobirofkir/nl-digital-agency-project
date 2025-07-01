@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
 const ProjectComponent = () => {
+  const [flippedCards, setFlippedCards] = useState<number[]>([])
+
+  const toggleFlip = (index: number) => {
+    setFlippedCards(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    )
+  }
   const projects = [
     {
       title: 'E-commerce Platform',
@@ -27,7 +36,22 @@ const ProjectComponent = () => {
   ]
 
   return (
-    <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
+    <>
+      <style jsx>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotateY-180 {
+          transform: rotateY(180deg);
+        }
+      `}</style>
+      <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
       {/* Animated Red Bubbles */}
       <motion.div className="absolute inset-0 pointer-events-none z-5">
         {[...Array(12)].map((_, i) => (
@@ -130,103 +154,61 @@ const ProjectComponent = () => {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="max-w-6xl mx-auto">
-          {/* First Row - 3 Cards */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {projects.slice(0, 3).map((project, index) => (
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {projects.map((project, index) => {
+            const isFlipped = flippedCards.includes(index)
+            return (
               <motion.div
                 key={index}
-                className="bg-gray-900 rounded-xl overflow-hidden group cursor-pointer"
-                whileHover={{ scale: 1.05, y: -10 }}
-                transition={{ duration: 0.3 }}
+                className="relative h-64 cursor-pointer perspective-1000"
+                onClick={() => toggleFlip(index)}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="relative overflow-hidden">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                    style={{
-                      filter: 'drop-shadow(0 8px 16px rgba(239, 68, 68, 0.4))'
-                    }}
-                    whileHover={{
-                      scale: 1.1,
-                      filter: 'drop-shadow(0 12px 24px rgba(239, 68, 68, 0.6)) brightness(1.1)'
-                    }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-white text-xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-                    {project.title}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Second Row - 2 Cards Centered */}
-          <motion.div 
-            className="flex justify-center gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl">
-              {projects.slice(3, 5).map((project, index) => (
                 <motion.div
-                  key={index + 3}
-                  className="bg-gray-900 rounded-xl overflow-hidden group cursor-pointer"
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  className="relative w-full h-full preserve-3d"
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
-                  <div className="relative overflow-hidden">
+                  {/* Front Face */}
+                  <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden">
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-full object-cover"
                       style={{
-                        filter: 'drop-shadow(0 8px 16px rgba(239, 68, 68, 0.4))'
+                        filter: 'drop-shadow(0 12px 20px rgba(139, 0, 0, 0.7)) drop-shadow(0 4px 8px rgba(220, 38, 38, 0.5))'
                       }}
                       whileHover={{
-                        scale: 1.1,
-                        filter: 'drop-shadow(0 12px 24px rgba(239, 68, 68, 0.6)) brightness(1.1)'
+                        scale: 1.05,
+                        filter: 'drop-shadow(0 16px 32px rgba(139, 0, 0, 0.8)) drop-shadow(0 8px 16px rgba(220, 38, 38, 0.7)) brightness(1.1)'
                       }}
-                      transition={{ duration: 0.4 }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100"
                       transition={{ duration: 0.3 }}
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-white text-xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+                  
+                  {/* Back Face */}
+                  <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
+                    <h3 className="text-white text-xl font-bold text-center leading-tight">
                       {project.title}
                     </h3>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+              </motion.div>
+            )
+          })}
+        </motion.div>
       </div>
     </section>
+    </>
   )
 }
 
