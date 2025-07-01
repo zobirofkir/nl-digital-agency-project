@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight, FaPaintBrush, FaShoppingCart, FaCloud, FaCog, FaCamera } from 'react-icons/fa'
 
 const ServiceComponent = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
-  const [activeProcess, setActiveProcess] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const services = [
     {
@@ -24,8 +24,49 @@ const ServiceComponent = () => {
       title: 'Marketing Digital',
       description: 'Stratégies digitales pour booster votre présence en ligne',
       features: ['SEO/SEA', 'Social Media', 'Analytics']
+    },
+    {
+      icon: FaPaintBrush,
+      title: 'Design Graphique',
+      description: 'Création visuelle et identité de marque pour votre entreprise',
+      features: ['Logo Design', 'Charte Graphique', 'Print Design']
+    },
+    {
+      icon: FaShoppingCart,
+      title: 'E-commerce',
+      description: 'Solutions complètes pour vendre en ligne efficacement',
+      features: ['Shopify', 'WooCommerce', 'Paiement Sécurisé']
+    },
+    {
+      icon: FaCloud,
+      title: 'Cloud & Hébergement',
+      description: 'Infrastructure cloud sécurisée et performante',
+      features: ['AWS', 'Docker', 'Monitoring']
+    },
+    {
+      icon: FaCog,
+      title: 'Maintenance & Support',
+      description: 'Support technique et maintenance continue de vos projets',
+      features: ['Support 24/7', 'Mises à jour', 'Sauvegardes']
+    },
+    {
+      icon: FaCamera,
+      title: 'Photographie',
+      description: 'Services photographiques professionnels pour votre marque',
+      features: ['Photo Produit', 'Portrait Corporate', 'Événementiel']
     }
   ]
+
+  const cardsPerView = 3
+  const maxIndex = Math.max(0, services.length - cardsPerView)
+
+  const nextSlide = () => {
+    setCurrentIndex(prev => Math.min(prev + 1, maxIndex))
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex(prev => Math.max(prev - 1, 0))
+  }
 
   return (
     <motion.section 
@@ -86,29 +127,38 @@ const ServiceComponent = () => {
           {/* Navigation Icons */}
           <div className="flex justify-center items-center gap-4">
             <motion.button
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ scale: currentIndex === 0 ? 1 : 1.1 }}
+              whileTap={{ scale: currentIndex === 0 ? 1 : 0.9 }}
             >
               <FaChevronLeft className="text-xl" />
             </motion.button>
             
             <motion.button
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              onClick={nextSlide}
+              disabled={currentIndex === maxIndex}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ scale: currentIndex === maxIndex ? 1 : 1.1 }}
+              whileTap={{ scale: currentIndex === maxIndex ? 1 : 0.9 }}
             >
               <FaChevronRight className="text-xl" />
             </motion.button>
           </div>
         </motion.div>
 
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mx-auto mb-20">
-          {services.map((service, index) => (
+        {/* Service Cards Horizontal Scroll */}
+        <div className="relative overflow-hidden mb-20">
+          <motion.div 
+            className="flex gap-6 lg:gap-8"
+            animate={{ x: -currentIndex * (100 / cardsPerView) + '%' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          >
+            {services.map((service, index) => (
             <motion.div
               key={index}
-              className="relative w-full h-80 md:h-96 cursor-pointer"
+              className="relative flex-shrink-0 w-80 md:w-96 h-80 md:h-96 cursor-pointer"
               style={{ perspective: '1000px' }}
               onClick={() => {
                 setFlippedCards(prev => 
@@ -212,6 +262,7 @@ const ServiceComponent = () => {
               </motion.div>
             </motion.div>
           ))}
+          </motion.div>
         </div>
       </div>
     </motion.section>
