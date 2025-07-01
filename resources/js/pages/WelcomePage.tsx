@@ -36,6 +36,9 @@ const WelcomePage = () => {
         <div>
           <SubscriptionComponent />
         </div>
+
+        <hr />
+        
       </section>
     </AppLayout>
   )
