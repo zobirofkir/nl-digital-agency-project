@@ -82,28 +82,28 @@ const ServiceComponent = () => {
           >
             Nos <span className="text-red-200">Services</span>
           </motion.h2>
+          
+          {/* Navigation Icons */}
+          <div className="flex justify-center items-center gap-4">
+            <motion.button
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaChevronLeft className="text-xl" />
+            </motion.button>
+            
+            <motion.button
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaChevronRight className="text-xl" />
+            </motion.button>
+          </div>
         </motion.div>
 
         {/* Service Cards Grid */}
-        <div className="relative">
-          {/* Previous Button */}
-          <motion.button
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaChevronLeft className="text-xl" />
-          </motion.button>
-          
-          {/* Next Button */}
-          <motion.button
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white hover:bg-white/20 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaChevronRight className="text-xl" />
-          </motion.button>
-          
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mx-auto mb-20">
           {services.map((service, index) => (
             <motion.div
@@ -212,7 +212,6 @@ const ServiceComponent = () => {
               </motion.div>
             </motion.div>
           ))}
-        </div>
         </div>
       </div>
     </motion.section>
