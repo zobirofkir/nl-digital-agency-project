@@ -188,7 +188,7 @@ const ServiceComponent = () => {
                 </div>
 
                 {/* Back - Full Info */}
-                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 p-4 md:p-6 flex flex-col justify-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                <div className="absolute inset-0 bg-white rounded-2xl border border-gray-200 p-4 md:p-6 flex flex-col justify-center z-[9999] " style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                   <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-center text-black">
                     {service.title}
                   </h3>
