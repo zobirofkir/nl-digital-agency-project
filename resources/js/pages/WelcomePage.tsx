@@ -5,6 +5,7 @@ import AboutComponent from '@/components/about/AboutComponent'
 import ServiceComponent from '@/components/services/ServiceComponent'
 import ProjectComponent from '@/components/projects/ProjectComponent'
 import ContactComponent from '@/components/contacts/ContactComponent'
+import SubscriptionComponent from '@/components/subscriptions/SubscriptionComponent'
 
 const WelcomePage = () => {
   return (
@@ -30,6 +31,10 @@ const WelcomePage = () => {
 
         <div>
           <ContactComponent />
+        </div>
+
+        <div>
+          <SubscriptionComponent />
         </div>
       </section>
     </AppLayout>
