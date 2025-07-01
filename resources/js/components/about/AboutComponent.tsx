@@ -20,7 +20,7 @@ const AboutComponent = () => {
       <img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 lg:ml-10 z-40"
+        className="absolute lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-10 z-40"
       />
       <motion.div 
         className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/3 h-1/2 sm:h-2/3 md:h-3/4 lg:ml-10 flex items-center justify-center"
