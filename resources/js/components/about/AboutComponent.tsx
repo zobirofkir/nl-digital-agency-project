@@ -6,14 +6,6 @@ import AboutPersonneImage from '@/assets/abouts/about-personne.png'
 import FlushImage from '@/assets/abouts/about-flush.png'
 
 const AboutComponent = () => {
-  const cards = [
-    { title: "Stratégie Digitale", desc: "Solutions sur mesure" },
-    { title: "Design Créatif", desc: "Expériences uniques" },
-    { title: "Développement", desc: "Technologies modernes" },
-    { title: "Marketing Digital", desc: "Croissance durable" },
-    { title: "SEO & Analytics", desc: "Performance optimisée" },
-    { title: "Branding", desc: "Identité forte" }
-  ]
 
   return (
     <motion.div 
@@ -26,28 +18,58 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
+      {/* Floating Elements */}
+      <motion.div className="absolute inset-0 pointer-events-none z-10">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-red-400/30 rounded-full"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${30 + (i % 3) * 20}%`
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.3, 0.8, 0.3],
+              scale: [0.8, 1.2, 0.8]
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Enhanced Flush Animation */}
       <motion.img 
         src={FlushImage} 
         alt="Flush" 
         className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-25 z-40"
-        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
         animate={{
-          y: [0, -8, 0],
-          x: [0, 2, -2, 0],
-          rotate: [0, 1, -1, 0],
-          scale: [1, 1.02, 1]
+          y: [0, -12, 0],
+          rotateY: [0, 5, -5, 0],
+          filter: [
+            'drop-shadow(0 0 0px rgba(239, 68, 68, 0))',
+            'drop-shadow(0 0 20px rgba(239, 68, 68, 0.3))',
+            'drop-shadow(0 0 0px rgba(239, 68, 68, 0))'
+          ]
         }}
         transition={{
-          y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-          x: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-          rotate: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
-          scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
-          opacity: { duration: 0.6, delay: 0.2 }
+          y: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+          rotateY: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+          filter: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+          opacity: { duration: 0.8, ease: 'easeOut' },
+          scale: { duration: 0.8, ease: 'easeOut' },
         }}
         whileHover={{
-          scale: 1.1,
-          rotate: 5,
+          scale: 1.05,
+          rotateY: 10,
+          filter: 'drop-shadow(0 0 25px rgba(239, 68, 68, 0.5))',
           transition: { duration: 0.3 }
         }}
         viewport={{ once: true }}
@@ -136,44 +158,72 @@ const AboutComponent = () => {
         </div>
       </motion.div>
 
-      {/* Auto-scrolling Cards */}
+      {/* Stats Section */}
       <motion.div 
-        className="absolute bottom-0 left-0 right-0 h-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
+        className="absolute top-8 right-8 hidden lg:block"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <motion.div 
-          className="flex gap-6 h-full items-center"
-          animate={{ x: ["-100%", "100%"] }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-        >
-          {[...cards, ...cards].map((card, i) => (
-            <motion.div
+        <div className="bg-black/30 backdrop-blur-md rounded-xl p-6 border border-red-400/20">
+          {[
+            { number: "150+", label: "Projets" },
+            { number: "98%", label: "Satisfaction" },
+            { number: "5+", label: "Années" }
+          ].map((stat, i) => (
+            <motion.div 
               key={i}
-              className="flex-shrink-0 bg-gradient-to-r from-red-500/20 to-red-600/30 backdrop-blur-sm border border-red-400/30 rounded-lg p-4 min-w-[200px]"
-              animate={{
-                y: [0, -15, 0],
-                rotateY: [0, 5, -5, 0],
-                scale: [1, 1.05, 1]
-              }}
-              transition={{
-                duration: 3 + (i % 3),
-                repeat: Infinity,
-                delay: i * 0.3,
-                ease: "easeInOut"
-              }}
-              whileHover={{ scale: 1.1, y: -10 }}
+              className="text-center mb-4 last:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
             >
-              <h3 className="text-white font-semibold text-sm mb-1">{card.title}</h3>
-              <p className="text-red-300 text-xs">{card.desc}</p>
+              <motion.div 
+                className="text-2xl font-bold text-red-400"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {stat.number}
+              </motion.div>
+              <div className="text-white/80 text-sm">{stat.label}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
+      </motion.div>
+
+
+
+      {/* Achievement Badges */}
+      <motion.div 
+        className="absolute top-1/4 left-8 hidden lg:block"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
+        {[
+          { icon: "🏆", text: "Excellence" },
+          { icon: "⚡", text: "Innovation" },
+          { icon: "🎯", text: "Précision" }
+        ].map((badge, i) => (
+          <motion.div
+            key={i}
+            className="mb-4 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 border border-red-400/20"
+            animate={{
+              x: [0, 10, 0],
+              rotate: [0, 2, -2, 0]
+            }}
+            transition={{
+              duration: 3 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5
+            }}
+            whileHover={{ scale: 1.1, x: 15 }}
+          >
+            <span className="text-lg mr-2">{badge.icon}</span>
+            <span className="text-white text-sm font-medium">{badge.text}</span>
+          </motion.div>
+        ))}
       </motion.div>
     </motion.div>
   )
