@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import AboutBackgroundImage from '@/assets/abouts/about-image-background.png'
 import AboutPersonneImageBackground from '@/assets/abouts/about-persone-background.png'
 import AboutPersonneImage from '@/assets/abouts/about-personne.png'
+import FlushImage from '@/assets/abouts/about-flush.png'
 
 const AboutComponent = () => {
   return (
@@ -16,8 +17,13 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
+      <img 
+        src={FlushImage} 
+        alt="Flush" 
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 lg:ml-10 z-40"
+      />
       <motion.div 
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-1/2 sm:h-2/3 md:h-3/4 flex items-center justify-center"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/3 h-1/2 sm:h-2/3 md:h-3/4 lg:ml-10 flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
