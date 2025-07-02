@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaCalendar, FaUser, FaArrowRight, FaRobot, FaCode, FaMobile, FaRocket } from 'react-icons/fa'
+import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
 const BlogComponent = () => {
@@ -161,17 +162,17 @@ const BlogComponent = () => {
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {blogPosts.map((post, index) => (
-            <motion.article
-              key={post.id}
-              className="relative group cursor-pointer"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onHoverStart={() => setHoveredCard(post.id)}
-              onHoverEnd={() => setHoveredCard(null)}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
+            <Link href={`/blogs/${post.id}`} key={post.id}>
+              <motion.article
+                className="relative group cursor-pointer"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onHoverStart={() => setHoveredCard(post.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+                whileHover={{ y: -10, scale: 1.02 }}
+              >
               <motion.div 
                 className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-red-500/20 shadow-2xl"
                 animate={{
@@ -291,7 +292,8 @@ const BlogComponent = () => {
                   transition={{ duration: 0.3 }}
                 />
               </motion.div>
-            </motion.article>
+              </motion.article>
+            </Link>
           ))}
         </div>
 

@@ -1,8 +1,12 @@
+import AppLayout from '@/layouts/app-layout'
+import BlogShowComponent from '@/components/blogs/BlogShowComponent'
 import React from 'react'
 
-const BlogShowPage = () => {
+const BlogShowPage = ({ id }: { id: string }) => {
   return (
-    <div>BlogShowPage</div>
+    <AppLayout headerTextColor='white'>
+      <BlogShowComponent id={id} />
+    </AppLayout>
   )
 }
 

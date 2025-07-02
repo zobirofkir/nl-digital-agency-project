@@ -18,3 +18,7 @@ Route::get('/projects', function () {
 Route::get('/blogs', function () {
     return inertia('blogs/BlogPage');
 })->name('blogs');
+
+Route::get('/blogs/{id}', function ($id) {
+    return inertia('blogs/BlogShowPage', ['id' => $id]);
+})->name('blogs.show');
