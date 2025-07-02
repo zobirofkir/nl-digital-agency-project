@@ -33,7 +33,7 @@ const HeaderComponent = () => {
         </nav>
         {/* Desktop Right Side: Search + Language Switcher */}
         <div className="hidden md:flex items-center gap-4 ml-auto">
-          <SearchFormComponent />
+          {/* <SearchFormComponent /> */}
           <LanguageSwitcherComponent lang={lang} setLang={setLang} />
         </div>
         {/* Mobile Hamburger */}
