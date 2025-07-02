@@ -76,37 +76,18 @@ const AboutComponent = () => {
         src={FlushImage} 
         alt="Flush" 
         className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-0"
-        initial={{ opacity: 0, scale: 0.8, y: 50, rotateZ: -10 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0, rotateZ: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         animate={{
-          y: [0, -15, -8, -20, 0],
-          x: [0, 3, -2, 4, 0],
-          rotateZ: [0, 2, -1, 3, 0],
-          rotateY: [0, 8, -5, 12, 0],
-          scale: [1, 1.02, 0.98, 1.03, 1],
           filter: [
-            'drop-shadow(0 0 10px rgba(239, 68, 68, 0.2)) brightness(1)',
-            'drop-shadow(0 0 25px rgba(239, 68, 68, 0.4)) brightness(1.1)',
-            'drop-shadow(0 0 15px rgba(239, 68, 68, 0.3)) brightness(1.05)',
-            'drop-shadow(0 0 30px rgba(239, 68, 68, 0.5)) brightness(1.15)',
-            'drop-shadow(0 0 10px rgba(239, 68, 68, 0.2)) brightness(1)'
+            'drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)) brightness(1)',
+            'drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)) brightness(1.1)',
+            'drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)) brightness(1)'
           ]
         }}
         transition={{
-          y: { duration: 5.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
-          x: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
-          rotateZ: { duration: 6.5, repeat: Infinity, ease: [0.25, 0.46, 0.45, 0.94] },
-          rotateY: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
-          scale: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
-          filter: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
-          opacity: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] },
-        }}
-        whileHover={{
-          scale: 1.08,
-          rotateY: 15,
-          rotateZ: 5,
-          filter: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) brightness(1.2)',
-          transition: { duration: 0.4, ease: 'easeOut' }
+          filter: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
+          opacity: { duration: 0.8, ease: 'easeOut' }
         }}
         viewport={{ once: true }}
       />
