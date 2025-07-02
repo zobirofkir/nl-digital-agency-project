@@ -33,14 +33,7 @@ class CategoryResource extends Resource
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => 
                                 $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                            ),
-                        
-                        Forms\Components\TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(Category::class, 'slug', ignoreRecord: true)
-                            ->rules(['alpha_dash'])
-                            ->helperText('URL-friendly version of the title')
+                            ),                        
                     ])
                     ->columns(1)
             ]);
