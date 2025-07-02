@@ -4,7 +4,7 @@ import React from 'react'
 
 const ContactPage = () => {
   return (
-    <AppLayout headerTextColor='black'>
+    <AppLayout headerTextColor='white'>
         <div>
           <ContactComponent />
         </div>
