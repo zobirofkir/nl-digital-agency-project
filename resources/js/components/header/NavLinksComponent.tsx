@@ -2,10 +2,10 @@ import React from 'react'
 
 const navLinks = [
   { name: 'Accueil', href: '/' },
+  { name: 'À propos', href: '/abouts' },
   { name: 'Services', href: '/services' },
   { name: 'Projets', href: '/projects' },
   { name: 'Blogs', href: '/blogs' },
-  { name: 'À propos', href: '/abouts' },
   { name: 'Contact', href: '/contacts' },
 ]
 

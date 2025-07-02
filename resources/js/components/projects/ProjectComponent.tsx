@@ -149,7 +149,7 @@ const ProjectComponent = () => {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
             <span className="text-red-500">Distinguez-vous</span>{' '}
-            <span className="text-white whitespace-nowrap">dès maintenant grâce à nos services !</span>
+            <span className="text-white">dès maintenant grâce à nos services !</span>
           </h2>
         </motion.div>
 
