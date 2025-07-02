@@ -37,7 +37,7 @@ const ProjectComponent = () => {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .perspective-1000 {
           perspective: 1000px;
         }
