@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/services', function () {
     return inertia('ServicePage');
 })->name('services');
+
+Route::get('/projects', function () {
+    return inertia('ProjectPage');
+})->name('projects');

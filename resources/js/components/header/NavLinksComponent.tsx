@@ -9,13 +9,13 @@ const navLinks = [
   { name: 'Contact', href: '/contact' },
 ]
 
-const NavLinksComponent = ({ onClickLink }: { onClickLink: () => void }) => (
+const NavLinksComponent = ({ onClickLink, textColor = 'black' }: { onClickLink: () => void; textColor?: 'black' | 'white' }) => (
   <>
     {navLinks.map(link => (
       <a
         key={link.name}
         href={link.href}
-        className="flex items-center text-black font-md hover:text-gray-700 transition-colors duration-200 group"
+        className={`flex items-center text-${textColor} font-md hover:text-gray-700 transition-colors duration-200 group`}
         onClick={onClickLink}
       >
         {link.name}
