@@ -22,3 +22,7 @@ Route::get('/blogs', function () {
 Route::get('/blogs/{id}', function ($id) {
     return inertia('blogs/BlogShowPage', ['id' => $id]);
 })->name('blogs.show');
+
+Route::get('/contacts', function () {
+    return inertia('ContactPage');
+})->name('contacts');
