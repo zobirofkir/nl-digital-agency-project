@@ -6,7 +6,7 @@ import useLanguage from '@/hooks/useLanguage'
 import MobileSidebarComponent from './header/MobileSidebarComponent'
 import SearchFormComponent from './header/SearchFormComponent'
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ textColor = 'black' }: { textColor?: 'black' | 'white' }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { lang, setLang } = useLanguage()
 
@@ -29,7 +29,7 @@ const HeaderComponent = () => {
         </div>
         {/* Desktop Nav Centered */}
         <nav className="hidden md:flex gap-8 items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <NavLinksComponent onClickLink={() => {}} />
+          <NavLinksComponent onClickLink={() => {}} textColor={textColor} />
         </nav>
         {/* Desktop Right Side: Search + Language Switcher */}
         <div className="hidden md:flex items-center gap-4 ml-auto">

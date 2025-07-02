@@ -6,9 +6,10 @@ import { type ReactNode } from 'react';
 interface AppLayoutProps {
     children: ReactNode;
     breadcrumbs?: BreadcrumbItem[];
+    headerTextColor?: 'black' | 'white';
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
+export default ({ children, breadcrumbs, headerTextColor, ...props }: AppLayoutProps) => (
     <section
         {...props}
         className={`flex flex-col min-h-screen ${props?.className || ''}`}
@@ -18,7 +19,7 @@ export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
              * Header Component
              */
         }
-        <HeaderComponent />
+        <HeaderComponent textColor={headerTextColor} />
 
         {
             /**
