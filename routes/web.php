@@ -14,3 +14,7 @@ Route::get('/services', function () {
 Route::get('/projects', function () {
     return inertia('ProjectPage');
 })->name('projects');
+
+Route::get('/blogs', function () {
+    return inertia('blogs/BlogPage');
+})->name('blogs');
