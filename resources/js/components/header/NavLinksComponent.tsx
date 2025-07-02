@@ -3,10 +3,10 @@ import React from 'react'
 const navLinks = [
   { name: 'Accueil', href: '/' },
   { name: 'Services', href: '/services' },
-  { name: 'Projets', href: '/project' },
-  { name: 'Blogs', href: '/blog' },
-  { name: 'À propos', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Projets', href: '/projects' },
+  { name: 'Blogs', href: '/blogs' },
+  { name: 'À propos', href: '/abouts' },
+  { name: 'Contact', href: '/contacts' },
 ]
 
 const NavLinksComponent = ({ onClickLink, textColor = 'black' }: { onClickLink: () => void; textColor?: 'black' | 'white' }) => (
