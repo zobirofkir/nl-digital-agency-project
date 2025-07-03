@@ -6,11 +6,11 @@ import AppLayout from '@/layouts/app-layout'
 
 const AboutPage = () => {
   return (
-    <AppLayout headerTextColor='white'>
+    <AppLayout headerTextColor='black'>
 
     <motion.div 
       id='abouts'
-      className="relative min-h-screen bg-black z-30"
+      className="relative min-h-screen bg-white z-30"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -21,7 +21,7 @@ const AboutPage = () => {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-red-400/30 rounded-full"
+            className="absolute w-2 h-2 bg-gray-400/30 rounded-full"
             style={{
               left: `${20 + i * 15}%`,
               top: `${30 + (i % 3) * 20}%`
@@ -46,7 +46,7 @@ const AboutPage = () => {
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`laser-${i}`}
-            className={`absolute w-1 h-8 ${i % 2 === 0 ? 'bg-white/60' : 'bg-red-500/70'} rounded-full`}
+            className={`absolute w-1 h-8 ${i % 2 === 0 ? 'bg-black/60' : 'bg-gray-500/70'} rounded-full`}
             style={{
               left: `${10 + i * 12}%`,
               top: `${15 + (i % 4) * 20}%`,
@@ -114,18 +114,18 @@ const AboutPage = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <div className="text-center lg:text-left max-w-lg  bg-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none lg:mt-50 p-4 lg:p-0">
+        <div className="text-center lg:text-left max-w-lg  bg-white/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-lg lg:rounded-none lg:mt-50 p-4 lg:p-0">
           <motion.h2 
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
           >
-            <span className="text-red-500">Naoual Lebbar</span>
+            <span className="text-black">Naoual Lebbar</span>
           </motion.h2>
           
           <motion.p 
-            className="text-red-400 text-xs sm:text-sm lg:text-base mb-3 font-medium"
+            className="text-black text-xs sm:text-sm lg:text-base mb-3 font-medium"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -134,18 +134,18 @@ const AboutPage = () => {
           </motion.p>
           
           <motion.p 
-            className="text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed mb-4"
+            className="text-black text-xs sm:text-sm lg:text-base leading-relaxed mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
           >
-            Nous transformons vos idées en <span className="text-red-400 font-semibold">succès digitaux</span> grâce à des stratégies innovantes. 
-            Notre équipe passionnée vous accompagne dans votre <span className="text-red-400">transformation digitale</span> 
+            Nous transformons vos idées en <span className="text-black font-semibold">succès digitaux</span> grâce à des stratégies innovantes. 
+            Notre équipe passionnée vous accompagne dans votre <span className="text-black">transformation digitale</span> 
             pour atteindre vos objectifs.
           </motion.p>
           
           <motion.p 
-            className="text-white/80 text-xs sm:text-sm italic mb-6"
+            className="text-black text-xs sm:text-sm italic mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
@@ -157,16 +157,16 @@ const AboutPage = () => {
           <div className="hidden lg:block space-y-6 mb-4">
             {/* Services Preview */}
             <motion.div
-              className="bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-red-400/20"
+              className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-gray-400/20"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.3 }}
             >
-              <h3 className="text-red-400 font-semibold mb-3 text-sm">Nos Services</h3>
+              <h3 className="text-black font-semibold mb-3 text-sm">Nos Services</h3>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {['Web Design', 'SEO', 'Marketing', 'Branding'].map((service, i) => (
-                  <div key={i} className="text-white/80 flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                  <div key={i} className="text-black flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
                     {service}
                   </div>
                 ))}
@@ -175,22 +175,22 @@ const AboutPage = () => {
             
             {/* Quick Contact */}
             <motion.div
-              className="bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-red-400/20"
+              className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-gray-400/20"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.4 }}
             >
-              <h3 className="text-red-400 font-semibold mb-3 text-sm">Contact Rapide</h3>
-              <div className="space-y-2 text-xs text-white/80">
+              <h3 className="text-black font-semibold mb-3 text-sm">Contact Rapide</h3>
+              <div className="space-y-2 text-xs text-black">
                 <div className="flex items-center gap-2">
-                  <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                   </svg>
                   contact@nl-digitalagency.com
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                   </svg>
                   Fés, Maroc
