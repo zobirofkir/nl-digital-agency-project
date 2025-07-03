@@ -2,11 +2,14 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import AboutPersonneImageBackground from '@/assets/abouts/about-persone-background.png'
 import AboutPersonneImage from '@/assets/abouts/about-personne.png'
+import AppLayout from '@/layouts/app-layout'
 
 const AboutPage = () => {
   return (
+    <AppLayout headerTextColor='white'>
+
     <motion.div 
-    id='abouts'
+      id='abouts'
       className="relative min-h-screen bg-black z-30"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -309,6 +312,8 @@ const AboutPage = () => {
       */
       }
     </motion.div>
+
+    </AppLayout>
   )
 }
 
