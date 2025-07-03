@@ -12,20 +12,12 @@ interface BlogShowComponentProps {
     excerpt: string
     content: string
     featured_image?: string
-    status: string
+    author: string
+    date: string
+    category: string
     meta_title?: string
     meta_description?: string
     published_at: string
-    created_at: string
-    updated_at: string
-    user: {
-      id: number
-      name: string
-    }
-    category: {
-      id: number
-      title: string
-    }
   }
   bgColor?: 'black' | 'white'
   textColor?: 'white' | 'black'
@@ -38,19 +30,23 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
     ...blog,
     image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop',
     icon: FaRobot,
-    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min',
-    author: blog.user?.name || 'Unknown',
-    category: blog.category?.title || 'General',
-    date: (() => {
-      const dateStr = blog.published_at || blog.created_at
-      if (!dateStr) return 'Date inconnue'
-      const date = new Date(dateStr)
-      return isNaN(date.getTime()) ? 'Date inconnue' : date.toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
+    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min'
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: blog.title,
+        text: blog.excerpt,
+        url: window.location.href
       })
-    })()
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+    }
+  }
+
+  const handleFollow = () => {
+    window.open('https://twitter.com/intent/follow?screen_name=yourhandle', '_blank')
   }
 
   return (
@@ -114,7 +110,7 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
         >
           <div className="flex items-center gap-2 mb-4">
             <post.icon className="text-red-400" />
-            <span className="text-red-400 text-sm font-medium">{post.category}</span>
+            <span className="text-red-400 text-sm font-medium">{blog.category}</span>
           </div>
           
           <h1 className={`text-4xl md:text-5xl font-bold ${textColor === 'white' ? 'text-white' : 'text-black'} mb-6 leading-tight`}>
@@ -124,11 +120,11 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
           <div className={`flex items-center gap-6 ${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm mb-8`}>
             <div className="flex items-center gap-2">
               <FaUser />
-              {post.author}
+              {blog.author}
             </div>
             <div className="flex items-center gap-2">
               <FaCalendar />
-              {post.date}
+              {blog.date}
             </div>
             <div className="text-red-400 font-medium">
               {post.readTime}
@@ -137,14 +133,7 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
 
           <div className="flex items-center gap-4">
             <motion.button 
-              className="flex items-center gap-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 px-4 py-2 rounded-lg transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaHeart />
-              J'aime
-            </motion.button>
-            <motion.button 
+              onClick={handleShare}
               className={`flex items-center gap-2 ${bgColor === 'black' ? 'bg-gray-800 hover:bg-gray-700 text-gray-300' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'} px-4 py-2 rounded-lg transition-colors`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -197,17 +186,18 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold">
-                  {post.author.charAt(0)}
+                  {blog.author.charAt(0)}
                 </span>
               </div>
               <div>
-                <h4 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-semibold`}>{post.author}</h4>
+                <h4 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-semibold`}>{blog.author}</h4>
                 <p className={`${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm`}>Équipe de développement</p>
               </div>
             </div>
             
             <div className="flex items-center gap-4">
               <motion.button 
+                onClick={handleFollow}
                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -47,7 +47,7 @@ class BlogController extends Controller
                 'featured_image' => $blog->featured_image ? '/storage/' . $blog->featured_image : null,
                 'author' => $blog->user->name ?? 'Admin',
                 'date' => $blog->published_at->format('d M Y'),
-                'category' => $blog->category->name ?? 'General',
+                'category' => $blog->category->title ?? 'General',
                 'meta_title' => $blog->meta_title,
                 'meta_description' => $blog->meta_description,
                 'published_at' => $blog->published_at->format('Y-m-d H:i:s'),
