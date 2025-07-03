@@ -207,7 +207,7 @@ const AboutPage = () => {
             transition={{ duration: 0.6, delay: 1.2 }}
           >
             <motion.button
-              className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-xl hover:shadow-red-500/30 border border-red-400/20 overflow-hidden"
+              className="group relative bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-xl hover:shadow-black/30 border border-gray-400/20 overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.location.href = '#about'}
@@ -222,18 +222,18 @@ const AboutPage = () => {
             </motion.button>
             
             <motion.button
-              className="group relative bg-black/40 hover:bg-black/60 text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 border border-red-400/40 hover:border-red-400/60 backdrop-blur-md overflow-hidden"
+              className="group relative bg-gray-200/40 hover:bg-gray-200/60 text-black px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 border border-gray-400/40 hover:border-gray-400/60 backdrop-blur-md overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
             >
               <span className="relative z-10 flex items-center gap-2">
-                <svg className="w-4 h-4 text-red-400 group-hover:text-red-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-black group-hover:text-gray-700 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
                 Watch a Video
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/10 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
           </motion.div>
         </div>
@@ -246,7 +246,7 @@ const AboutPage = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="bg-black/30 backdrop-blur-md rounded-xl p-6 border border-red-400/20 lg:mt-50">
+        <div className="bg-white/30 backdrop-blur-md rounded-xl p-6 border border-gray-400/20 lg:mt-50">
           {[
             { number: "150+", label: "Projets" },
             { number: "98%", label: "Satisfaction" },
@@ -260,13 +260,13 @@ const AboutPage = () => {
               transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
             >
               <motion.div 
-                className="text-2xl font-bold text-red-400"
+                className="text-2xl font-bold text-black"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
               >
                 {stat.number}
               </motion.div>
-              <div className="text-white/80 text-sm">{stat.label}</div>
+              <div className="text-black text-sm">{stat.label}</div>
             </motion.div>
           ))}
         </div>

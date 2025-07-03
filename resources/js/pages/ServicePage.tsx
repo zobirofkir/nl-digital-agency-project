@@ -4,9 +4,9 @@ import React from 'react'
 
 const ServicePage = () => {
   return (
-    <AppLayout headerTextColor="white">
-      <div>
-        <ServiceComponent bgColor="black" />
+    <AppLayout headerTextColor="black">
+      <div className="bg-white">
+        <ServiceComponent bgColor="white" />
       </div>
     </AppLayout>
   )
