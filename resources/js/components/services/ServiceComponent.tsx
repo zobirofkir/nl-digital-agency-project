@@ -75,7 +75,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
 
   return (
     <motion.section 
-      className={`relative ${bgColor === 'red' ? 'bg-gradient-to-br from-red-900 via-red-700 to-red-800' : 'bg-gradient-to-br from-black via-gray-900 to-gray-800'} text-white py-20 px-4 overflow-hidden min-h-screen flex items-center`}
+      className={`relative ${bgColor === 'red' ? 'bg-gradient-to-br from-red-900 via-red-700 to-red-800' : 'bg-black'} text-white py-20 px-4 overflow-hidden min-h-screen flex items-center`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
