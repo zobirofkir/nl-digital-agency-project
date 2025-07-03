@@ -4,7 +4,12 @@ import { FaCalendar, FaUser, FaArrowRight, FaRobot, FaCode, FaMobile, FaRocket }
 import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
-const BlogComponent = () => {
+interface BlogComponentProps {
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const BlogComponent = ({ bgColor = 'black', textColor = 'white' }: BlogComponentProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
   const blogPosts = [
@@ -77,7 +82,7 @@ const BlogComponent = () => {
   ]
 
   return (
-    <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
+    <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
       {/* Animated Background Elements */}
       <motion.div className="absolute inset-0 pointer-events-none z-5">
         {[...Array(15)].map((_, i) => (
@@ -147,10 +152,10 @@ const BlogComponent = () => {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <span className="text-red-500">Blog</span>{' '}
-            <span className="text-white">Technologique</span>
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>Technologique</span>
           </motion.h1>
           <motion.p 
-            className="text-xl text-gray-300 max-w-2xl mx-auto"
+            className={`text-xl ${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} max-w-2xl mx-auto`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}

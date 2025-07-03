@@ -204,7 +204,7 @@ const ProjectComponent = ({ bgColor = 'black', textColor = 'white' }: ProjectCom
                     
                     {/* Back Face */}
                     <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
-                      <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} text-xl font-bold text-center leading-tight`}>
+                      <h3 className={`${textColor === 'white' ? 'text-white' : 'text-white'} text-xl font-bold text-center leading-tight`}>
                         {project.title}
                       </h3>
                     </div>

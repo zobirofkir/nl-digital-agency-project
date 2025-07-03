@@ -4,7 +4,7 @@ import React from 'react'
 
 const ProjectPage = () => {
   return (
-    <AppLayout headerTextColor="white">
+    <AppLayout headerTextColor="black">
         <div>
             <ProjectComponent bgColor="white" textColor="black" />
         </div>

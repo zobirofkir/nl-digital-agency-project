@@ -5,7 +5,7 @@ import React from 'react'
 const BlogPage = () => {
   return (
     <AppLayout headerTextColor='white'>
-      <BlogComponent />
+      <BlogComponent bgColor="white" textColor="black" />
     </AppLayout>
   )
 }
