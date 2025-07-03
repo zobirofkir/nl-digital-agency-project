@@ -251,23 +251,6 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
             </Link>
           ))}
         </div>
-
-        {/* Load More Section */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <motion.button 
-            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 border border-red-500/30 shadow-lg"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Charger plus d'articles
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   )
