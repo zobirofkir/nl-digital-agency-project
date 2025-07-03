@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/blogs', [BlogController::class, 'api']);
+Route::get('/blogs/{slug}', [BlogController::class, 'apiShow']);

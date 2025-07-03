@@ -10,57 +10,15 @@ interface BlogShowComponentProps {
   textColor?: 'white' | 'black'
 }
 
-const BlogShowComponent = ({ id, bgColor = 'black', textColor = 'white' }: BlogShowComponentProps) => {
+const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: BlogShowComponentProps) => {
+  if (!blog) return <div>Article non trouvé</div>
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'L\'avenir du développement web avec l\'IA',
-      excerpt: 'Découvrez comment l\'intelligence artificielle révolutionne le développement web et transforme notre façon de créer des applications.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop',
-      author: 'Tech Team',
-      date: '15 Jan 2024',
-      category: 'IA & Tech',
-      icon: FaRobot,
-      readTime: '5 min',
-      content: `
-        <p>L'intelligence artificielle transforme radicalement le paysage du développement web. Cette révolution technologique ouvre de nouvelles possibilités créatives et optimise les processus de développement.</p>
-        
-        <h2>Les outils IA pour les développeurs</h2>
-        <p>Les assistants de code alimentés par l'IA comme GitHub Copilot et ChatGPT révolutionnent la façon dont nous écrivons du code. Ces outils permettent d'accélérer le développement tout en maintenant la qualité.</p>
-        
-        <h2>Automatisation des tâches répétitives</h2>
-        <p>L'IA excelle dans l'automatisation des tâches répétitives : génération de tests, optimisation de code, et même la création de documentation technique.</p>
-        
-        <h2>L'avenir du développement</h2>
-        <p>Nous nous dirigeons vers un avenir où l'IA sera un partenaire indispensable du développeur, augmentant la créativité plutôt que de la remplacer.</p>
-      `
-    },
-    {
-      id: 2,
-      title: 'Design System : La clé d\'une interface cohérente',
-      excerpt: 'Apprenez à créer et maintenir un design system efficace pour garantir la cohérence de vos interfaces utilisateur.',
-      image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=500&fit=crop',
-      author: 'Design Team',
-      date: '12 Jan 2024',
-      category: 'Design',
-      icon: FaCode,
-      readTime: '7 min',
-      content: `
-        <p>Un design system est bien plus qu'une simple bibliothèque de composants. C'est un écosystème complet qui garantit la cohérence et l'efficacité de vos interfaces.</p>
-        
-        <h2>Les fondamentaux d'un design system</h2>
-        <p>Couleurs, typographie, espacements et composants forment les piliers d'un design system robuste. Chaque élément doit être documenté et réutilisable.</p>
-        
-        <h2>Mise en place et gouvernance</h2>
-        <p>La réussite d'un design system repose sur une gouvernance claire et l'adoption par toutes les équipes. La documentation vivante est essentielle.</p>
-      `
-    }
-  ]
-
-  const post = blogPosts.find(p => p.id === parseInt(id))
-
-  if (!post) return <div>Article non trouvé</div>
+  const post = {
+    ...blog,
+    image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop',
+    icon: FaRobot,
+    readTime: '5 min'
+  }
 
   return (
     <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>

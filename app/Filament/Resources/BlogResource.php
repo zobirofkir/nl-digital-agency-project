@@ -38,6 +38,12 @@ class BlogResource extends Resource
                                 $context === 'create' ? $set('slug', Str::slug($state)) : null
                             ),
 
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true)
+                            ->rules(['alpha_dash']),
+
                         Forms\Components\Select::make('category_id')
                             ->label('Category')
                             ->options(Category::all()->pluck('title', 'id'))

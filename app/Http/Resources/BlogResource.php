@@ -12,12 +12,16 @@ class BlogResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => $this->slug,
             'excerpt' => $this->excerpt,
-            'featured_image' => $this->featured_image,
+            'content' => $this->content,
+            'featured_image' => $this->featured_image ? '/storage/' . $this->featured_image : null,
             'author' => $this->user->name ?? 'Admin',
             'date' => $this->published_at->format('d M Y'),
             'category' => $this->category->name ?? 'General',
-            'slug' => $this->slug,
+            'meta_title' => $this->meta_title,
+            'meta_description' => $this->meta_description,
+            'published_at' => $this->published_at->format('Y-m-d H:i:s'),
         ];
     }
 }

@@ -147,7 +147,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {blogPosts.map((post, index) => (
-            <Link href={`/blogs/${post.slug || post.id}`} key={post.id}>
+            <Link href={`/blogs/${post.slug}`} key={post.id}>
               <motion.article
                 className="relative group cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}

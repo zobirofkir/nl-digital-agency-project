@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return inertia('WelcomePage');
@@ -19,13 +20,9 @@ Route::get('/projects', function () {
     return inertia('ProjectPage');
 })->name('projects');
 
-Route::get('/blogs', function () {
-    return inertia('blogs/BlogPage');
-})->name('blogs');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 
-Route::get('/blogs/{id}', function ($id) {
-    return inertia('blogs/BlogShowPage', ['id' => $id]);
-})->name('blogs.show');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('/contacts', function () {
     return inertia('ContactPage');
