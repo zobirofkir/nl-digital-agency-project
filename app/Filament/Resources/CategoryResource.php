@@ -10,6 +10,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Hidden;
 
 class CategoryResource extends Resource
 {
@@ -33,7 +35,9 @@ class CategoryResource extends Resource
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => 
                                 $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                            ),                        
+                            ),
+                        Hidden::make('user_id')
+                            ->default(Auth::id()),
                     ])
                     ->columns(1)
             ]);
