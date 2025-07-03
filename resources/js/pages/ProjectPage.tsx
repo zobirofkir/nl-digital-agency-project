@@ -6,7 +6,7 @@ const ProjectPage = () => {
   return (
     <AppLayout headerTextColor="white">
         <div>
-            <ProjectComponent />
+            <ProjectComponent bgColor="white" textColor="black" />
         </div>
     </AppLayout>
   )

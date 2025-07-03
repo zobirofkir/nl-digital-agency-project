@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
-const ProjectComponent = () => {
+interface ProjectComponentProps {
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const ProjectComponent = ({ bgColor = 'black', textColor = 'white' }: ProjectComponentProps) => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
 
   const toggleFlip = (index: number) => {
@@ -51,7 +56,7 @@ const ProjectComponent = () => {
           transform: rotateY(180deg);
         }
       `}</style>
-      <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
+      <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
       {/* Animated Red Bubbles */}
       <motion.div className="absolute inset-0 pointer-events-none z-5">
         {[...Array(12)].map((_, i) => (
@@ -149,7 +154,7 @@ const ProjectComponent = () => {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
             <span className="text-red-500">Distinguez-vous</span>{' '}
-            <span className="text-white">dès maintenant grâce à nos services !</span>
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>dès maintenant grâce à nos services !</span>
           </h2>
         </motion.div>
 
@@ -199,7 +204,7 @@ const ProjectComponent = () => {
                     
                     {/* Back Face */}
                     <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
-                      <h3 className="text-white text-xl font-bold text-center leading-tight">
+                      <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} text-xl font-bold text-center leading-tight`}>
                         {project.title}
                       </h3>
                     </div>
@@ -254,7 +259,7 @@ const ProjectComponent = () => {
                     
                     {/* Back Face */}
                     <div className="absolute inset-0 backface-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6 transform rotateY-180">
-                      <h3 className="text-white text-xl font-bold text-center leading-tight">
+                      <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} text-xl font-bold text-center leading-tight`}>
                         {project.title}
                       </h3>
                     </div>
