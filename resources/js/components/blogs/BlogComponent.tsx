@@ -7,12 +7,13 @@ import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 interface Blog {
   id: number
   title: string
+  slug: string
   excerpt: string
-  featured_image: string
+  content?: string
+  featured_image?: string
   author: string
   date: string
   category: string
-  slug: string
 }
 
 interface BlogComponentProps {
@@ -23,38 +24,12 @@ interface BlogComponentProps {
 
 const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: BlogComponentProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [apiBlogs, setApiBlogs] = useState<Blog[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    if (blogs.length === 0) {
-      fetch('/api/blogs')
-        .then(res => res.json())
-        .then(data => {
-          setApiBlogs(data.data || [])
-          setLoading(false)
-        })
-        .catch(() => {
-          setLoading(false)
-        })
-    } else {
-      setLoading(false)
-    }
-  }, [blogs])
-
-  const blogPosts = blogs.length > 0 
-    ? blogs.map(blog => ({
-        ...blog,
-        image: (typeof blog.featured_image === 'string' && blog.featured_image) || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-        icon: FaRobot,
-        readTime: '5 min'
-      }))
-    : apiBlogs.map(blog => ({
-        ...blog,
-        image: (typeof blog.featured_image === 'string' && blog.featured_image) || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-        icon: FaRobot,
-        readTime: '5 min'
-      }))
+  const blogPosts = blogs.length > 0 ? blogs.map(blog => ({
+    ...blog,
+    image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    icon: FaRobot,
+    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min'
+  })) : defaultBlogs
 
   return (
     <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
@@ -140,11 +115,6 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
         </motion.div>
 
         {/* Blog Grid */}
-        {loading ? (
-          <div className="text-center py-20">
-            <div className={`text-xl ${textColor === 'white' ? 'text-white' : 'text-black'}`}>Loading blogs...</div>
-          </div>
-        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {blogPosts.map((post, index) => (
             <Link href={`/blogs/${post.slug}`} key={post.id}>
@@ -171,7 +141,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
                 {/* Image Container */}
                 <div className="relative h-48 overflow-hidden">
                   <motion.img
-                      src={`storage/${post.featured_image}` || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop'}
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover"
                     animate={{
@@ -281,7 +251,6 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
             </Link>
           ))}
         </div>
-        )}
 
         {/* Load More Section */}
         <motion.div 

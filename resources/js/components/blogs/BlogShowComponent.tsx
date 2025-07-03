@@ -5,7 +5,28 @@ import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
 interface BlogShowComponentProps {
-  id: string
+  blog: {
+    id: number
+    title: string
+    slug: string
+    excerpt: string
+    content: string
+    featured_image?: string
+    status: string
+    meta_title?: string
+    meta_description?: string
+    published_at: string
+    created_at: string
+    updated_at: string
+    user: {
+      id: number
+      name: string
+    }
+    category: {
+      id: number
+      title: string
+    }
+  }
   bgColor?: 'black' | 'white'
   textColor?: 'white' | 'black'
 }
@@ -17,7 +38,19 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
     ...blog,
     image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop',
     icon: FaRobot,
-    readTime: '5 min'
+    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min',
+    author: blog.user?.name || 'Unknown',
+    category: blog.category?.title || 'General',
+    date: (() => {
+      const dateStr = blog.published_at || blog.created_at
+      if (!dateStr) return 'Date inconnue'
+      const date = new Date(dateStr)
+      return isNaN(date.getTime()) ? 'Date inconnue' : date.toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      })
+    })()
   }
 
   return (

@@ -19,10 +19,11 @@ class BlogController extends Controller
                     'id' => $blog->id,
                     'title' => $blog->title,
                     'excerpt' => $blog->excerpt,
+                    'content' => $blog->content,
                     'featured_image' => $blog->featured_image ? '/storage/' . $blog->featured_image : null,
                     'author' => $blog->user->name ?? 'Admin',
                     'date' => $blog->published_at->format('d M Y'),
-                    'category' => $blog->category->name ?? 'General',
+                    'category' => $blog->category->title ?? 'General',
                     'slug' => $blog->slug,
                 ];
             })

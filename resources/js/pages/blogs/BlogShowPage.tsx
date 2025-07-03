@@ -9,13 +9,21 @@ interface BlogShowPageProps {
     slug: string
     excerpt: string
     content: string
-    featured_image: string
-    author: string
-    date: string
-    category: string
+    featured_image?: string
+    status: string
     meta_title?: string
     meta_description?: string
     published_at: string
+    created_at: string
+    updated_at: string
+    user: {
+      id: number
+      name: string
+    }
+    category: {
+      id: number
+      title: string
+    }
   }
 }
 
