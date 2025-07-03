@@ -5,8 +5,8 @@ import React from 'react'
 const ServicePage = () => {
   return (
     <AppLayout headerTextColor="white">
-      <div className="bg-black">
-        <ServiceComponent />
+      <div>
+        <ServiceComponent bgColor="black" />
       </div>
     </AppLayout>
   )

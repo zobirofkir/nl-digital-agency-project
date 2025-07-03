@@ -3,7 +3,11 @@ import { motion } from 'framer-motion'
 import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight, FaPaintBrush, FaShoppingCart, FaCloud, FaCog, FaCamera, FaArrowRight } from 'react-icons/fa'
 import ServicePersonneImage from '@/assets/services/service-personne-image.png';
 
-const ServiceComponent = () => {
+interface ServiceComponentProps {
+  bgColor?: 'red' | 'black'
+}
+
+const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -71,7 +75,7 @@ const ServiceComponent = () => {
 
   return (
     <motion.section 
-      className="relative bg-gradient-to-br from-red-900 via-red-700 to-red-800 text-white py-20 px-4 overflow-hidden min-h-screen flex items-center"
+      className={`relative ${bgColor === 'red' ? 'bg-gradient-to-br from-red-900 via-red-700 to-red-800' : 'bg-gradient-to-br from-black via-gray-900 to-gray-800'} text-white py-20 px-4 overflow-hidden min-h-screen flex items-center`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}

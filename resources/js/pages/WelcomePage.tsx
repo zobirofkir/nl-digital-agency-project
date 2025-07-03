@@ -21,8 +21,8 @@ const WelcomePage = () => {
           <AboutComponent />
         </div>
 
-        <div className="bg-red-500">
-          <ServiceComponent />
+        <div>
+          <ServiceComponent bgColor="red" />
         </div>
 
         <div>
