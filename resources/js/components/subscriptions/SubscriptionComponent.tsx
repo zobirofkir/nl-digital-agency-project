@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const SubscriptionComponent = () => {
+interface SubscriptionComponentProps {
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const SubscriptionComponent = ({ bgColor = 'black', textColor = 'white' }: SubscriptionComponentProps) => {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -13,7 +18,7 @@ const SubscriptionComponent = () => {
   }
 
   return (
-    <section className="bg-black py-20 px-4">
+    <section className={`${bgColor === 'black' ? 'bg-black' : 'bg-white'} py-20 px-4`}>
       <div className="container mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -22,10 +27,10 @@ const SubscriptionComponent = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-white">Restez</span>{' '}
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>Restez</span>{' '}
             <span className="text-red-500">informé</span>
           </h2>
-          <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+          <p className={`${textColor === 'white' ? 'text-white/80' : 'text-black/80'} text-lg md:text-xl mb-12 max-w-2xl mx-auto`}>
             Abonnez-vous à notre newsletter pour recevoir les dernières{' '}
             <span className="text-red-500 font-semibold">actualités</span> et{' '}
             <span className="text-red-500 font-semibold">conseils</span> en développement web
@@ -50,7 +55,7 @@ const SubscriptionComponent = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Votre adresse email"
-                className="w-full px-6 py-4 pr-32 bg-gray-900 border-2 border-gray-700 rounded-full text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-all duration-300"
+                className={`w-full px-6 py-4 pr-32 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white placeholder-gray-400' : 'bg-gray-100 border-gray-300 text-black placeholder-gray-600'} border-2 rounded-full focus:border-red-500 focus:outline-none transition-all duration-300`}
                 required
               />
               <motion.button
@@ -82,7 +87,7 @@ const SubscriptionComponent = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-8 text-white/60 text-sm"
+          className={`mt-8 ${textColor === 'white' ? 'text-white/60' : 'text-black/60'} text-sm`}
         >
           Pas de spam, désabonnement possible à tout moment
         </motion.div>

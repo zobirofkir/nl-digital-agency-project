@@ -26,15 +26,15 @@ const WelcomePage = () => {
         </div>
 
         <div>
-          <ProjectComponent />
+          <ProjectComponent bgColor="white" textColor="black" />
         </div>
 
         <div>
-          <ContactComponent />
+          <ContactComponent bgColor="white" textColor="black" />
         </div>
 
         <div>
-          <SubscriptionComponent />
+          <SubscriptionComponent bgColor="white" textColor="black" />
         </div>
         
       </section>
