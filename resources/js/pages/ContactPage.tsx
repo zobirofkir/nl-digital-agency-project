@@ -4,9 +4,9 @@ import React from 'react'
 
 const ContactPage = () => {
   return (
-    <AppLayout headerTextColor='white'>
+    <AppLayout headerTextColor='black'>
         <div>
-          <ContactComponent />
+          <ContactComponent bgColor="white" textColor="black" />
         </div>
     </AppLayout>
   )

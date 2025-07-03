@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const ContactComponent = () => {
+interface ContactComponentProps {
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactComponentProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,7 +23,7 @@ const ContactComponent = () => {
   }
 
   return (
-    <section className="bg-black min-h-screen py-20 px-4">
+    <section className={`${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4`}>
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -28,10 +33,10 @@ const ContactComponent = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="text-white">Contactez</span>{' '}
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>Contactez</span>{' '}
             <span className="text-red-500">nous</span>
           </h2>
-          <p className="text-white/80 text-lg">Prêt à démarrer votre projet ? Parlons-en !</p>
+          <p className={`${textColor === 'white' ? 'text-white/80' : 'text-black/80'} text-lg`}>Prêt à démarrer votre projet ? Parlons-en !</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -49,13 +54,13 @@ const ContactComponent = () => {
                 transition={{ delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <label className="block text-white mb-2 font-medium">Nom</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Nom</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none transition-colors"
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors`}
                   required
                 />
               </motion.div>
@@ -66,13 +71,13 @@ const ContactComponent = () => {
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <label className="block text-white mb-2 font-medium">Email</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Email</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none transition-colors"
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors`}
                   required
                 />
               </motion.div>
@@ -83,13 +88,13 @@ const ContactComponent = () => {
                 transition={{ delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <label className="block text-white mb-2 font-medium">Message</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Message</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none transition-colors resize-none"
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none`}
                   required
                 />
               </motion.div>
@@ -145,28 +150,28 @@ const ContactComponent = () => {
               whileHover={{ scale: 1.05 }}
               className="text-center"
             >
-              <h3 className="text-white font-bold text-xl mb-2">
+              <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
                 <span className="text-red-500">Téléphone</span>
               </h3>
-              <p className="text-white/80">+212 6 12 34 56 78</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>+212 6 12 34 56 78</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center"
             >
-              <h3 className="text-white font-bold text-xl mb-2">
+              <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
                 <span className="text-red-500">Email</span>
               </h3>
-              <p className="text-white/80">contact@nl-digitalagency.com</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>contact@nl-digitalagency.com</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center"
             >
-              <h3 className="text-white font-bold text-xl mb-2">
+              <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
                 <span className="text-red-500">Adresse</span>
               </h3>
-              <p className="text-white/80">Fés, Maroc</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>Fés, Maroc</p>
             </motion.div>
           </div>
         </motion.div>
