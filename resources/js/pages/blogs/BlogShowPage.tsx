@@ -4,7 +4,9 @@ import React from 'react'
 
 const BlogShowPage = ({ id }: { id: string }) => {
   return (
-      <BlogShowComponent id={id} />
+    <AppLayout headerTextColor='white'>
+      <BlogShowComponent id={id} bgColor="white" textColor="black" />
+    </AppLayout>
   )
 }
 

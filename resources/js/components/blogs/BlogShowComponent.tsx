@@ -4,7 +4,13 @@ import { FaCalendar, FaUser, FaArrowLeft, FaRobot, FaCode, FaMobile, FaRocket, F
 import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
-const BlogShowComponent = ({ id }: { id: string }) => {
+interface BlogShowComponentProps {
+  id: string
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const BlogShowComponent = ({ id, bgColor = 'black', textColor = 'white' }: BlogShowComponentProps) => {
 
   const blogPosts = [
     {
@@ -57,7 +63,7 @@ const BlogShowComponent = ({ id }: { id: string }) => {
   if (!post) return <div>Article non trouvé</div>
 
   return (
-    <section className="relative bg-black min-h-screen py-20 px-4 overflow-hidden">
+    <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
       {/* Animated Background */}
       <motion.div className="absolute inset-0 pointer-events-none z-5">
         {[...Array(8)].map((_, i) => (
@@ -120,11 +126,11 @@ const BlogShowComponent = ({ id }: { id: string }) => {
             <span className="text-red-400 text-sm font-medium">{post.category}</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h1 className={`text-4xl md:text-5xl font-bold ${textColor === 'white' ? 'text-white' : 'text-black'} mb-6 leading-tight`}>
             {post.title}
           </h1>
           
-          <div className="flex items-center gap-6 text-gray-400 text-sm mb-8">
+          <div className={`flex items-center gap-6 ${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm mb-8`}>
             <div className="flex items-center gap-2">
               <FaUser />
               {post.author}
@@ -148,7 +154,7 @@ const BlogShowComponent = ({ id }: { id: string }) => {
               J'aime
             </motion.button>
             <motion.button 
-              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors"
+              className={`flex items-center gap-2 ${bgColor === 'black' ? 'bg-gray-800 hover:bg-gray-700 text-gray-300' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'} px-4 py-2 rounded-lg transition-colors`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -180,7 +186,7 @@ const BlogShowComponent = ({ id }: { id: string }) => {
           className="prose prose-invert prose-red max-w-none"
         >
           <div 
-            className="text-gray-300 leading-relaxed space-y-6"
+            className={`${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} leading-relaxed space-y-6`}
             dangerouslySetInnerHTML={{ __html: post.content }}
             style={{
               fontSize: '1.1rem',
@@ -194,7 +200,7 @@ const BlogShowComponent = ({ id }: { id: string }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-gray-800"
+          className={`mt-16 pt-8 border-t ${bgColor === 'black' ? 'border-gray-800' : 'border-gray-200'}`}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -204,8 +210,8 @@ const BlogShowComponent = ({ id }: { id: string }) => {
                 </span>
               </div>
               <div>
-                <h4 className="text-white font-semibold">{post.author}</h4>
-                <p className="text-gray-400 text-sm">Équipe de développement</p>
+                <h4 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-semibold`}>{post.author}</h4>
+                <p className={`${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm`}>Équipe de développement</p>
               </div>
             </div>
             
