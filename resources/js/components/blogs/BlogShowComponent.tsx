@@ -45,10 +45,6 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
     }
   }
 
-  const handleFollow = () => {
-    window.open('https://twitter.com/intent/follow?screen_name=yourhandle', '_blank')
-  }
-
   return (
     <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
       {/* Animated Background */}
@@ -195,16 +191,6 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
               </div>
             </div>
             
-            <div className="flex items-center gap-4">
-              <motion.button 
-                onClick={handleFollow}
-                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Suivre
-              </motion.button>
-            </div>
           </div>
         </motion.div>
       </div>
