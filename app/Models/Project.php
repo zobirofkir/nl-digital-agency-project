@@ -12,4 +12,9 @@ class Project extends Model
         "image",
         "description"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
