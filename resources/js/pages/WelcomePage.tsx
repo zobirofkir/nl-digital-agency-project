@@ -9,7 +9,7 @@ import SubscriptionComponent from '@/components/subscriptions/SubscriptionCompon
 
 const WelcomePage = () => {
   return (
-    <AppLayout headerTextColor="black" footerBgColor="black" footerTextColor="white">
+    <AppLayout headerTextColor="black" footerBgColor="white" footerTextColor="black">
       <Head title="Accueil" />      
       <section className='overflow-hidden'>
 
