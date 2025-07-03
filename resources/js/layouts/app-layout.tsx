@@ -7,9 +7,11 @@ interface AppLayoutProps {
     children: ReactNode;
     breadcrumbs?: BreadcrumbItem[];
     headerTextColor?: 'black' | 'white';
+    footerBgColor?: 'black' | 'white';
+    footerTextColor?: 'white' | 'black';
 }
 
-export default ({ children, breadcrumbs, headerTextColor, ...props }: AppLayoutProps) => (
+export default ({ children, breadcrumbs, headerTextColor, footerBgColor = 'white', footerTextColor = 'black', ...props }: AppLayoutProps) => (
     <section
         {...props}
         className={`flex flex-col min-h-screen ${props?.className || ''}`}
@@ -35,6 +37,6 @@ export default ({ children, breadcrumbs, headerTextColor, ...props }: AppLayoutP
              * Footer Component
              */
         }
-        <FooterComponent />
+        <FooterComponent bgColor={footerBgColor} textColor={footerTextColor} />
     </section>
 );

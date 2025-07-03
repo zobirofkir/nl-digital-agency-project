@@ -2,7 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Logo from '@/assets/slider/slider-mobile-logo.png'
 
-const FooterComponent = () => {
+interface FooterComponentProps {
+  bgColor?: 'black' | 'white'
+  textColor?: 'white' | 'black'
+}
+
+const FooterComponent = ({ bgColor = 'black', textColor = 'white' }: FooterComponentProps) => {
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -24,7 +29,7 @@ const FooterComponent = () => {
     <section>
       <hr />
       <motion.footer 
-        className="bg-black text-white py-16 px-4"
+        className={`${bgColor === 'black' ? 'bg-black' : 'bg-white'} ${textColor === 'white' ? 'text-white' : 'text-black'} py-16 px-4`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -44,32 +49,32 @@ const FooterComponent = () => {
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
-                  <span className="text-gray-300 text-sm">contact@nldigitalagency.com</span>
+                  <span className={`${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} text-sm`}>contact@nldigitalagency.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
-                  <span className="text-gray-300 text-sm">+212 5 32 08 83 73</span>
+                  <span className={`${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} text-sm`}>+212 5 32 08 83 73</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
-                  <span className="text-gray-300 text-sm">+212 7 07 70 53 93</span>
+                  <span className={`${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} text-sm`}>+212 7 07 70 53 93</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Bureau Moulay Slimane 9 Ave St Louis, Fes 30000</span>
+                  <span className={`${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} text-sm`}>Bureau Moulay Slimane 9 Ave St Louis, Fes 30000</span>
                 </div>
               </div>
             </motion.div>
 
             {/* Liens rapides */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-semibold mb-6 text-white">Liens rapides</h3>
+              <h3 className={`text-lg font-semibold mb-6 ${textColor === 'white' ? 'text-white' : 'text-black'}`}>Liens rapides</h3>
               <ul className="space-y-3">
                 {[
                   { name: 'NL Agency', href: '/' },
@@ -81,7 +86,7 @@ const FooterComponent = () => {
                   <li key={link.name}>
                     <motion.a 
                       href={link.href}
-                      className="text-gray-300 text-sm hover:text-white transition-colors duration-200"
+                      className={`${textColor === 'white' ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'} text-sm transition-colors duration-200`}
                       whileHover={{ x: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -94,7 +99,7 @@ const FooterComponent = () => {
 
             {/* Rejoignez notre communauté */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-semibold mb-6 text-white">Rejoignez notre communauté</h3>
+              <h3 className={`text-lg font-semibold mb-6 ${textColor === 'white' ? 'text-white' : 'text-black'}`}>Rejoignez notre communauté</h3>
               <div className="flex space-x-4">
                 {[
                   { name: 'LinkedIn', icon: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' },
@@ -104,7 +109,7 @@ const FooterComponent = () => {
                   <motion.a
                     key={social.name}
                     href="#"
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                    className={`${textColor === 'white' ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'} transition-colors duration-200`}
                     whileHover={{ scale: 1.2, y: -2 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
@@ -119,10 +124,10 @@ const FooterComponent = () => {
 
           {/* Bottom Section */}
           <motion.div 
-            className="border-t border-gray-800 mt-12 pt-8 flex justify-center"
+            className={`border-t ${bgColor === 'black' ? 'border-gray-800' : 'border-gray-200'} mt-12 pt-8 flex justify-center`}
             variants={itemVariants}
           >
-            <p className="text-gray-400 text-sm text-center">
+            <p className={`${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm text-center`}>
               © Copyright 2025 NL Marketing Agency
             </p>
           </motion.div>
