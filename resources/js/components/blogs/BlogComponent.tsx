@@ -1,85 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaCalendar, FaUser, FaArrowRight, FaRobot, FaCode, FaMobile, FaRocket } from 'react-icons/fa'
 import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 
+interface Blog {
+  id: number
+  title: string
+  excerpt: string
+  featured_image: string
+  author: string
+  date: string
+  category: string
+  slug: string
+}
+
 interface BlogComponentProps {
   bgColor?: 'black' | 'white'
   textColor?: 'white' | 'black'
+  blogs?: Blog[]
 }
 
-const BlogComponent = ({ bgColor = 'black', textColor = 'white' }: BlogComponentProps) => {
+const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: BlogComponentProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [apiBlogs, setApiBlogs] = useState<Blog[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'L\'avenir du développement web avec l\'IA',
-      excerpt: 'Découvrez comment l\'intelligence artificielle révolutionne le développement web et transforme notre façon de créer des applications.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-      author: 'Tech Team',
-      date: '15 Jan 2024',
-      category: 'IA & Tech',
-      icon: FaRobot,
-      readTime: '5 min'
-    },
-    {
-      id: 2,
-      title: 'Design System : La clé d\'une interface cohérente',
-      excerpt: 'Apprenez à créer et maintenir un design system efficace pour garantir la cohérence de vos interfaces utilisateur.',
-      image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&h=400&fit=crop',
-      author: 'Design Team',
-      date: '12 Jan 2024',
-      category: 'Design',
-      icon: FaCode,
-      readTime: '7 min'
-    },
-    {
-      id: 3,
-      title: 'Applications mobiles : Tendances 2024',
-      excerpt: 'Explorez les dernières tendances en développement mobile et les technologies qui façonnent l\'avenir des apps.',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop',
-      author: 'Mobile Team',
-      date: '10 Jan 2024',
-      category: 'Mobile',
-      icon: FaMobile,
-      readTime: '6 min'
-    },
-    {
-      id: 4,
-      title: 'Performance web : Optimisation avancée',
-      excerpt: 'Techniques avancées pour optimiser les performances de vos applications web et améliorer l\'expérience utilisateur.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-      author: 'Dev Team',
-      date: '08 Jan 2024',
-      category: 'Performance',
-      icon: FaRocket,
-      readTime: '8 min'
-    },
-    {
-      id: 5,
-      title: 'Sécurité web : Meilleures pratiques',
-      excerpt: 'Guide complet des meilleures pratiques de sécurité pour protéger vos applications web contre les menaces.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop',
-      author: 'Security Team',
-      date: '05 Jan 2024',
-      category: 'Sécurité',
-      icon: FaCode,
-      readTime: '10 min'
-    },
-    {
-      id: 6,
-      title: 'Cloud Computing : Migration réussie',
-      excerpt: 'Stratégies et conseils pour une migration cloud réussie et l\'optimisation de votre infrastructure.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
-      author: 'Cloud Team',
-      date: '03 Jan 2024',
-      category: 'Cloud',
-      icon: FaRocket,
-      readTime: '9 min'
+  useEffect(() => {
+    if (blogs.length === 0) {
+      fetch('/api/blogs')
+        .then(res => res.json())
+        .then(data => {
+          setApiBlogs(data.data || [])
+          setLoading(false)
+        })
+        .catch(() => {
+          setLoading(false)
+        })
+    } else {
+      setLoading(false)
     }
-  ]
+  }, [blogs])
+
+  const blogPosts = blogs.length > 0 
+    ? blogs.map(blog => ({
+        ...blog,
+        image: (typeof blog.featured_image === 'string' && blog.featured_image) || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+        icon: FaRobot,
+        readTime: '5 min'
+      }))
+    : apiBlogs.map(blog => ({
+        ...blog,
+        image: (typeof blog.featured_image === 'string' && blog.featured_image) || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+        icon: FaRobot,
+        readTime: '5 min'
+      }))
 
   return (
     <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
@@ -165,9 +140,14 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white' }: BlogComponent
         </motion.div>
 
         {/* Blog Grid */}
+        {loading ? (
+          <div className="text-center py-20">
+            <div className={`text-xl ${textColor === 'white' ? 'text-white' : 'text-black'}`}>Loading blogs...</div>
+          </div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {blogPosts.map((post, index) => (
-            <Link href={`/blogs/${post.id}`} key={post.id}>
+            <Link href={`/blogs/${post.slug || post.id}`} key={post.id}>
               <motion.article
                 className="relative group cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
@@ -191,7 +171,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white' }: BlogComponent
                 {/* Image Container */}
                 <div className="relative h-48 overflow-hidden">
                   <motion.img
-                    src={post.image}
+                      src={`storage/${post.featured_image}` || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop'}
                     alt={post.title}
                     className="w-full h-full object-cover"
                     animate={{
@@ -301,6 +281,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white' }: BlogComponent
             </Link>
           ))}
         </div>
+        )}
 
         {/* Load More Section */}
         <motion.div 
