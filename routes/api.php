@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,5 @@ Route::get('/blogs/{slug}', [BlogController::class, 'apiShow']);
 
 Route::get('/projects', [ProjectController::class, 'api']);
 Route::get('/projects/{id}', [ProjectController::class, 'apiShow']);
+
+Route::get('/services', [ServiceController::class, 'index']);

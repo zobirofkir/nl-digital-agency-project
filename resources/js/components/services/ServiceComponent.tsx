@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight, FaPaintBrush, FaShoppingCart, FaCloud, FaCog, FaCamera, FaArrowRight } from 'react-icons/fa'
 import ServicePersonneImage from '@/assets/services/service-personne-image.png';
@@ -7,60 +7,44 @@ interface ServiceComponentProps {
   bgColor?: 'red' | 'black' | 'white'
 }
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  skills: string[];
+  url?: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
+
 const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [services, setServices] = useState<Service[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const services = [
-    {
-      icon: FaRocket,
-      title: 'Développement Web',
-      description: 'Sites web modernes et performants avec les dernières technologies',
-      features: ['React/Next.js', 'Laravel/PHP', 'Responsive Design']
-    },
-    {
-      icon: FaMobile,
-      title: 'Applications Mobile',
-      description: 'Applications natives et cross-platform pour iOS et Android',
-      features: ['React Native', 'Flutter', 'UI/UX Design']
-    },
-    {
-      icon: FaBullseye,
-      title: 'Marketing Digital',
-      description: 'Stratégies digitales pour booster votre présence en ligne',
-      features: ['SEO/SEA', 'Social Media', 'Analytics']
-    },
-    {
-      icon: FaPaintBrush,
-      title: 'Design Graphique',
-      description: 'Création visuelle et identité de marque pour votre entreprise',
-      features: ['Logo Design', 'Charte Graphique', 'Print Design']
-    },
-    {
-      icon: FaShoppingCart,
-      title: 'E-commerce',
-      description: 'Solutions complètes pour vendre en ligne efficacement',
-      features: ['Shopify', 'WooCommerce', 'Paiement Sécurisé']
-    },
-    {
-      icon: FaCloud,
-      title: 'Cloud & Hébergement',
-      description: 'Infrastructure cloud sécurisée et performante',
-      features: ['AWS', 'Docker', 'Monitoring']
-    },
-    {
-      icon: FaCog,
-      title: 'Maintenance & Support',
-      description: 'Support technique et maintenance continue de vos projets',
-      features: ['Support 24/7', 'Mises à jour', 'Sauvegardes']
-    },
-    {
-      icon: FaCamera,
-      title: 'Photographie',
-      description: 'Services photographiques professionnels pour votre marque',
-      features: ['Photo Produit', 'Portrait Corporate', 'Événementiel']
-    }
-  ]
+  useEffect(() => {
+    fetch('/api/services')
+      .then(res => res.json())
+      .then(data => {
+        setServices(data)
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-red-600"></div>
+      </div>
+    )
+  }
 
   const cardsPerView = 3
   const maxIndex = Math.max(0, services.length - cardsPerView)
@@ -307,7 +291,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                             delay: index * 0.3
                           }}
                         >
-                          <service.icon />
+                          <FaCog />
                         </motion.div>
                       </motion.div>
                       
@@ -328,6 +312,15 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       >
                         {service.description}
                       </motion.p>
+                      
+                      <motion.div 
+                        className={`text-sm ${bgColor === 'white' ? 'text-gray-600' : 'text-red-200'} mb-4`}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                      >
+                        Par: {service.user.name}
+                      </motion.div>
                       
                       <motion.div 
                         className={`flex items-center ${bgColor === 'white' ? 'text-black/80' : 'text-white/80'} text-sm font-medium`}
@@ -358,13 +351,16 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
                       <div className={`text-4xl ${bgColor === 'white' ? 'text-gray-700' : 'text-red-400'} mb-4`}>
-                        <service.icon />
+                        <FaCog />
                       </div>
                       <h3 className={`text-2xl font-bold mb-4 ${bgColor === 'white' ? 'text-black' : 'text-white'}`}>
                         {service.title}
                       </h3>
                       <p className={`${bgColor === 'white' ? 'text-gray-700' : 'text-gray-300'} mb-6 leading-relaxed`}>
                         {service.description}
+                      </p>
+                      <p className={`text-sm ${bgColor === 'white' ? 'text-gray-600' : 'text-gray-400'} mb-4`}>
+                        Créé par: {service.user.name}
                       </p>
                     </motion.div>
                     
@@ -374,7 +370,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       animate={{ opacity: flippedCards.includes(index) ? 1 : 0, x: flippedCards.includes(index) ? 0 : -20 }}
                       transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                      {service.features.map((feature, i) => (
+                      {service.skills.map((skill, i) => (
                         <motion.div 
                           key={i} 
                           className={`flex items-center ${bgColor === 'white' ? 'text-black' : 'text-gray-200'}`}
@@ -383,7 +379,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                           transition={{ duration: 0.3, delay: 0.5 + i * 0.1 }}
                         >
                           <div className={`w-2 h-2 ${bgColor === 'white' ? 'bg-gray-700' : 'bg-red-400'} rounded-full mr-3 flex-shrink-0`}></div>
-                          <span className="text-sm">{feature}</span>
+                          <span className="text-sm">{skill}</span>
                         </motion.div>
                       ))}
                     </motion.div>
@@ -394,9 +390,20 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       animate={{ opacity: flippedCards.includes(index) ? 1 : 0, y: flippedCards.includes(index) ? 0 : 20 }}
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
-                      <button className={`${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black border-gray-400/30' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-red-500/30'} text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg border`}>
-                        Découvrir plus
-                      </button>
+                      {service.url ? (
+                        <a 
+                          href={service.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black border-gray-400/30' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-red-500/30'} text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg border inline-block`}
+                        >
+                          Voir le projet
+                        </a>
+                      ) : (
+                        <button className={`${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black border-gray-400/30' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-red-500/30'} text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg border`}>
+                          En savoir plus
+                        </button>
+                      )}
                     </motion.div>
                   </div>
                 </motion.div>
