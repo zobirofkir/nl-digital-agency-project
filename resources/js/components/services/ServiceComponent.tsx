@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaRocket, FaMobile, FaBullseye, FaChevronLeft, FaChevronRight, FaPaintBrush, FaShoppingCart, FaCloud, FaCog, FaCamera, FaArrowRight } from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa'
 import ServicePersonneImage from '@/assets/services/service-personne-image.png';
 
 interface ServiceComponentProps {
@@ -29,16 +29,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)
 
-  const iconMap: { [key: string]: any } = {
-    'FaRocket': FaRocket,
-    'FaMobile': FaMobile,
-    'FaBullseye': FaBullseye,
-    'FaPaintBrush': FaPaintBrush,
-    'FaShoppingCart': FaShoppingCart,
-    'FaCloud': FaCloud,
-    'FaCog': FaCog,
-    'FaCamera': FaCamera
-  }
+  const iconMap: { [key: string]: any } = FaIcons
 
   useEffect(() => {
     fetch('/api/services')
@@ -183,7 +174,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
               whileHover={{ scale: currentIndex === 0 ? 1 : 1.05, y: -2 }}
               whileTap={{ scale: currentIndex === 0 ? 1 : 0.95 }}
             >
-              <FaChevronLeft className={`text-xl ${bgColor === 'white' ? 'group-hover:text-gray-600' : 'group-hover:text-red-200'} transition-colors`} />
+              <FaIcons.FaChevronLeft className={`text-xl ${bgColor === 'white' ? 'group-hover:text-gray-600' : 'group-hover:text-red-200'} transition-colors`} />
             </motion.button>
             
             <div className="flex gap-2">
@@ -205,7 +196,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
               whileHover={{ scale: currentIndex === maxIndex ? 1 : 1.05, y: -2 }}
               whileTap={{ scale: currentIndex === maxIndex ? 1 : 0.95 }}
             >
-              <FaChevronRight className={`text-xl ${bgColor === 'white' ? 'group-hover:text-gray-600' : 'group-hover:text-red-200'} transition-colors`} />
+              <FaIcons.FaChevronRight className={`text-xl ${bgColor === 'white' ? 'group-hover:text-gray-600' : 'group-hover:text-red-200'} transition-colors`} />
             </motion.button>
           </motion.div>
         </motion.div>
@@ -303,7 +294,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                             delay: index * 0.3
                           }}
                         >
-                          {React.createElement(iconMap[service.icon] || FaCog)}
+                          {React.createElement(iconMap[service.icon] || FaIcons.FaCog)}
                         </motion.div>
                       </motion.div>
                       
@@ -341,7 +332,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                         transition={{ duration: 0.6, delay: 0.6 }}
                       >
                         <span className="mr-2">Cliquez pour découvrir</span>
-                        <FaArrowRight className="text-xs" />
+                        <FaIcons.FaArrowRight className="text-xs" />
                       </motion.div>
                     </div>
                     
@@ -363,7 +354,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
                       <div className={`text-4xl ${bgColor === 'white' ? 'text-gray-700' : 'text-red-400'} mb-4`}>
-                        {React.createElement(iconMap[service.icon] || FaCog)}
+                        {React.createElement(iconMap[service.icon] || FaIcons.FaCog)}
                       </div>
                       <h3 className={`text-2xl font-bold mb-4 ${bgColor === 'white' ? 'text-black' : 'text-white'}`}>
                         {service.title}
