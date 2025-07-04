@@ -14,23 +14,23 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::count())
-                ->description('Registered users')
+            Stat::make('Total Utilisateurs', User::count())
+                ->description('Utilisateurs inscrits')
                 ->descriptionIcon('heroicon-m-users')
                 ->color('success'),
             
-            Stat::make('Total Blogs', Blog::count())
-                ->description('Published articles')
+            Stat::make('Total Articles', Blog::count())
+                ->description('Articles publiés')
                 ->descriptionIcon('heroicon-m-newspaper')
                 ->color('info'),
             
-            Stat::make('Total Projects', Project::count())
-                ->description('Completed projects')
+            Stat::make('Total Projets', Project::count())
+                ->description('Projets terminés')
                 ->descriptionIcon('heroicon-m-briefcase')
                 ->color('warning'),
             
             Stat::make('Total Services', Service::count())
-                ->description('Available services')
+                ->description('Services disponibles')
                 ->descriptionIcon('heroicon-m-cog-6-tooth')
                 ->color('primary'),
         ];

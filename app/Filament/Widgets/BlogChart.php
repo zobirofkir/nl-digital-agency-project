@@ -7,7 +7,7 @@ use Filament\Widgets\ChartWidget;
 
 class BlogChart extends ChartWidget
 {
-    protected static ?string $heading = 'Blog Posts Over Time';
+    protected static ?string $heading = 'Articles de Blog dans le Temps';
     protected int | string | array $columnSpan = 'full';
 
     protected function getData(): array
@@ -21,7 +21,7 @@ class BlogChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Blog posts',
+                    'label' => 'Articles de blog',
                     'data' => $data->pluck('count')->toArray(),
                     'backgroundColor' => '#f59e0b',
                     'borderColor' => '#d97706',
