@@ -11,6 +11,9 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\BlogChart;
+use App\Filament\Widgets\LatestBlogs;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -35,9 +38,10 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                //
+                StatsOverview::class,
+                BlogChart::class,
+                LatestBlogs::class,
             ])
             ->middleware([
                 EncryptCookies::class,
