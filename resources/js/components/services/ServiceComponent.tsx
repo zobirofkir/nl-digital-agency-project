@@ -10,6 +10,7 @@ interface ServiceComponentProps {
 interface Service {
   id: number;
   title: string;
+  icon: string;
   description: string;
   skills: string[];
   url?: string;
@@ -27,6 +28,17 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)
+
+  const iconMap: { [key: string]: any } = {
+    'FaRocket': FaRocket,
+    'FaMobile': FaMobile,
+    'FaBullseye': FaBullseye,
+    'FaPaintBrush': FaPaintBrush,
+    'FaShoppingCart': FaShoppingCart,
+    'FaCloud': FaCloud,
+    'FaCog': FaCog,
+    'FaCamera': FaCamera
+  }
 
   useEffect(() => {
     fetch('/api/services')
@@ -291,7 +303,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                             delay: index * 0.3
                           }}
                         >
-                          <FaCog />
+                          {React.createElement(iconMap[service.icon] || FaCog)}
                         </motion.div>
                       </motion.div>
                       
@@ -351,7 +363,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
                       <div className={`text-4xl ${bgColor === 'white' ? 'text-gray-700' : 'text-red-400'} mb-4`}>
-                        <FaCog />
+                        {React.createElement(iconMap[service.icon] || FaCog)}
                       </div>
                       <h3 className={`text-2xl font-bold mb-4 ${bgColor === 'white' ? 'text-black' : 'text-white'}`}>
                         {service.title}

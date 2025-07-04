@@ -33,6 +33,21 @@ class ServiceResource extends Resource
                             ->maxLength(255)
                             ->columnSpanFull(),
                         
+                        Forms\Components\Select::make('icon')
+                            ->label('Icon')
+                            ->options([
+                                'FaRocket' => 'Rocket',
+                                'FaMobile' => 'Mobile',
+                                'FaBullseye' => 'Bullseye',
+                                'FaPaintBrush' => 'Paint Brush',
+                                'FaShoppingCart' => 'Shopping Cart',
+                                'FaCloud' => 'Cloud',
+                                'FaCog' => 'Cog',
+                                'FaCamera' => 'Camera',
+                            ])
+                            ->required()
+                            ->searchable(),
+                        
                         Forms\Components\Textarea::make('description')
                             ->required()
                             ->rows(4)
@@ -68,6 +83,10 @@ class ServiceResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
+                
+                Tables\Columns\TextColumn::make('icon')
+                    ->badge()
+                    ->color('primary'),
                 
                 Tables\Columns\TextColumn::make('description')
                     ->limit(50)
