@@ -9,7 +9,7 @@ use Filament\Widgets\TableWidget as BaseWidget;
 
 class LatestBlogs extends BaseWidget
 {
-    protected static ?string $heading = 'Latest Blog Posts';
+    protected static ?string $heading = 'Derniers Articles de Blog';
     protected int | string | array $columnSpan = 'full';
 
     public function table(Table $table): Table
@@ -21,7 +21,7 @@ class LatestBlogs extends BaseWidget
                     ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Author'),
+                    ->label('Auteur'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
