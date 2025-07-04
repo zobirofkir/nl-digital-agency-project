@@ -19,7 +19,7 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
 
-    protected static ?string $navigationGroup = 'Project';
+    protected static ?string $navigationGroup = 'Projet';
 
     protected static ?int $navigationSort = 1;
 
@@ -27,7 +27,7 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Project Details')
+                Forms\Components\Section::make('Détails du Projet')
                     ->schema([
                         Forms\Components\Select::make('user_id')
                             ->relationship('user', 'name')
@@ -84,7 +84,7 @@ class ProjectResource extends Resource
                     ->weight('medium')
                     ->copyable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Author')
+                    ->label('Auteur')
                     ->sortable()
                     ->badge()
                     ->color('success'),
@@ -96,7 +96,7 @@ class ProjectResource extends Resource
                         return strlen($state) <= 30 ? null : $state;
                     }),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created')
+                    ->label('Créé')
                     ->dateTime('M j, Y')
                     ->sortable()
                     ->toggleable(),

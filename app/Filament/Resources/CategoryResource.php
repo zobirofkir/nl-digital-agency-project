@@ -27,7 +27,7 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Category Information')
+                Forms\Components\Section::make('Informations de la Catégorie')
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->required()
@@ -62,7 +62,7 @@ class CategoryResource extends Resource
                     ->sortable()
                     ->color('gray')
                     ->copyable()
-                    ->copyMessage('Slug copied!')
+                    ->copyMessage('Slug copié!')
                     ->badge(),
                     
                 Tables\Columns\TextColumn::make('created_at')

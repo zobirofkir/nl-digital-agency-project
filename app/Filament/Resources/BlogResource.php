@@ -28,7 +28,7 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Content')
+                Forms\Components\Section::make('Contenu')
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->required()
@@ -39,13 +39,13 @@ class BlogResource extends Resource
                             ),
 
                         Forms\Components\Select::make('category_id')
-                            ->label('Category')
+                            ->label('Catégorie')
                             ->options(Category::all()->pluck('title', 'id'))
                             ->required()
                             ->searchable(),
 
                         Forms\Components\Select::make('user_id')
-                            ->label('Author')
+                            ->label('Auteur')
                             ->options(User::all()->pluck('name', 'id'))
                             ->required()
                             ->default(auth()->id())
@@ -61,7 +61,7 @@ class BlogResource extends Resource
                     ])
                     ->columns(1),
 
-                Forms\Components\Section::make('Media')
+                Forms\Components\Section::make('Média')
                     ->schema([
                         Forms\Components\FileUpload::make('featured_image')
                             ->image()
@@ -69,19 +69,19 @@ class BlogResource extends Resource
                             ->directory('blog-images'),
                     ]),
 
-                Forms\Components\Section::make('Publishing')
+                Forms\Components\Section::make('Publication')
                     ->schema([
                         Forms\Components\Select::make('status')
                             ->options([
-                                'draft' => 'Draft',
-                                'published' => 'Published',
-                                'archived' => 'Archived',
+                                'draft' => 'Brouillon',
+                                'published' => 'Publié',
+                                'archived' => 'Archivé',
                             ])
                             ->default('draft')
                             ->required(),
 
                         Forms\Components\DateTimePicker::make('published_at')
-                            ->label('Publish Date'),
+                            ->label('Date de Publication'),
                     ])
                     ->columns(2),
 
@@ -117,7 +117,7 @@ class BlogResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Author')
+                    ->label('Auteur')
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('status')
@@ -126,6 +126,12 @@ class BlogResource extends Resource
                         'draft' => 'warning',
                         'published' => 'success',
                         'archived' => 'danger',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'draft' => 'Brouillon',
+                        'published' => 'Publié',
+                        'archived' => 'Archivé',
+                        default => $state,
                     }),
 
                 Tables\Columns\TextColumn::make('published_at')
@@ -141,9 +147,9 @@ class BlogResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                        'archived' => 'Archived',
+                        'draft' => 'Brouillon',
+                        'published' => 'Publié',
+                        'archived' => 'Archivé',
                     ]),
 
                 Tables\Filters\SelectFilter::make('category')
