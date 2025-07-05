@@ -1,6 +1,7 @@
 import React from 'react'
 import NavLinksComponent from './NavLinksComponent'
 import LanguageSwitcherComponent from './LanguageSwitcherComponent'
+import useTranslation from '@/hooks/useTranslation'
 
 const MobileSidebarComponent = ({
   open,
@@ -12,7 +13,10 @@ const MobileSidebarComponent = ({
   onClose: () => void
   lang: 'fr' | 'en'
   setLang: (lang: 'fr' | 'en') => void
-}) => (
+}) => {
+  const { t } = useTranslation()
+  
+  return (
   <>
     <div
       className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
@@ -30,7 +34,7 @@ const MobileSidebarComponent = ({
         <button
           className="p-2 rounded hover:bg-black/5 transition"
           onClick={onClose}
-          aria-label="Close navigation"
+          aria-label={t('header.closeNavigation')}
         >
           <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -43,6 +47,7 @@ const MobileSidebarComponent = ({
       </nav>
     </aside>
   </>
-)
+  )
+}
 
 export default MobileSidebarComponent

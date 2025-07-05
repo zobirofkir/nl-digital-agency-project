@@ -3,12 +3,14 @@ import Logo from '@/assets/logo/logo.png'
 import NavLinksComponent from './header/NavLinksComponent'
 import LanguageSwitcherComponent from './header/LanguageSwitcherComponent'
 import useLanguage from '@/hooks/useLanguage'
+import useTranslation from '@/hooks/useTranslation'
 import MobileSidebarComponent from './header/MobileSidebarComponent'
 import SearchFormComponent from './header/SearchFormComponent'
 
 const HeaderComponent = ({ textColor = 'black' }: { textColor?: 'black' | 'white' }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { lang, setLang } = useLanguage()
+  const { t } = useTranslation()
 
   return (
     <header className="absolute top-0 left-0 w-full z-50 bg-transparent transition-all">
@@ -18,7 +20,7 @@ const HeaderComponent = ({ textColor = 'black' }: { textColor?: 'black' | 'white
           <a href="/" className="absolute inset-0 flex items-center justify-start">
             <img
               src={Logo}
-              alt="Logo"
+              alt={t('header.logoAlt')}
               className="h-96 w-auto max-h-none object-contain"
               style={{
                 filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.05))',
@@ -40,7 +42,7 @@ const HeaderComponent = ({ textColor = 'black' }: { textColor?: 'black' | 'white
         <button
           className="md:hidden flex items-center justify-center p-2 rounded transition hover:bg-black/5"
           onClick={() => setSidebarOpen(true)}
-          aria-label="Open navigation"
+          aria-label={t('header.openNavigation')}
         >
           <svg className={`w-7 h-7 ${textColor === 'white' ? 'text-white' : 'text-black'}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
