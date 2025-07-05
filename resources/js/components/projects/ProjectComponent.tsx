@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
 import axios from 'axios'
+import useTranslation from '@/hooks/useTranslation'
 
 interface ProjectComponentProps {
   bgColor?: 'black' | 'white'
@@ -22,6 +23,7 @@ const ProjectComponent = ({ bgColor = 'black', textColor = 'white' }: ProjectCom
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { t } = useTranslation()
 
   const toggleFlip = (index: number) => {
     setFlippedCards(prev => 
@@ -167,8 +169,8 @@ const ProjectComponent = ({ bgColor = 'black', textColor = 'white' }: ProjectCom
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-            <span className="text-red-500">Distinguez-vous</span>{' '}
-            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>dès maintenant grâce à nos services !</span>
+            <span className="text-red-500">{t('projectsComponent.title').split(' ')[0]}</span>{' '}
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>{t('projectsComponent.title').split(' ').slice(1).join(' ')}</span>
           </h2>
         </motion.div>
 
@@ -312,7 +314,7 @@ const ProjectComponent = ({ bgColor = 'black', textColor = 'white' }: ProjectCom
         {!loading && !error && projects.length === 0 && (
           <div className="text-center py-20">
             <p className={`${textColor === 'white' ? 'text-white' : 'text-black'} text-lg`}>
-              No projects available at the moment.
+              {t('projectsComponent.noProjects')}
             </p>
           </div>
         )}

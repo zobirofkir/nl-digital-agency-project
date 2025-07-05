@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import * as FaIcons from 'react-icons/fa'
-import ServicePersonneImage from '@/assets/services/service-personne-image.png';
+import ServicePersonneImage from '@/assets/services/service-personne-image.png'
+import useTranslation from '@/hooks/useTranslation'
 
 interface ServiceComponentProps {
   bgColor?: 'red' | 'black' | 'white'
@@ -28,6 +29,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   const iconMap: { [key: string]: any } = FaIcons
 
@@ -125,7 +127,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Excellence & Innovation
+              {t('servicesComponent.badge')}
             </motion.span>
             <motion.h2 
               className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
@@ -133,7 +135,6 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              Nos{' '}
               <motion.span 
                 className={`relative inline-block text-transparent bg-clip-text ${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-600' : 'bg-gradient-to-r from-white to-red-200'}`}
                 animate={{ 
@@ -141,7 +142,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               >
-                Services
+                {t('servicesComponent.title')}
                 <motion.div 
                   className={`absolute -bottom-2 left-0 h-1 ${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-600' : 'bg-gradient-to-r from-white to-red-200'} rounded-full`}
                   initial={{ width: 0 }}
@@ -156,7 +157,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Des solutions digitales sur mesure pour propulser votre entreprise vers le succès
+              {t('servicesComponent.description')}
             </motion.p>
           </motion.div>
           
@@ -322,7 +323,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
                       >
-                        Par: {service.user.name}
+                        {t('servicesComponent.createdBy')} {service.user.name}
                       </motion.div>
                       
                       <motion.div 
@@ -331,7 +332,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                       >
-                        <span className="mr-2">Cliquez pour découvrir</span>
+                        <span className="mr-2">{t('servicesComponent.clickToDiscover')}</span>
                         <FaIcons.FaArrowRight className="text-xs" />
                       </motion.div>
                     </div>
@@ -363,7 +364,7 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                         {service.description}
                       </p>
                       <p className={`text-sm ${bgColor === 'white' ? 'text-gray-600' : 'text-gray-400'} mb-4`}>
-                        Créé par: {service.user.name}
+                        {t('servicesComponent.createdBy')} {service.user.name}
                       </p>
                     </motion.div>
                     
@@ -400,11 +401,11 @@ const ServiceComponent = ({ bgColor = 'red' }: ServiceComponentProps) => {
                           rel="noopener noreferrer"
                           className={`${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black border-gray-400/30' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-red-500/30'} text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg border inline-block`}
                         >
-                          Voir le projet
+                          {t('servicesComponent.seeProject')}
                         </a>
                       ) : (
                         <button className={`${bgColor === 'white' ? 'bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black border-gray-400/30' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-red-500/30'} text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg border`}>
-                          En savoir plus
+                          {t('servicesComponent.learnMore')}
                         </button>
                       )}
                     </motion.div>

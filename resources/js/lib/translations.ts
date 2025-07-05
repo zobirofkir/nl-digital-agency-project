@@ -54,6 +54,51 @@ export const translations = {
       startButton: 'Démarrer',
       learnMoreButton: 'En Savoir Plus'
     },
+    // Services Component
+    servicesComponent: {
+      badge: 'Excellence & Innovation',
+      title: 'Nos Services',
+      description: 'Des solutions digitales sur mesure pour propulser votre entreprise vers le succès',
+      clickToDiscover: 'Cliquez pour découvrir',
+      createdBy: 'Par:',
+      seeProject: 'Voir le projet',
+      learnMore: 'En savoir plus'
+    },
+    // Projects Component
+    projectsComponent: {
+      title: 'Distinguez-vous dès maintenant grâce à nos services !',
+      noProjects: 'Aucun projet disponible pour le moment.'
+    },
+    // Blog Component
+    blogComponent: {
+      badge: 'Insights & Innovation',
+      title: 'Blog Technologique',
+      description: 'Découvrez les dernières tendances et innovations dans le monde du développement digital',
+      readArticle: 'Lire l\'article',
+      readTime: 'min'
+    },
+    // Blog Show Component
+    blogShowComponent: {
+      notFound: 'Article non trouvé',
+      backToArticles: 'Retour aux articles',
+      share: 'Partager',
+      developmentTeam: 'Équipe de développement'
+    },
+    // Contact Component
+    contactComponent: {
+      title: 'Contactez nous',
+      subtitle: 'Prêt à démarrer votre projet ? Parlons-en !',
+      nameLabel: 'Nom',
+      emailLabel: 'Email',
+      messageLabel: 'Message',
+      sendButton: 'Envoyer le message',
+      phoneTitle: 'Téléphone',
+      phoneNumber: '+212 6 12 34 56 78',
+      emailTitle: 'Email',
+      emailAddress: 'contact@nl-digitalagency.com',
+      addressTitle: 'Adresse',
+      addressText: 'Fés, Maroc'
+    },
     // Common
     common: {
       readMore: 'Lire Plus',
@@ -116,6 +161,51 @@ export const translations = {
       ceoName: '- Naoual Lebbar, CEO',
       startButton: 'Get Started',
       learnMoreButton: 'Learn More'
+    },
+    // Services Component
+    servicesComponent: {
+      badge: 'Excellence & Innovation',
+      title: 'Our Services',
+      description: 'Tailored digital solutions to propel your business to success',
+      clickToDiscover: 'Click to discover',
+      createdBy: 'By:',
+      seeProject: 'See project',
+      learnMore: 'Learn more'
+    },
+    // Projects Component
+    projectsComponent: {
+      title: 'Stand out now with our services!',
+      noProjects: 'No projects available at the moment.'
+    },
+    // Blog Component
+    blogComponent: {
+      badge: 'Insights & Innovation',
+      title: 'Technology Blog',
+      description: 'Discover the latest trends and innovations in the world of digital development',
+      readArticle: 'Read article',
+      readTime: 'min'
+    },
+    // Blog Show Component
+    blogShowComponent: {
+      notFound: 'Article not found',
+      backToArticles: 'Back to articles',
+      share: 'Share',
+      developmentTeam: 'Development team'
+    },
+    // Contact Component
+    contactComponent: {
+      title: 'Contact us',
+      subtitle: 'Ready to start your project? Let\'s talk!',
+      nameLabel: 'Name',
+      emailLabel: 'Email',
+      messageLabel: 'Message',
+      sendButton: 'Send message',
+      phoneTitle: 'Phone',
+      phoneNumber: '+212 6 12 34 56 78',
+      emailTitle: 'Email',
+      emailAddress: 'contact@nl-digitalagency.com',
+      addressTitle: 'Address',
+      addressText: 'Fez, Morocco'
     },
     // Common
     common: {
