@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import useTranslation from '@/hooks/useTranslation'
 
 interface ContactComponentProps {
   bgColor?: 'black' | 'white'
@@ -12,6 +13,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
     email: '',
     message: ''
   })
+  const { t } = useTranslation()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,10 +35,10 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>Contactez</span>{' '}
-            <span className="text-red-500">nous</span>
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>{t('contactComponent.title').split(' ')[0]}</span>{' '}
+            <span className="text-red-500">{t('contactComponent.title').split(' ')[1]}</span>
           </h2>
-          <p className={`${textColor === 'white' ? 'text-white/80' : 'text-black/80'} text-lg`}>Prêt à démarrer votre projet ? Parlons-en !</p>
+          <p className={`${textColor === 'white' ? 'text-white/80' : 'text-black/80'} text-lg`}>{t('contactComponent.subtitle')}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -54,7 +56,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 transition={{ delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Nom</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>{t('contactComponent.nameLabel')}</label>
                 <input
                   type="text"
                   name="name"
@@ -71,7 +73,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Email</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>{t('contactComponent.emailLabel')}</label>
                 <input
                   type="email"
                   name="email"
@@ -88,7 +90,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 transition={{ delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>Message</label>
+                <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>{t('contactComponent.messageLabel')}</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -109,7 +111,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 transition={{ delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                Envoyer le message
+{t('contactComponent.sendButton')}
               </motion.button>
             </form>
           </motion.div>
@@ -151,27 +153,27 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
               className="text-center"
             >
               <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
-                <span className="text-red-500">Téléphone</span>
+                <span className="text-red-500">{t('contactComponent.phoneTitle')}</span>
               </h3>
-              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>+212 6 12 34 56 78</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>{t('contactComponent.phoneNumber')}</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center"
             >
               <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
-                <span className="text-red-500">Email</span>
+                <span className="text-red-500">{t('contactComponent.emailTitle')}</span>
               </h3>
-              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>contact@nl-digitalagency.com</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>{t('contactComponent.emailAddress')}</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center"
             >
               <h3 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-bold text-xl mb-2`}>
-                <span className="text-red-500">Adresse</span>
+                <span className="text-red-500">{t('contactComponent.addressTitle')}</span>
               </h3>
-              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>Fés, Maroc</p>
+              <p className={textColor === 'white' ? 'text-white/80' : 'text-black/80'}>{t('contactComponent.addressText')}</p>
             </motion.div>
           </div>
         </motion.div>

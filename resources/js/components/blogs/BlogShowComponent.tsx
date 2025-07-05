@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FaCalendar, FaUser, FaArrowLeft, FaRobot, FaCode, FaMobile, FaRocket, FaShare, FaHeart } from 'react-icons/fa'
 import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
+import useTranslation from '@/hooks/useTranslation'
 
 interface BlogShowComponentProps {
   blog: {
