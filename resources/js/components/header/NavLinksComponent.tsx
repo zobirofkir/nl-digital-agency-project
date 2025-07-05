@@ -1,27 +1,32 @@
 import React from 'react'
+import useTranslation from '@/hooks/useTranslation'
 
 const navLinks = [
-  { name: 'Accueil', href: '/' },
-  { name: 'À propos', href: '/abouts' },
-  { name: 'Services', href: '/services' },
-  { name: 'Projets', href: '/projects' },
-  { name: 'Blogs', href: '/blogs' },
-  { name: 'Contact', href: '/contacts' },
+  { key: 'nav.home', href: '/' },
+  { key: 'nav.about', href: '/abouts' },
+  { key: 'nav.services', href: '/services' },
+  { key: 'nav.projects', href: '/projects' },
+  { key: 'nav.blog', href: '/blogs' },
+  { key: 'nav.contact', href: '/contacts' },
 ]
 
-const NavLinksComponent = ({ onClickLink, textColor = 'black' }: { onClickLink: () => void; textColor?: 'black' | 'white' }) => (
-  <>
-    {navLinks.map(link => (
-      <a
-        key={link.name}
-        href={link.href}
-        className={`flex items-center text-${textColor} font-md hover:text-gray-700 transition-colors duration-200 group`}
-        onClick={onClickLink}
-      >
-        {link.name}
-      </a>
-    ))}
-  </>
-)
+const NavLinksComponent = ({ onClickLink, textColor = 'black' }: { onClickLink: () => void; textColor?: 'black' | 'white' }) => {
+  const { t } = useTranslation()
+  
+  return (
+    <>
+      {navLinks.map(link => (
+        <a
+          key={link.key}
+          href={link.href}
+          className={`flex items-center text-${textColor} font-md hover:text-gray-700 transition-colors duration-200 group`}
+          onClick={onClickLink}
+        >
+          {t(link.key)}
+        </a>
+      ))}
+    </>
+  )
+}
 
 export default NavLinksComponent

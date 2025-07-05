@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useTranslation from '@/hooks/useTranslation'
 
 const SliderContentComponent: React.FC = () => {
+  const { t } = useTranslation()
   const [displayedText, setDisplayedText] = useState('')
   const [displayedQuote, setDisplayedQuote] = useState('')
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentQuoteWordIndex, setCurrentQuoteWordIndex] = useState(0)
-  const fullText = 'Stratégies digitales sur mesure pour amplifier votre marque et maximiser vos résultats.'
-  const fullQuote = 'Excellence digitale, résultats mesurables.'
+  const fullText = t('slider.description')
+  const fullQuote = t('slider.quote')
   const words = fullText.split(' ')
   const quoteWords = fullQuote.split(' ')
 
@@ -61,7 +63,7 @@ const SliderContentComponent: React.FC = () => {
     return () => {
       clearInterval(loopTimer)
     }
-  }, [])
+  }, [fullText, fullQuote]) // Restart animation when language changes
 
   return (
   <div className="absolute inset-0 z-20 flex items-center lg:items-center items-start md:mt-0 mt-10 pt-16 lg:pt-0">
@@ -80,7 +82,7 @@ const SliderContentComponent: React.FC = () => {
           transition={{ type: 'spring', stiffness: 100, delay: 0.4 }}
         >
           <div className="w-2 h-2 bg-red-600 rounded-full mr-2 animate-pulse"></div>
-          <span className="text-red-700 font-medium text-sm tracking-wide">NL MARKETING DIGITAL</span>
+          <span className="text-red-700 font-medium text-sm tracking-wide">{t('slider.badge')}</span>
         </motion.div>
 
         <motion.h1
@@ -94,21 +96,21 @@ const SliderContentComponent: React.FC = () => {
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            Idées
+            {t('slider.title1')}
           </motion.span>
           <motion.span 
             className="block bg-gradient-to-r from-red-600 via-red-700 to-red-800 bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            Digitales
+            {t('slider.title2')}
           </motion.span>
           <motion.span 
             className="block text-black"
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            Réussies
+            {t('slider.title3')}
           </motion.span>
         </motion.h1>
         
@@ -227,7 +229,7 @@ const SliderContentComponent: React.FC = () => {
               transition={{ delay: 0.5 }}
               style={{ textShadow: '1px 1px 2px rgba(239, 68, 68, 0.3)' }}
             >
-              - Naoual Lebbar, CEO
+              {t('slider.ceoName')}
             </motion.div>
           )}
         </motion.div>
@@ -244,7 +246,7 @@ const SliderContentComponent: React.FC = () => {
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">Démarrer</span>
+            <span className="relative z-10">{t('slider.startButton')}</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
           
@@ -254,7 +256,7 @@ const SliderContentComponent: React.FC = () => {
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">En Savoir Plus</span>
+            <span className="relative z-10">{t('slider.learnMoreButton')}</span>
             <div className="absolute inset-0 bg-gray-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
           </motion.button>
         </motion.div>
@@ -271,7 +273,7 @@ const SliderContentComponent: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">Démarrer</span>
+            <span className="relative z-10">{t('slider.startButton')}</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
           
@@ -281,7 +283,7 @@ const SliderContentComponent: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 200 }}
           >
-            <span className="relative z-10">En Savoir Plus</span>
+            <span className="relative z-10">{t('slider.learnMoreButton')}</span>
             <div className="absolute inset-0 bg-gray-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
           </motion.button>
         </motion.div>

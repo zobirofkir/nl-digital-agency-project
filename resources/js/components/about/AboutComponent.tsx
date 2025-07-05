@@ -4,8 +4,10 @@ import AboutBackgroundImage from '@/assets/abouts/about-image-background.png'
 import AboutPersonneImageBackground from '@/assets/abouts/about-persone-background.png'
 import AboutPersonneImage from '@/assets/abouts/about-personne.png'
 import FlushImage from '@/assets/abouts/about-flush.png'
+import useTranslation from '@/hooks/useTranslation'
 
 const AboutComponent = () => {
+  const { t } = useTranslation()
 
   return (
     <motion.div 
@@ -153,7 +155,7 @@ const AboutComponent = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            Fondatrice & CEO, NL Marketing Digital
+            {t('about.founder')}
           </motion.p>
           
           <motion.p 
@@ -161,11 +163,8 @@ const AboutComponent = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-          >
-            Nous transformons vos idées en <span className="text-red-400 font-semibold">succès digitaux</span> grâce à des stratégies innovantes. 
-            Notre équipe passionnée vous accompagne dans votre <span className="text-red-400">transformation digitale</span> 
-            pour atteindre vos objectifs.
-          </motion.p>
+            dangerouslySetInnerHTML={{ __html: t('about.description') }}
+          />
           
           <motion.p 
             className="text-white/80 text-xs sm:text-sm italic mb-6"
@@ -173,7 +172,7 @@ const AboutComponent = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
           >
-            "Ensemble, construisons un avenir numérique prospère."
+            {t('about.quote')}
           </motion.p>
           
           {/* Desktop-only sections */}
@@ -185,9 +184,9 @@ const AboutComponent = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.3 }}
             >
-              <h3 className="text-red-400 font-semibold mb-3 text-sm">Nos Services</h3>
+              <h3 className="text-red-400 font-semibold mb-3 text-sm">{t('about.services')}</h3>
               <div className="grid grid-cols-2 gap-2 text-xs">
-                {['Web Design', 'SEO', 'Marketing', 'Branding'].map((service, i) => (
+                {[t('services.webDesign'), t('services.seo'), t('services.marketing'), t('services.branding')].map((service, i) => (
                   <div key={i} className="text-white/80 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
                     {service}
@@ -203,20 +202,20 @@ const AboutComponent = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.4 }}
             >
-              <h3 className="text-red-400 font-semibold mb-3 text-sm">Contact Rapide</h3>
+              <h3 className="text-red-400 font-semibold mb-3 text-sm">{t('about.quickContact')}</h3>
               <div className="space-y-2 text-xs text-white/80">
                 <div className="flex items-center gap-2">
                   <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                   </svg>
-                  contact@nl-digitalagency.com
+                  {t('contact.email')}
                 </div>
                 <div className="flex items-center gap-2">
                   <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                   </svg>
-                  Fés, Maroc
+                  {t('contact.location')}
                 </div>
               </div>
             </motion.div>
@@ -239,7 +238,7 @@ const AboutComponent = () => {
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-                Découvrir Plus
+                {t('about.discoverMore')}
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </motion.button>
@@ -254,7 +253,7 @@ const AboutComponent = () => {
                 <svg className="w-4 h-4 text-red-400 group-hover:text-red-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
-                Watch a Video
+                {t('about.watchVideo')}
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
@@ -271,9 +270,9 @@ const AboutComponent = () => {
       >
         <div className="bg-black/30 backdrop-blur-md rounded-xl p-6 border border-red-400/20 lg:mt-50">
           {[
-            { number: "150+", label: "Projets" },
-            { number: "98%", label: "Satisfaction" },
-            { number: "5+", label: "Années" }
+            { number: "150+", label: t('about.stats.projects') },
+            { number: "98%", label: t('about.stats.satisfaction') },
+            { number: "5+", label: t('about.stats.years') }
           ].map((stat, i) => (
             <motion.div 
               key={i}
