@@ -1,8 +1,8 @@
 import { translations } from '@/lib/translations'
-import useLanguage from './useLanguage'
+import { useLanguageContext } from '@/contexts/LanguageContext'
 
 const useTranslation = () => {
-  const { lang } = useLanguage()
+  const { lang } = useLanguageContext()
   
   const t = (key: string): string => {
     const keys = key.split('.')
