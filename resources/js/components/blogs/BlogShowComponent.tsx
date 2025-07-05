@@ -24,13 +24,15 @@ interface BlogShowComponentProps {
 }
 
 const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: BlogShowComponentProps) => {
-  if (!blog) return <div>Article non trouvé</div>
+  const { t } = useTranslation()
+  
+  if (!blog) return <div>{t('blogShowComponent.notFound')}</div>
 
   const post = {
     ...blog,
     image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop',
     icon: FaRobot,
-    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min'
+    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ` ${t('blogComponent.readTime')}` : `5 ${t('blogComponent.readTime')}`
   }
 
   const handleShare = () => {
@@ -93,7 +95,7 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
             className="inline-flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors"
           >
             <FaArrowLeft />
-            Retour aux articles
+            {t('blogShowComponent.backToArticles')}
           </Link>
         </motion.div>
 
@@ -135,7 +137,7 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
               whileTap={{ scale: 0.95 }}
             >
               <FaShare />
-              Partager
+              {t('blogShowComponent.share')}
             </motion.button>
           </div>
         </motion.div>
@@ -187,7 +189,7 @@ const BlogShowComponent = ({ blog, bgColor = 'black', textColor = 'white' }: Blo
               </div>
               <div>
                 <h4 className={`${textColor === 'white' ? 'text-white' : 'text-black'} font-semibold`}>{blog.author}</h4>
-                <p className={`${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm`}>Équipe de développement</p>
+                <p className={`${textColor === 'white' ? 'text-gray-400' : 'text-gray-600'} text-sm`}>{t('blogShowComponent.developmentTeam')}</p>
               </div>
             </div>
             
