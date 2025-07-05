@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FaCalendar, FaUser, FaArrowRight, FaRobot, FaCode, FaMobile, FaRocket } from 'react-icons/fa'
 import { Link } from '@inertiajs/react'
 import AnimatedCircleComponent from '../slider/AnimatedCircleComponent'
+import useTranslation from '@/hooks/useTranslation'
 
 interface Blog {
   id: number
@@ -22,13 +23,29 @@ interface BlogComponentProps {
   blogs?: Blog[]
 }
 
+const defaultBlogs = [
+  {
+    id: 1,
+    title: 'AI Revolution in Web Development',
+    slug: 'ai-revolution-web-development',
+    excerpt: 'Discover how artificial intelligence is transforming the way we build websites.',
+    author: 'Tech Team',
+    date: '2024-01-15',
+    category: 'AI',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    icon: FaRobot,
+    readTime: '5 min'
+  }
+]
+
 const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: BlogComponentProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const { t } = useTranslation()
   const blogPosts = blogs.length > 0 ? blogs.map(blog => ({
     ...blog,
     image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
     icon: FaRobot,
-    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ' min' : '5 min'
+    readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ` ${t('blogComponent.readTime')}` : `5 ${t('blogComponent.readTime')}`
   })) : defaultBlogs
 
   return (
@@ -93,7 +110,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Insights & Innovation
+            {t('blogComponent.badge')}
           </motion.span>
           <motion.h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
@@ -101,8 +118,8 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <span className="text-red-500">Blog</span>{' '}
-            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>Technologique</span>
+            <span className="text-red-500">{t('blogComponent.title').split(' ')[0]}</span>{' '}
+            <span className={textColor === 'white' ? 'text-white' : 'text-black'}>{t('blogComponent.title').split(' ').slice(1).join(' ')}</span>
           </motion.h1>
           <motion.p 
             className={`text-xl ${textColor === 'white' ? 'text-gray-300' : 'text-gray-700'} max-w-2xl mx-auto`}
@@ -110,7 +127,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Découvrez les dernières tendances et innovations dans le monde du développement digital
+            {t('blogComponent.description')}
           </motion.p>
         </motion.div>
 
@@ -227,7 +244,7 @@ const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: B
                       whileHover={{ x: 5 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Lire l'article
+                      {t('blogComponent.readArticle')}
                       <motion.div
                         animate={{ x: hoveredCard === post.id ? 5 : 0 }}
                         transition={{ duration: 0.3 }}
