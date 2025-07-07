@@ -23,30 +23,15 @@ interface BlogComponentProps {
   blogs?: Blog[]
 }
 
-const defaultBlogs = [
-  {
-    id: 1,
-    title: 'AI Revolution in Web Development',
-    slug: 'ai-revolution-web-development',
-    excerpt: 'Discover how artificial intelligence is transforming the way we build websites.',
-    author: 'Tech Team',
-    date: '2024-01-15',
-    category: 'AI',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-    icon: FaRobot,
-    readTime: '5 min'
-  }
-]
-
 const BlogComponent = ({ bgColor = 'black', textColor = 'white', blogs = [] }: BlogComponentProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const { t } = useTranslation()
-  const blogPosts = blogs.length > 0 ? blogs.map(blog => ({
+  const blogPosts = blogs.map(blog => ({
     ...blog,
     image: blog.featured_image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
     icon: FaRobot,
     readTime: blog.content ? Math.ceil(blog.content.split(' ').length / 200) + ` ${t('blogComponent.readTime')}` : `5 ${t('blogComponent.readTime')}`
-  })) : defaultBlogs
+  }))
 
   return (
     <section className={`relative ${bgColor === 'black' ? 'bg-black' : 'bg-white'} min-h-screen py-20 px-4 overflow-hidden`}>
