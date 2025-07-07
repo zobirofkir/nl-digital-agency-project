@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return inertia('WelcomePage');
@@ -24,6 +25,4 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
-Route::get('/contacts', function () {
-    return inertia('ContactPage');
-})->name('contacts');
+Route::resource('/contacts', ContactController::class);
