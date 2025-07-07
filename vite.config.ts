@@ -22,4 +22,35 @@ export default defineConfig({
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
+    build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    // Vendor chunks
+                    'react-vendor': ['react', 'react-dom'],
+                    'inertia-vendor': ['@inertiajs/react'],
+                    'motion-vendor': ['framer-motion'],
+                    'radix-vendor': [
+                        '@radix-ui/react-avatar',
+                        '@radix-ui/react-checkbox',
+                        '@radix-ui/react-collapsible',
+                        '@radix-ui/react-dialog',
+                        '@radix-ui/react-dropdown-menu',
+                        '@radix-ui/react-label',
+                        '@radix-ui/react-navigation-menu',
+                        '@radix-ui/react-select',
+                        '@radix-ui/react-separator',
+                        '@radix-ui/react-slot',
+                        '@radix-ui/react-toggle',
+                        '@radix-ui/react-toggle-group',
+                        '@radix-ui/react-tooltip'
+                    ],
+                    'icons-vendor': ['react-icons', 'lucide-react'],
+                    'utils-vendor': ['clsx', 'tailwind-merge', 'class-variance-authority']
+                }
+            }
+        }
+    }
 });
+

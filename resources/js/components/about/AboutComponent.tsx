@@ -21,78 +21,26 @@ const AboutComponent = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
     >
-      {/* Floating Elements */}
-      <motion.div className="absolute inset-0 pointer-events-none z-10">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
+      {/* Simplified Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none z-10">
+        {[...Array(3)].map((_, i) => (
+          <div
             key={i}
-            className="absolute w-2 h-2 bg-red-400/30 rounded-full"
+            className={`absolute w-2 h-2 bg-red-400/30 rounded-full animate-bounce`}
             style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + (i % 3) * 20}%`
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [0.8, 1.2, 0.8]
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5
+              left: `${30 + i * 20}%`,
+              top: `${40 + i * 15}%`,
+              animationDelay: `${i * 0.5}s`
             }}
           />
         ))}
-      </motion.div>
+      </div>
 
-      {/* Laser Icons */}
-      <motion.div className="absolute inset-0 pointer-events-none z-20">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`laser-${i}`}
-            className={`absolute w-1 h-8 ${i % 2 === 0 ? 'bg-white/60' : 'bg-red-500/70'} rounded-full`}
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${15 + (i % 4) * 20}%`,
-              transformOrigin: 'center'
-            }}
-            animate={{
-              x: [0, 50, -30, 40, 0],
-              y: [0, -25, 15, -35, 0],
-              rotate: [0, 45, -30, 60, 0],
-              opacity: [0.4, 1, 0.6, 1, 0.4],
-              scale: [0.8, 1.2, 0.9, 1.3, 0.8]
-            }}
-            transition={{
-              duration: 6 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3
-            }}
-          />
-        ))}
-      </motion.div>
-
-      {/* Robotic Flush Animation */}
-      <motion.img 
+      {/* Simplified Flush Image */}
+      <img 
         src={FlushImage} 
         alt="Flush" 
-        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-0"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        animate={{
-          filter: [
-            'drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)) brightness(1)',
-            'drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)) brightness(1.1)',
-            'drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)) brightness(1)'
-          ]
-        }}
-        transition={{
-          filter: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
-          opacity: { duration: 0.8, ease: 'easeOut' }
-        }}
-        viewport={{ once: true }}
+        className="absolute lg:block hidden lg:-top-[30%] left-1/2 transform -translate-x-1/2 lg:ml-15 z-0 animate-pulse"
       />
       <motion.div 
         className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full sm:w-3/4 md:w-2/3 lg:w-1/3 h-1/2 sm:h-2/3 md:h-3/4 lg:ml-10 flex items-center justify-center lg:mt-10"
@@ -107,25 +55,10 @@ const AboutComponent = () => {
           <motion.img 
             src={AboutPersonneImage} 
             alt="About Person" 
-            className="absolute inset-0 w-full h-[88%] object-cover flex justify-center items-center mx-auto my-auto overflow-hidden"
+            className="absolute inset-0 w-full h-[88%] object-cover flex justify-center items-center mx-auto my-auto overflow-hidden hover:scale-105 transition-transform duration-300"
             style={{
               maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)',
               WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 50%)'
-            }}
-            animate={{ 
-              x: [0, 8, -5, 12, 0],
-              filter: [
-                'brightness(1) contrast(1) saturate(1)',
-                'brightness(1.05) contrast(1.08) saturate(1.1)',
-                'brightness(0.98) contrast(1.02) saturate(0.95)',
-                'brightness(1.08) contrast(1.12) saturate(1.15)',
-                'brightness(1) contrast(1) saturate(1)'
-              ]
-            }}
-            transition={{ 
-              x: { duration: 6, repeat: Infinity, ease: [0.25, 0.46, 0.45, 0.94] },
-              scale: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
-              filter: { duration: 3.8, repeat: Infinity, ease: 'easeInOut' }
             }}
           />
         </div>
@@ -281,13 +214,9 @@ const AboutComponent = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
             >
-              <motion.div 
-                className="text-2xl font-bold text-red-400"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-              >
+              <div className="text-2xl font-bold text-red-400 animate-pulse">
                 {stat.number}
-              </motion.div>
+              </div>
               <div className="text-white/80 text-sm">{stat.label}</div>
             </motion.div>
           ))}
