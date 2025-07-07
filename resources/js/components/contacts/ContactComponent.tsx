@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
+import { useForm } from '@inertiajs/react'
 import useTranslation from '@/hooks/useTranslation'
 
 interface ContactComponentProps {
@@ -8,20 +9,20 @@ interface ContactComponentProps {
 }
 
 const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactComponentProps) => {
-  const [formData, setFormData] = useState({
+  const { t } = useTranslation()
+  const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     message: ''
   })
-  const { t } = useTranslation()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    post('/contacts', {
+      onSuccess: () => {
+        reset()
+      }
+    })
   }
 
   return (
@@ -60,11 +61,12 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 <input
                   type="text"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors`}
+                  value={data.name}
+                  onChange={(e) => setData('name', e.target.value)}
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors ${errors.name ? 'border-red-500' : ''}`}
                   required
                 />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </motion.div>
 
               <motion.div
@@ -77,11 +79,12 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors`}
+                  value={data.email}
+                  onChange={(e) => setData('email', e.target.value)}
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors ${errors.email ? 'border-red-500' : ''}`}
                   required
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </motion.div>
 
               <motion.div
@@ -93,17 +96,19 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 <label className={`block ${textColor === 'white' ? 'text-white' : 'text-black'} mb-2 font-medium`}>{t('contactComponent.messageLabel')}</label>
                 <textarea
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
+                  value={data.message}
+                  onChange={(e) => setData('message', e.target.value)}
                   rows={6}
-                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none`}
+                  className={`w-full px-4 py-3 ${bgColor === 'black' ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-100 border-gray-300 text-black'} border rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none ${errors.message ? 'border-red-500' : ''}`}
                   required
                 />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </motion.div>
 
               <motion.button
                 type="submit"
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                disabled={processing}
+                className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-400 text-white font-bold py-3 px-6 rounded-lg transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -111,7 +116,7 @@ const ContactComponent = ({ bgColor = 'black', textColor = 'white' }: ContactCom
                 transition={{ delay: 0.6 }}
                 viewport={{ once: true }}
               >
-{t('contactComponent.sendButton')}
+                {processing ? 'Sending...' : t('contactComponent.sendButton')}
               </motion.button>
             </form>
           </motion.div>
