@@ -16,8 +16,8 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        return ContactResource::make(
-            Contact::create($request->validated())
-        );
+        Contact::create($request->validated());
+        
+        return redirect()->back()->with('success', 'Message envoyé avec succès!');
     }
 }
