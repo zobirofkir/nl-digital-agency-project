@@ -63,11 +63,11 @@ const SliderContentComponent: React.FC = () => {
     return () => {
       clearInterval(loopTimer)
     }
-  }, [fullText, fullQuote]) // Restart animation when language changes
+  }, [fullText, fullQuote])
 
   return (
   <div className="absolute inset-0 z-20 flex items-center lg:items-center items-start md:mt-0 mt-10 pt-16 lg:pt-0">
-    <div className="w-full lg:w-1/2 px-8 lg:px-20">
+    <div className="w-full lg:w-1/2 px-8 lg:px-20 lg:mt-20 mt-0">
       <motion.div
         className="max-w-3xl"
         initial={{ x: -120, opacity: 0 }}
